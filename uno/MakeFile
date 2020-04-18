@@ -1,0 +1,22 @@
+default:
+	utop -init main.ml
+	
+build:
+	ocamlbuild -use-ocamlfind uno.cmo uno_test.cmo
+
+test:
+	ocamlbuild -use-ocamlfind -tag 'debug' uno_test.byte && ./uno_test.byte
+
+check:
+	bash checkenv.sh && bash checktypes.sh
+
+finalcheck: check
+	bash finalcheck.sh
+
+docs:
+	mkdir -p doc
+	ocamldoc -d doc -html main.ml
+
+clean:
+	ocamlbuild -clean
+	rm -rf doc
