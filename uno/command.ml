@@ -9,6 +9,7 @@ type command =
   | Uno2
   | Rules
   | Commands
+
 type result =
   | Illegal of string
   | Legal of t
@@ -36,4 +37,4 @@ let rules command =
   failwith "Unimplemented"
 
 let commands command =
-  failwith "Unimplemented"
+  failwith "Unimplemented" 

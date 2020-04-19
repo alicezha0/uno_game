@@ -68,3 +68,8 @@ val uno_defensive : t -> gamer -> t
     Raises: Nouno of gamer1 exception if the gamer1 has not called uno at the 
     appropriate time. *)
 val uno_offensive : t -> gamer -> gamer -> t
+
+(**[ win_or_not gamer t] is true if [gamer] has no cards in their hand in game 
+    state [t] and false otherwise. *)
+
+val win_or_not : t -> gamer -> bool

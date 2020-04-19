@@ -43,3 +43,6 @@ let uno_defensive t gamer =
 
 let uno_offensive t gamer =
   failwith "Unimplemented"
+
+let win_or_not t gamer = 
+  failwith "Unimplemented"
