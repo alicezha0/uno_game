@@ -1,1 +1,25 @@
-{}
+{
+  "commands": [
+    {
+      "a": "Here are the commands for this game: "
+    },
+    {
+      "b": "Draw: Picks up a card from the draw pile and transfers it to your hand."
+    },
+    {
+      "c": "Play (of card): Puts specified card on top of the discard pile if the move is legal."
+    },
+    {
+      "d": "Uno (of card): Plays the card if the card is legal and if you would have one card left in your hand after playing it."
+    },
+    {
+      "e": "Uno2: When the other player only has one card and has not called uno yet, you can call uno on them to make them draw four cards."
+    },
+    {
+      "f": "Rules: Lists the rules of Uno out."
+    },
+    {
+      "g": "Commands: Lists the commands of this game."
+    }
+  ]
+}
