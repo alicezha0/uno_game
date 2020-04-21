@@ -10,8 +10,8 @@
     A [card_phrase] is not permitted to be the empty list. *)
 type card_phrase = string
 
-(** The type gamestate. *)
-type t
+(* * The type gamestate.
+   type t *)
 
 (** The type [command] represents a player command that is decomposed
     into a verb and possibly a card_phrase. *)
@@ -23,9 +23,11 @@ type command =
   | Rules
   | Commands
 
+(** Legal2 is for when main calls rules or commands, which returns a string. *)
 type result =
   | Illegal of string
-  | Legal of t
+  | Legal of Gamestate.t
+  | Legal2 of string
 
 (** Raised when an empty command or card_phrase is parsed. *)
 exception Empty
@@ -47,25 +49,26 @@ exception Malformed
     Raises: [Malformed] if the command is malformed. *)
 val parse : string -> command
 
-(** [draw t command] returns Legal of the new game state. *)
-val draw : t -> command -> result
+(** [draw t g n] is Legal of the new game state in which the gamer [g] has 
+    drawn [n] new card(s). *)
+val draw : Gamestate.t -> Gamestate.gamer -> int -> result
 
-(** [play t command] returns Legal of the new game state or Illegal with an 
-    error message. *)
-val play : t -> command -> result
+(** [play t g phr] is Legal of the new game state or Illegal with an 
+    error message for the gamer [g] who played the card [phr]. *)
+val play : Gamestate.t -> Gamestate.gamer -> card_phrase -> result
 
-(** [uno t command] returns Legal of the new game state or Illegal of an error
-    message. *)
-val uno : t -> command -> result
+(** [uno t g phr] returns Legal of the new game state or Illegal of an error
+    message for the gamer [g] who played their second to last card [phr]. *)
+val uno : Gamestate.t -> Gamestate.gamer -> card_phrase -> result
 
-(** [uno2 t command] returns Legal of the new game state or Illegal of an error
-    message. *)
-val uno2 : t -> command -> result
+(** [uno2 t g1 g2] returns Legal of the new game state or Illegal of an error
+    message from gamer 1 [g1] trying to call uno on gamer 2 [g2]. *)
+val uno2 : Gamestate.t -> Gamestate.gamer -> Gamestate.gamer -> result
 
-(** [rules json command] returns a string of the rules parsed from the json
-    file. *)
-val rules : Yojson.Basic.t -> command -> string
+(** [rules] is the result Legal2 of the rules parsed from the rules.json file. 
+*)
+val rules : result
 
-(** [commands json command] returns a string of the commands parsed from the 
-    json file. *)
-val commands : Yojson.Basic.t -> command -> string
+(** [commands] is the result Legal2 of the commands parsed from the 
+    commands.json file. *)
+val commands : result
