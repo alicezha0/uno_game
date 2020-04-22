@@ -47,25 +47,25 @@ exception Malformed
     Raises: [Malformed] if the command is malformed. *)
 val parse : string -> command
 
-(** [draw t command] returns Legal of the new game state. *)
-val draw : t -> command -> result
+(** [draw t] is Legal of the new game state in which the gamer has drawn a new
+    card. *)
+val draw : t -> result
 
-(** [play t command] returns Legal of the new game state or Illegal with an 
+(** [play t phr] is Legal of the new game state or Illegal with an 
     error message. *)
-val play : t -> command -> result
+val play : t -> card_phrase -> result
 
-(** [uno t command] returns Legal of the new game state or Illegal of an error
+(** [uno t phr] returns Legal of the new game state or Illegal of an error
     message. *)
-val uno : t -> command -> result
+val uno : t -> card_phrase -> result
 
-(** [uno2 t command] returns Legal of the new game state or Illegal of an error
+(** [uno2 t] returns Legal of the new game state or Illegal of an error
     message. *)
-val uno2 : t -> command -> result
+val uno2 : t -> result
 
-(** [rules json command] returns a string of the rules parsed from the json
+(** [rules] is the string of the rules parsed from the rules.json file. *)
+val rules : string
+
+(** [commands] is the string of the commands parsed from the commands.json 
     file. *)
-val rules : Yojson.Basic.t -> command -> string
-
-(** [commands json command] returns a string of the commands parsed from the 
-    json file. *)
-val commands : Yojson.Basic.t -> command -> string
+val commands : string

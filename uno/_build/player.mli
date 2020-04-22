@@ -7,7 +7,8 @@ type card_name = string
 
 type command
 
-(** [player hand card] is the command for the next move to be made by the 
-    player, depending on their current hand [hand], and the last card 
-    played [card]. *)
-val player_turn : card_name list -> card_name -> command 
+type t
+
+(** [player_turn t] is the command for the next move to be made by the 
+    player, depending on the current gamestate t *)
+val player_turn : t -> command 

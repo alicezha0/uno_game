@@ -4,25 +4,25 @@
       "a": "Here are the rules for our Uno: "
     },
     {
-      "b": "Both you and the AI are dealt 7 cards (either Number, Action cards, or Wild cards)."
+      "a": "Both you and the AI are dealt 7 cards (either Number, Action cards, or Wild cards)."
     },
     {
-      "c": "The rest are placed in the Draw pile. The top card of the Draw pile begins the Discard pile."
+      "a": "The rest are placed in the Draw pile. The top card of the Draw pile begins the Discard pile."
     },
     {
-      "d": "Try to match the card on top of the Discard pile by number, color, or action."
+      "a": "Try to match the card on top of the Discard pile by number, color, or action."
     },
     {
-      "e": "If you have no matches, you must draw a card from the Draw pile. This continues until you have two cards left."
+      "a": "If you have no matches, you must draw a card from the Draw pile. This continues until you have two cards left."
     },
     {
-      "f": "On that turn, you must play 'Uno'. If you do not play 'Uno' and the AI plays 'Uno' on their next turn, you will draw four new cards as penalty."
+      "a": "On that turn, you must play 'Uno'. If you do not play 'Uno' and the AI plays 'Uno' on their next turn, you will draw four new cards as penalty."
     },
     {
-      "g": "Similarly, if The AI does not play 'Uno' on the turn they have two cards left and you play 'Uno' on your turn, the AI will draw four new cards as penalty."
+      "a": "Similarly, if The AI does not play 'Uno' on the turn they have two cards left and you play 'Uno' on your turn, the AI will draw four new cards as penalty."
     },
     {
-      "h": "The player who plays all cards in their hands first wins."
+      "a": "The player who plays all cards in their hands first wins."
     }
   ]
 }
