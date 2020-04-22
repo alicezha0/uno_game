@@ -3,7 +3,6 @@ open Yojson.Basic.Util
 open Stdlib
 
 type card_phrase = string
-type t = Gamestate.t
 type command = 
   | Draw
   | Play of card_phrase
@@ -14,7 +13,7 @@ type command =
 
 type result =
   | Illegal of string
-  | Legal of t
+  | Legal of Gamestate.t
   | Legal2 of string
 
 exception Empty
@@ -47,35 +46,35 @@ let parse str =
   else if trim_lc = "uno2" then Uno2
   else parse_helper trim_lc
 
-let draw t gamer num =
-  Legal (Gamestate.draw t gamer num)
+let draw gs gamer num =
+  Legal (Gamestate.draw gs gamer num)
 
-let play t gamer phr =
-  let try_play = Gamestate.play t gamer phr in 
+let play gs gamer phr =
+  let try_play = Gamestate.play gs gamer phr in 
   match try_play with 
-  | exception Gamestate.UnknownCard card -> 
-    Illegal ("You played an unknown card: " ^ card)
-  | exception Gamestate.CardNotInDeck card -> 
-    Illegal ("You tried to play a card not in your deck: " ^ card)
+  | exception Gamestate.CardNotInHand card -> 
+    Illegal ("You tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card -> 
     Illegal ("Your card does not match the card last played: " ^ card)
   | _ -> Legal try_play
 
-let uno t gamer phr =
-  let try_uno = Gamestate.uno_defensive t gamer phr in 
-  match try_uno with 
-  | exception Gamestate.UnknownCard card -> 
-    Illegal ("You played an unknown card: " ^ card)
-  | exception Gamestate.CardNotInDeck card -> 
-    Illegal ("You tried to play a card not in your deck: " ^ card)
-  | exception Gamestate.MisMatch card -> 
+let uno gs gamer phr =
+  let try_play_first = Gamestate.play gs gamer phr in 
+  match try_play_first with
+  | exception Gamestate.CardNotInHand card ->
+    Illegal ("You tried to play a card not in your hand: " ^ card)
+  | exception Gamestate.MisMatch card ->
     Illegal ("Your card does not match the card last played: " ^ card)
-  | exception Gamestate.Nouno gamer ->
-    Illegal ("You did not have two cards left.")
-  | _ -> Legal try_uno
+  | _ -> begin
+      let try_uno_def = Gamestate.uno_defensive try_play_first gamer in
+      match try_uno_def with 
+      | exception Gamestate.Nouno gamer -> 
+        Illegal ("You did not have two cards left. You called an invalid uno.")
+      | _ -> Legal try_uno_def
+    end
 
-let uno2 t gamer1 gamer2 =
-  let try_uno2 = Gamestate.uno_offensive t gamer1 gamer2 in 
+let uno2 gs gamer1 gamer2 =
+  let try_uno2 = Gamestate.uno_offensive gs gamer1 gamer2 in 
   match try_uno2 with 
   | exception Gamestate.Nouno gamer -> 
     Illegal ("You did not call a valid offensive uno. The other player does not
