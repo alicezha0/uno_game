@@ -44,19 +44,33 @@ val hand : t -> gamer -> card_name list
 (** [hand_size t gamer] is the size of the gamer's deck. *)
 val hand_size : t -> gamer -> int
 
+(** [number_search t gamer card_name] is the number of the card in [gamer]'s 
+    hand with name [card_name]*)
+val number_search : t -> gamer -> card_name -> int 
+
+(** [color_search t gamer card_name] is the color of the card in [gamer]'s 
+    hand with name [card_name]*)
+val color_search : t -> gamer -> card_name -> string 
+
+
 (** [draw t gamer num] gives the next game state in which the gamer has drawn
     a number num cards. *)
 val draw : t -> gamer -> int -> t
 
 (** [play t gamer card_name] gives a new game state in which the card has been
     added to the discard pile and the gamer's hand has been adjusted 
-    accordingly. *)
+    accordingly. 
+    Raises: 
+    1. (Mismatch of card_name) if the card to be played does not match the 
+    the last_card_played 
+    2. (CardNotInDeck of card_name) if the card to be played is not in the
+    gamer's hand *)
 val play: t -> gamer -> card_name -> t
 
 (** [uno_defensive t gamer] returns a new game state based on which gamer had 
     called uno for themself. If gamer has one card in hand, then their uno_state
-    has been changed to true and returns the new game state. Otherwise, throw
-    exception Nouno. This is called by command Uno of card_name.
+    will be changed to true in the new game state. Otherwise, exception Nouno
+    is thrown. This is called by command Uno of card_name.
     Raises: Nouno of gamer exception if the gamer has not called uno at the 
     appropriate time. *)
 val uno_defensive : t -> gamer -> t
@@ -65,6 +79,7 @@ val uno_defensive : t -> gamer -> t
     calling uno on gamer2. If this is a valid uno call, then gamer2 is forced to
     draw 4 cards. If this is an invalid uno call, then exception Nouno of gamer1
     is raised. This is called by command Uno2. 
+    Assumption: gamer1 and gamer2 are not the same gamer. 
     Raises: Nouno of gamer1 exception if the gamer1 has not called uno at the 
     appropriate time. *)
 val uno_offensive : t -> gamer -> gamer -> t
