@@ -15,6 +15,7 @@ type command =
 type result =
   | Illegal of string
   | Legal of t
+  | Legal2 of string
 
 exception Empty
 exception Malformed

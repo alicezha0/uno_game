@@ -10,9 +10,6 @@
     A [card_phrase] is not permitted to be the empty list. *)
 type card_phrase = string
 
-(* * The type gamestate.
-   type t *)
-
 (** The type [command] represents a player command that is decomposed
     into a verb and possibly a card_phrase. *)
 type command = 
