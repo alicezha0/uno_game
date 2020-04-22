@@ -3,10 +3,11 @@ open Yojson.Basic.Util
 open Stdlib
 
 type card_phrase = string
+
 type command = 
   | Draw
-  | Play of card_phrase
-  | Uno of card_phrase
+  | Play of string
+  | Uno of string
   | Uno2
   | Rules
   | Commands
