@@ -22,12 +22,12 @@ type command =
   | Uno2
   | Rules
   | Commands
+  | Quit
 
 (** Legal2 is for when main calls rules or commands, which returns a string. *)
 type result =
   | Illegal of string
   | Legal of Gamestate.t
-  | Legal2 of string
 
 (** Raised when an empty command or card_phrase is parsed. *)
 exception Empty
@@ -67,8 +67,8 @@ val uno : Gamestate.t -> Gamestate.gamer -> card_phrase -> result
     the other gamer [gamer2]. *)
 val uno2 : Gamestate.t -> Gamestate.gamer -> Gamestate.gamer -> result
 
-(** [rules] is Legal2 of the rules parsed from the rules.json file. *)
-val rules : result
+(** [rules] is the rules parsed from the rules.json file. *)
+val rules : string
 
-(** [commands] is Legal2 of the commands parsed from the commands.json file. *)
-val commands : result
+(** [commands] is the commands parsed from the commands.json file. *)
+val commands : string

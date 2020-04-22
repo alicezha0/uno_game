@@ -11,11 +11,11 @@ type command =
   | Uno2
   | Rules
   | Commands
+  | Quit
 
 type result =
   | Illegal of string
   | Legal of Gamestate.t
-  | Legal2 of string
 
 exception Empty
 exception Malformed
@@ -45,6 +45,7 @@ let parse str =
   else if trim_lc = "commands" then Commands
   else if trim_lc = "draw" then Draw
   else if trim_lc = "uno2" then Uno2
+  else if trim_lc = "quit" then Quit
   else parse_helper trim_lc
 
 let draw gs gamer num =
@@ -86,10 +87,10 @@ let rules =
   let json = Yojson.Basic.from_file "rules.json" in 
   let lines each_line = each_line |> member "a" |> to_string in
   let rules_list = json |> member "rules" |> to_list |> List.map lines in 
-  Legal2 (String.concat "\n" rules_list)
+  String.concat "\n" rules_list
 
 let commands =
   let json = Yojson.Basic.from_file "commands.json" in 
   let lines each_line = each_line |> member "b" |> to_string in
   let commands_list = json |> member "commands" |> to_list |> List.map lines in 
-  Legal2 (String.concat "\n" commands_list) 
+  String.concat "\n" commands_list
