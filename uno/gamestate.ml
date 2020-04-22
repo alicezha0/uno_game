@@ -15,6 +15,7 @@ type card = {name: card_name; number: int; color: string}
 (*This is just a list of card objects *)
 type deck = card list 
 
+
 type hand = {deck:deck; uno_state: bool}
 
 (* Had to create this type to implement the deal functions. Basically you want to deal a certain number of cards from
@@ -22,12 +23,12 @@ type hand = {deck:deck; uno_state: bool}
    to return two deck objects in one function, also i searched in Ocaml list but didn't find anything.*)
 type decks = {d1: deck; d2: deck}
 
-type t = {draw_pile: deck ; discard_pile: deck ; user_hand : hand ; player_hand: hand}
+type t = {draw_pile:deck ;discard_pile:deck ;user_hand:hand ;player_hand:hand}
 
 type gamer = User | Player
 
-exception UnknownCard of card_name
-exception CardNotInDeck of card_name 
+
+exception CardNotInHand of card_name 
 exception MisMatch of card_name 
 exception Nouno of gamer
 
@@ -41,7 +42,9 @@ let card_of_json j = {
 (** [shuffle t] returns a new game state with the cards in the Discard pile
     shuffled and reinserted into the Draw pile. This is called by need_shuffle *)
 let shuffle (d:deck) : deck  =
-  failwith "Unimplemented"
+  let random = List.map (fun c -> (Random.bits (), c)) d in
+  let sorted = List.sort compare random in
+  List.map snd sorted
 
 
 (** [deal initial_decks n] deals out the first [n] cards from [initial_decks].d2 
@@ -95,11 +98,31 @@ let hand_size t gamer = List.length (hand t gamer)
 
 (*----------------------------------------------------------------------------*)
 
+(**[card_of_card_name lst card_name] is the firt card object with name 
+   [card_name] in [lst] *)
+let rec card_of_card_name lst card_name  = 
+  match lst with 
+  |[] -> raise (CardNotInHand card_name) 
+  |h::t -> if (h.name = card_name) then h else card_of_card_name t card_name
+
 let number_search t gamer card_name = 
-  failwith "not implemented"
+  match gamer with 
+  |Player -> let lst = t.player_hand.deck in 
+    let card = card_of_card_name lst card_name in 
+    card.number
+  |User -> let lst = t.user_hand.deck in 
+    let card = card_of_card_name lst card_name in 
+    card.number
+
 
 let color_search t gamer card_name = 
-  failwith "not implemented"
+  match gamer with 
+  |Player -> let lst = t.player_hand.deck in 
+    let card = card_of_card_name lst card_name in 
+    card.color
+  |User -> let lst = t.user_hand.deck in 
+    let card = card_of_card_name lst card_name in 
+    card.color
 
 (*----------------------------------------------------------------------------*)
 
@@ -145,20 +168,11 @@ let draw t gamer num =
 
 (*----------------------------------------------------------------------------*)
 
-(**[card_of_card_name lst card_name] is the firt card object with name 
-   [card_name] in [lst] *)
-let rec card_of_card_name lst card_name  = 
-  match lst with 
-  |[] -> raise (CardNotInDeck card_name) 
-  |h::t -> if (h.name = card_name) then h else card_of_card_name t card_name
-
 (**[deck_without_card lst card init] is the list [lst] without [card] *)
 let rec deck_without_card lst card init =
   match lst with 
   |[] -> failwith "card not in list"
   |h::t -> if (h = card) then (t@init) else deck_without_card t card (h::init)
-
-
 
 let legal_play_or_not t card = 
   let card2 = card_of_card_name t.discard_pile (last_card_played t) in 

@@ -16,11 +16,8 @@ type card_name = string
     player represents the AI. *)
 type gamer = User | Player
 
-(** Raised when an unknown card is encountered. *)
-exception UnknownCard of card_name
-
 (** Raised when the card to be played is not in deck *)
-exception CardNotInDeck of card_name 
+exception CardNotInHand of card_name 
 
 (** Raised when card to be played does not match last card played *)
 exception MisMatch of card_name 
