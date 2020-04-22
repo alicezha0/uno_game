@@ -71,7 +71,7 @@ let uno gs gamer phr =
       let try_uno_def = Gamestate.uno_defensive try_play_first gamer in
       match try_uno_def with 
       | exception Gamestate.Nouno gamer -> 
-        Illegal ("You did not have two cards left. You called an invalid uno.")
+        Illegal "nouno"
       | _ -> Legal try_uno_def
     end
 
