@@ -52,36 +52,31 @@ let draw gs gamer num =
   Legal (Gamestate.draw gs gamer num)
 
 let play gs gamer phr =
-  let try_play = Gamestate.play gs gamer phr in 
-  match try_play with 
+  match Gamestate.play gs gamer phr with 
   | exception Gamestate.CardNotInHand card -> 
     Illegal ("You tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card -> 
     Illegal ("Your card does not match the card last played: " ^ card)
-  | _ -> Legal try_play
+  | _ -> Legal (Gamestate.play gs gamer phr)
 
 let uno gs gamer phr =
-  let try_play_first = Gamestate.play gs gamer phr in 
-  match try_play_first with
+  match Gamestate.play gs gamer phr with
   | exception Gamestate.CardNotInHand card ->
     Illegal ("You tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card ->
     Illegal ("Your card does not match the card last played: " ^ card)
   | _ -> begin
-      let try_uno_def = Gamestate.uno_defensive try_play_first gamer in
-      match try_uno_def with 
-      | exception Gamestate.Nouno gamer -> 
-        Illegal "nouno"
-      | _ -> Legal try_uno_def
+      match Gamestate.uno_defensive (Gamestate.play gs gamer phr) gamer with 
+      | exception Gamestate.Nouno gamer -> Illegal "nouno"
+      | _ -> Legal (Gamestate.uno_defensive (Gamestate.play gs gamer phr) gamer)
     end
 
 let uno2 gs gamer1 gamer2 =
-  let try_uno2 = Gamestate.uno_offensive gs gamer1 gamer2 in 
-  match try_uno2 with 
+  match Gamestate.uno_offensive gs gamer1 gamer2 with 
   | exception Gamestate.Nouno gamer -> 
     Illegal ("You did not call a valid offensive uno. The other player does not
     have Uno.")
-  | _ -> Legal try_uno2
+  | _ -> Legal (Gamestate.uno_offensive gs gamer1 gamer2)
 
 let rules =
   let json = Yojson.Basic.from_file "rules.json" in 
