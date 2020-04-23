@@ -1,1 +1,1 @@
-test.ml: Command Gamestate List OUnit2 Yojson
+test.ml: Command Gamestate List OUnit2 OUnitTest Player Yojson

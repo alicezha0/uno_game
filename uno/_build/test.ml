@@ -1,4 +1,5 @@
 open OUnit2
+open OUnitTest
 open Gamestate
 open Command
 
@@ -59,15 +60,9 @@ let exn_test_4 gs g1 g2 =
   try gs_1 = (Gamestate.uno_offensive gs g1 g2) 
   with (Gamestate.Nouno g) -> (g = g1) 
 
-let exn_test_5 gs g1 g2 = 
-  match (Gamestate.uno_offensive gs g1 g2) with 
-  |exception Gamestate.Nouno g -> true 
-  | _ -> false 
-
 
 let gamestate_tests =
   [
-
     (* testing from_json *)
     (*.......................................................................*)
     (* Is the correct no. of cards dealt to the gamers? *)
@@ -159,8 +154,6 @@ let gamestate_tests =
                            (exn_test_4 gs_16 User Player));
     "uno_o_test_4" >:: (fun _ -> assert_equal true 
                            (exn_test_4 gs_2 User Player));
-    "uno_o_test_5" >:: (fun _ -> assert_equal true (exn_test_5 gs_16 User Player));
-
 
     (* testing win_or_not *)
     (*.......................................................................*)
@@ -168,6 +161,7 @@ let gamestate_tests =
     "win_test_1" >:: (fun _ -> assert_equal true (win_or_not gs_19 User)); 
     "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player))
   ]
+
 
 let command_tests =
   [
@@ -189,9 +183,63 @@ let command_tests =
     (* test out commands *)
   ]
 
+
+open Player
+
+(* Making gamestates to test player: *)
+
+(* gs_12 is where User has 1 card and Player has 2 (from above) *)
+(* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played (from above) *)
+
+(* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
+let gs_101 = Gamestate.draw gs_2 User 1 
+let gs_102 = Gamestate.play gs_101 User "Red 0"
+
+(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last card played *)
+let gs_111 = Gamestate.draw gs_2 User 1 
+let gs_112 = Gamestate.draw gs_111 Player 1 
+let gs_113 = Gamestate.play gs_112 User "Red 0"
+
+(* In json_test_2, some of the cards are blue instead of red *)
+let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
+
+(* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last card played *)
+let gs_200 = from_json_unshuffled json_test_2 2
+let gs_201 = Gamestate.draw gs_200 User 1 
+let gs_202 = Gamestate.draw gs_201 Player 1 
+let gs_203 = Gamestate.play gs_202 User "Red 0"
+
+(* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the last card played *)
+let gs_204 = Gamestate.draw gs_203 Player 1 
+
+(* gs_206 is where User has 2 red cards, Player has 2 blue, Red 6 is the last card played *)
+let gs_205 = Gamestate.play gs_204 Player "Blue 2"
+let gs_206 = Gamestate.play gs_205 Player "Red 6"
+
+(* gs_207 is where User has 3 red cards, Player has 2 blue, Blue 2 is the last card played *)
+let gs_207 = Gamestate.play gs_202 Player "Blue 2"
+
+
+(** [make_player_turn_test name t expected_output] constructs an OUnit
+    test named [name] that asserts the quality of [expected_output]
+    with [player_turn_test t]. *)
+let make_player_turn_test
+    (name : string) 
+    (t)
+    (expected_output) : test =
+  name >:: (fun _ -> assert_equal (Player.player_turn t) expected_output )
+
 let player_tests =
   [
-
+    (* testing player_turn, which in turn tests the rest of the helper functions in player *)
+    (*make_player_turn_test "uno2" gs_12 (Uno2);
+      make_player_turn_test "uno2 priority over uno" gs_21 (Uno2);
+      make_player_turn_test "uno with one playable" gs_102 (Uno "Red 2");
+      make_player_turn_test "uno with multiple playable" gs_207 (Uno "Blue 3");
+      make_player_turn_test "play with multiple playable" gs_113 (Play "Red 2");
+      make_player_turn_test "play with one playable" gs_204 (Play "Red 6");
+      make_player_turn_test "draw" gs_203 (Draw);
+      make_player_turn_test "draw despite uno" gs_206 (Draw);*)
   ]
 
 let suite =

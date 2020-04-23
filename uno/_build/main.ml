@@ -7,7 +7,8 @@ let c_empty =
   refer to the rules with 'Rules' or the commands with 'Commands'."
 
 let c_malformed =
-  "Your command was malformed. If you are having trouble with the game, please refer to the rules with 'Rules' or the commands with 'Commands'."
+  "Your command was malformed. If you are having trouble with the game, \n
+  please refer to the rules with 'Rules' or the commands with 'Commands'."
 
 let end_game =
   "Sorry to see you go.... \n
