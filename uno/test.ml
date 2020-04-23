@@ -163,72 +163,133 @@ let gamestate_tests =
     "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player))
   ]
 
+(*.........................testing command below..............................*)
+
+let json_com = Yojson.Basic.from_file "test_deck_command.json"
+
+let gs_c = from_json_unshuffled json_test 1
+(* for draw *)
+let gs_c1 = Gamestate.draw gs_c User 1
+let gs_c2 = Gamestate.draw gs_c Player 1
+(* for play *)
+let gs_c3 = Gamestate.play gs_c1 User "Red 0"
+let gs_c4 = Gamestate.play gs_c2 Player "Red 3"
+let gs_c5 = Gamestate.draw gs_c1 User 1
+(* for uno *)
+let gs_c6 = Gamestate.draw gs_c2 Player 1
+let gs_c7 = Gamestate.uno_defensive gs_c3 User
+let gs_c8 = Gamestate.uno_defensive gs_c4 Player
+(* for uno2 *)
+(* let gs_c9 = Gamestate.uno_offensive gs_c1 User Player
+   let gs_c10 = Gamestate.uno_offensive gs_c2 Player User *)
 
 let command_tests =
   [
     (* test out parse *)
-    "pars_draw" >:: (fun _ -> assert_equal Draw (parse " drAw "));
-    "pars_play" >:: (fun _ -> assert_equal (Play "red 2") (parse "PlaY Red 2"));
-    "pars_uno" >:: (fun _ -> assert_equal (Uno "blue 0") (parse "uNo bLue 0"));
-    "pars_uno2" >:: (fun _ -> assert_equal Uno2 (parse "uno2 "));
-    "pars_rules" >:: (fun _ -> assert_equal Rules (parse "    ruLes"));
-    "pars_commands" >:: (fun _ -> assert_equal Commands (parse "COmmands "));
-    "pars_empty" >:: (fun _ -> assert_raises Empty (fun () -> parse "   "));
-    "pars_malf" >:: (fun _ -> assert_raises Malformed (fun () -> parse "blaH"));
-
+    "pars_draw" >:: (fun _ -> assert_equal 
+                        Draw (Command.parse " drAw "));
+    "pars_play" >:: (fun _ -> assert_equal 
+                        (Play "Red 2") (Command.parse "PlaY Red 2"));
+    "pars_uno" >:: (fun _ -> assert_equal 
+                       (Uno "Blue 0") (Command.parse "uNo bLue 0"));
+    "pars_uno2" >:: (fun _ -> assert_equal 
+                        Uno2 (Command.parse "uno2 "));
+    "pars_rules" >:: (fun _ -> assert_equal
+                         Rules (Command.parse "    ruLes"));
+    "pars_commands" >:: (fun _ -> assert_equal 
+                            Commands (Command.parse "COmmands "));
+    "pars_empty" >:: (fun _ -> assert_raises 
+                         Empty (fun () -> Command.parse "   "));
+    "pars_malf" >:: (fun _ -> assert_raises 
+                        Malformed (fun () -> Command.parse "blaH"));
+    (* ---------------------------------------------------------------------- *)
     (* test out draw *)
+    "draw_user" >:: (fun _ -> assert_equal 
+                        (Legal gs_c1) (Command.draw gs_c User 1));
+    "draw_player" >:: (fun _ -> assert_equal 
+                          (Legal gs_c2) (Command.draw gs_c Player 1));
+    (* ---------------------------------------------------------------------- *)
     (* test out play *)
+    "play_user_legal" >:: (fun _ -> assert_equal
+                              (Legal gs_c3) (Command.play gs_c1 User "Red 0"));
+    "play_player_legal" >:: (fun _ -> assert_equal
+                                (Legal gs_c4) (Command.play gs_c2 Player "Red 3"));
+    "play_not_in_hand" >:: (fun _ -> assert_equal
+                               (Illegal "You tried to play a card not in your hand: Red 4")
+                               (Command.play gs_c1 User "Red 4"));
+    (* "play_mismatch" >:: (fun _ -> assert_equal
+                            (Illegal "Your card does not match the card last played: Blue 0")
+                            (Command.play gs_c5 User "Blue 0")); *)
+    (* ---------------------------------------------------------------------- *)
     (* test out uno *)
+    "uno_not_in_hand" >:: (fun _ -> assert_equal
+                              (Illegal "You tried to play a card not in your hand: Red 4")
+                              (Command.uno gs_c1 User "Red 4"));
+    (* "uno_mismatch" >:: (fun _ -> assert_equal
+                        (Illegal "Your card does not match the card last played: Blue 0")
+                        (fun () -> (Command.uno gs_c5 User "Blue 0")); *)
+    "uno_user_illegal" >:: (fun _ -> assert_equal
+                               (Illegal "nouno") (Command.uno gs_c5 User "Red 3"));
+    (* "uno_user_legal" >:: (fun _ -> assert_equal
+                             (Legal gs_c7) (Command.uno gs_c1 User "Red 3")); *)
+    "uno_player_illegal" >:: (fun _ -> assert_equal
+                                 (Illegal "nouno") (Command.uno gs_c6 Player "Red 1"));
+    (* "uno_player_legal" >:: (fun _ -> assert_equal
+                             (Legal gs_c8) (Command.uno gs_c2 Player "Red 3")); *)
+    (* ---------------------------------------------------------------------- *)
     (* test out uno2 *)
-    (* test out rules *)
-    (* test out commands *)
+    (* "uno2_user_illegal" >:: (fun _ -> assert_equal
+                                (Illegal "nouno") (Command.uno2 gs_c2 User Player)); *)
+    (* "uno2_user_legal" >:: (fun _ -> assert_equal
+                              (Legal gs_c9) (Command.uno2 gs_c1 User Player)); *)
+
   ]
 
 
-open Player
+(* open Player
 
-(* Making gamestates to test player: *)
+   (* Making gamestates to test player: *)
 
-(* gs_12 is where User has 1 card and Player has 2 (from above) *)
-(* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played (from above) *)
+   (* gs_12 is where User has 1 card and Player has 2 (from above) *)
+   (* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played (from above) *)
 
-(* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
-let gs_101 = Gamestate.draw gs_2 User 1 
-let gs_102 = Gamestate.play gs_101 User "Red 0"
+   (* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
+   let gs_101 = Gamestate.draw gs_2 User 1 
+   let gs_102 = Gamestate.play gs_101 User "Red 0"
 
-(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last card played *)
-let gs_111 = Gamestate.draw gs_2 User 1 
-let gs_112 = Gamestate.draw gs_111 Player 1 
-let gs_113 = Gamestate.play gs_112 User "Red 0"
+   (* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last card played *)
+   let gs_111 = Gamestate.draw gs_2 User 1 
+   let gs_112 = Gamestate.draw gs_111 Player 1 
+   let gs_113 = Gamestate.play gs_112 User "Red 0"
 
-(* In json_test_2, some of the cards are blue instead of red *)
-let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
+   (* In json_test_2, some of the cards are blue instead of red *)
+   let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
 
-(* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last card played *)
-let gs_200 = from_json_unshuffled json_test_2 2
-let gs_201 = Gamestate.draw gs_200 User 1 
-let gs_202 = Gamestate.draw gs_201 Player 1 
-let gs_203 = Gamestate.play gs_202 User "Red 0"
+   (* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last card played *)
+   let gs_200 = from_json_unshuffled json_test_2 2
+   let gs_201 = Gamestate.draw gs_200 User 1 
+   let gs_202 = Gamestate.draw gs_201 Player 1 
+   let gs_203 = Gamestate.play gs_202 User "Red 0"
 
-(* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the last card played *)
-let gs_204 = Gamestate.draw gs_203 Player 1 
+   (* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the last card played *)
+   let gs_204 = Gamestate.draw gs_203 Player 1 
 
-(* gs_206 is where User has 2 red cards, Player has 2 blue, Red 6 is the last card played *)
-let gs_205 = Gamestate.play gs_204 Player "Blue 2"
-let gs_206 = Gamestate.play gs_205 Player "Red 6"
+   (* gs_206 is where User has 2 red cards, Player has 2 blue, Red 6 is the last card played *)
+   let gs_205 = Gamestate.play gs_204 Player "Blue 2"
+   let gs_206 = Gamestate.play gs_205 Player "Red 6"
 
-(* gs_207 is where User has 3 red cards, Player has 2 blue, Blue 2 is the last card played *)
-let gs_207 = Gamestate.play gs_202 Player "Blue 2"
+   (* gs_207 is where User has 3 red cards, Player has 2 blue, Blue 2 is the last card played *)
+   let gs_207 = Gamestate.play gs_202 Player "Blue 2"
 
 
-(** [make_player_turn_test name t expected_output] constructs an OUnit
+   (** [make_player_turn_test name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
     with [player_turn_test t]. *)
-let make_player_turn_test
+   let make_player_turn_test
     (name : string) 
     (t)
     (expected_output) : test =
-  name >:: (fun _ -> assert_equal (Player.player_turn t) expected_output )
+   name >:: (fun _ -> assert_equal (Player.player_turn t) expected_output ) *)
 
 let player_tests =
   [

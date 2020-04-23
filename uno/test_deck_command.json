@@ -1,0 +1,39 @@
+{
+  "cards": [
+    {
+      "name": "Red 0",
+      "number": 0,
+      "color": "red"
+    },
+    {
+      "name": "Red 1",
+      "number": 1,
+      "color": "red"
+    },
+    {
+      "name": "Red 2",
+      "number": 2,
+      "color": "red"
+    },
+    {
+      "name": "Red 3",
+      "number": 3,
+      "color": "red"
+    },
+    {
+      "name": "Blue 0",
+      "number": 0,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 1",
+      "number": 1,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 2",
+      "number": 2,
+      "color": "blue"
+    }
+  ]
+}

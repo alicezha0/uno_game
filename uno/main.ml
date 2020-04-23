@@ -76,7 +76,7 @@ and c_uno gs gamer phr =
 and c_uno2 gs gamer =
   let uno2_result = Command.uno2 gs gamer (turn gamer) in 
   match uno2_result with 
-  | Legal gamestate -> recurse_command gamestate (turn gamer)
+  | Legal gamestate -> recurse_command gamestate gamer
   | Illegal string -> print_endline string;
     recurse_command (c_draw gs gamer 4) (turn gamer)
 
