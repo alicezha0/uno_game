@@ -1,0 +1,21 @@
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:1:from_json_2.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:1:from_json_2 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:1:from_json_2.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:5:from_json_6.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:5:from_json_6 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:5:from_json_6.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:7:from_json_8.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:7:from_json_8 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:7:from_json_8.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:10:cs_test1.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:10:cs_test1 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:10:cs_test1.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:15:draw_test_4.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:15:draw_test_4 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:15:draw_test_4.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:18:pars_uno.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:18:pars_uno is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:18:pars_uno.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:23:pars_malf.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:23:pars_malf is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:23:pars_malf.

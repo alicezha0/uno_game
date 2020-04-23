@@ -67,12 +67,27 @@ let from_json_init json = json
                           |> member "cards" |> to_list |> List.map card_of_json
 
 
-let from_json j =
+let from_json j num =
   let cards = from_json_init j in 
   let shuffled_cards = shuffle cards in 
-  let deal_to_user = deal {d1 = []; d2 = shuffled_cards} 7 in 
+  let deal_to_user = deal {d1 = []; d2 = shuffled_cards} num in 
   let user_hand = {deck=deal_to_user.d1; uno_state = false} in 
-  let deal_to_player = deal {d1 = []; d2 = deal_to_user.d2} 7 in 
+  let deal_to_player = deal {d1 = []; d2 = deal_to_user.d2} num in 
+  let player_hand = {deck = deal_to_player.d1; uno_state = false} in 
+  let discard_pile = [List.hd deal_to_player.d2] in 
+  let draw_pile = List.tl deal_to_player.d2 in 
+  {
+    draw_pile = draw_pile; 
+    discard_pile = discard_pile; 
+    user_hand = user_hand; 
+    player_hand = player_hand
+  }
+
+let from_json_unshuffled j num = 
+  let cards = from_json_init j in 
+  let deal_to_user = deal {d1 = []; d2 = cards} num in 
+  let user_hand = {deck=deal_to_user.d1; uno_state = false} in 
+  let deal_to_player = deal {d1 = []; d2 = deal_to_user.d2} num in 
   let player_hand = {deck = deal_to_player.d1; uno_state = false} in 
   let discard_pile = [List.hd deal_to_player.d2] in 
   let draw_pile = List.tl deal_to_player.d2 in 
@@ -270,3 +285,5 @@ let win_or_not t gamer =
   match gamer with 
   |Player -> (hand_size t Player = 0 && t.player_hand.uno_state = true)
   |User -> (hand_size t User = 0 && t.user_hand.uno_state = true)
+
+(*----------------------------------------------------------------------------*)

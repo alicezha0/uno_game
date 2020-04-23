@@ -1,0 +1,18 @@
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:0:from_json_1.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:0:from_json_1 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:0:from_json_1.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:4:from_json_5.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:4:from_json_5 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:4:from_json_5.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:6:from_json_7.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:6:from_json_7 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:6:from_json_7.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:11:cs_test2.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:11:cs_test2 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:11:cs_test2.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:14:draw_test_3.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:14:draw_test_3 is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:14:draw_test_3.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:20:pars_rules.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:20:pars_rules is successful.
+2020-04-22T22:52:11+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:20:pars_rules.

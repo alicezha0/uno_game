@@ -26,10 +26,17 @@ exception MisMatch of card_name
     does not have one card. *)
 exception Nouno of gamer
 
-(** [from_json j] is the initial game state formed from arranging the cards in 
-    the deck that [j] represents.
+(** [from_json j] is the initial game state formed from shuffling and dealing 
+    the cards in the deck that [j] represents. The game rules require that the 
+    int is 7, and that from_json is called. 
     Requires: [j] is a valid JSON deck representation. *)
-val from_json : Yojson.Basic.t -> t
+val from_json : Yojson.Basic.t -> int -> t
+
+(** [from_json_unshuffled j] is the game state formed from dealing the cards in 
+    [j]. Formed only for testing purposes. Functionality and implementation
+    same as from_json. *)
+val from_json_unshuffled : Yojson.Basic.t -> int -> t 
+
 
 (** [last_card_played t] is the name of the card that was played in the last 
     game state. *)

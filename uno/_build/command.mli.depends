@@ -1,1 +1,1 @@
-command.mli:
+command.mli: Gamestate
