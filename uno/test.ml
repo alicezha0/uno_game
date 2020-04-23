@@ -1,4 +1,5 @@
 open OUnit2
+open OUnitTest
 open Gamestate
 open Command
 
