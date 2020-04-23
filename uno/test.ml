@@ -96,7 +96,8 @@ let gamestate_tests =
     (*.......................................................................*)
 
     "cs_test1">::(fun _ -> assert_equal "red" (color_search gs_1 User "Red 0"));
-    "cs_test2">::(fun _ -> assert_equal "red" (color_search gs_2 Player "Red 2"));
+    "cs_test2">::(fun _ -> assert_equal "red" 
+                     (color_search gs_2 Player "Red 2"));
 
 
     (* testing draw *)
