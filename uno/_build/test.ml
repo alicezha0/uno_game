@@ -45,11 +45,11 @@ let gs_24 = Gamestate.draw gs_23 Player 1
 (* Helper functions to test exceptions*)
 let exn_test_1 gs g card_name =
   (try gs_1 = (Gamestate.play gs g card_name) 
-   with (Gamestate.CardNotInHand card_name)-> true)
+   with (Gamestate.CardNotInHand card)-> (card = card_name))
 
 let exn_test_2 gs g card_name = 
   try gs_1 = (Gamestate.play gs g card_name)
-  with (Gamestate.MisMatch card_name)-> true
+  with (Gamestate.MisMatch card)-> (card = card_name)
 
 let exn_test_3 gs g = 
   try gs_1 = (Gamestate.uno_defensive gs g) 
@@ -58,6 +58,11 @@ let exn_test_3 gs g =
 let exn_test_4 gs g1 g2 = 
   try gs_1 = (Gamestate.uno_offensive gs g1 g2) 
   with (Gamestate.Nouno g) -> (g = g1) 
+
+let exn_test_5 gs g1 g2 = 
+  match (Gamestate.uno_offensive gs g1 g2) with 
+  |exception Gamestate.Nouno g -> true 
+  | _ -> false 
 
 
 let gamestate_tests =
@@ -154,6 +159,7 @@ let gamestate_tests =
                            (exn_test_4 gs_16 User Player));
     "uno_o_test_4" >:: (fun _ -> assert_equal true 
                            (exn_test_4 gs_2 User Player));
+    "uno_o_test_5" >:: (fun _ -> assert_equal true (exn_test_5 gs_16 User Player));
 
 
     (* testing win_or_not *)
