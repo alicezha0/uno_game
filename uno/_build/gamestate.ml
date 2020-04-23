@@ -101,6 +101,10 @@ let from_json_unshuffled j num =
 
 let last_card_played t = (List.hd t.discard_pile).name
 
+let last_card_played_color t = (List.hd t.discard_pile).color
+
+let last_card_played_number t = (List.hd t.discard_pile).number
+
 (** [name_of_card c] is the name of the card [c] *)
 let name_of_card (c:card) = c.name 
 

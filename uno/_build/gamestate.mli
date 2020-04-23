@@ -42,6 +42,14 @@ val from_json_unshuffled : Yojson.Basic.t -> int -> t
     game state. *)
 val last_card_played : t -> card_name
 
+(** [last_card_played_color t] is the color of the card that was played in the last 
+    game state. *)
+val last_card_played_color : t -> string
+
+(** [last_card_played_number t] is the number of the card that was played in the last 
+    game state. *)
+val last_card_played_number : t -> int
+
 (** [hand t gamer] is a list of cards that the gamer has in hand. *)
 val hand : t -> gamer -> card_name list
 
