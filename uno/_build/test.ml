@@ -298,12 +298,12 @@ let player_tests =
   [
     (* testing player_turn, which in turn tests the rest of the helper functions in player *)
     make_player_turn_test "uno2" gs_21 (Uno2);
-    make_player_turn_test "uno with one playable" gs_102 (Uno "Red 2");
-    (*     make_player_turn_test "uno with multiple playable" gs_304 (Uno "Blue 3");
-           make_player_turn_test "play with multiple playable" gs_113 (Play "Red 2");
-           make_player_turn_test "play with one playable" gs_204 (Play "Red 6");
-           make_player_turn_test "draw" gs_203 (Draw);
-           make_player_turn_test "draw despite uno" gs_205 (Draw); *)
+    make_player_turn_test "uno with one playable" gs_102 (Uno "Red 3");
+    make_player_turn_test "uno with multiple playable" gs_304 (Uno "Blue 3");
+    make_player_turn_test "play with multiple playable" gs_113 (Play "Red 6");
+    make_player_turn_test "play with one playable" gs_203 (Play "Red 6");
+    make_player_turn_test "draw" gs_200 (Draw);
+    make_player_turn_test "draw despite uno" gs_205 (Draw);
   ]
 
 let suite =

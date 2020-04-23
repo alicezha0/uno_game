@@ -30,8 +30,8 @@ let rec color_search t1 hand color =
 (** [find_playable_card hand card_name] is the first playable card in [hand], 
     prioritizing color, then number. Returns an empty string if no such card exists *)
 let find_playable_card t hand card_name =
-  let same_color_card = color_search t hand (Gamestate.color_search t Player card_name) in
-  let same_num_card = number_search t hand (Gamestate.number_search t Player card_name) in
+  let same_color_card = color_search t hand (Gamestate.last_card_played_color t) in
+  let same_num_card = number_search t hand (Gamestate.last_card_played_number t) in
   match (same_color_card) with
   | "" -> 
     (match (same_num_card) with
