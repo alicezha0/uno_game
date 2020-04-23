@@ -1,11 +1,6 @@
 open Gamestate 
 open Command
 
-type card_name = string 
-type command
-type t
-
-
 (* This AI, player, priorities in order: 
    1. Calling Uno2 on the user
    2. Calling Uno for itself, then playing a playable card
@@ -18,19 +13,19 @@ type t
 
 (** [number_search hand number] is the name of the first card in [hand] with
     number [number], or an empty string if no such card exists in [hand] *)
-let rec number_search t hand number =
+let rec number_search t1 hand number =
   match hand with
   | [] -> ""
-  | h::t -> if Gamestate.number_search t Player h = number then h 
-            else t number_search t number
+  | h::t -> if Gamestate.number_search t1 Player h = number then h 
+    else number_search t1 t number
 
 (** [color_search hand color] is the name of the first card in [hand] with
     color [color], or an empty string if no such card exists in [hand] *)
-let rec color_search t hand color =
+let rec color_search t1 hand color =
   match hand with
   | [] -> ""
-  | h::t -> if Gamestate.color_search t Player h = color then h 
-            else t color_search t color
+  | h::t -> if Gamestate.color_search t1 Player h = color then h 
+    else color_search t1 t color
 
 (** [find_playable_card hand card_name] is the first playable card in [hand], 
     prioritizing color, then number. Returns an empty string if no such card exists *)
