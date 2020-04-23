@@ -83,14 +83,11 @@ and c_uno2 gs gamer =
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
   print_endline 
-    "\nWelcome to Uno! This game was coded by: \n
-    Caroline Chu \n
-    Nishat Peuly \n
-    Alice Zhao.\n
-  Please take some time to review the rules of this game with the command \n
+    "\nWelcome to Uno! This game was coded by: Caroline Chu, Nishat Peuly, and Alice Zhao.
+    \n Please take some time to review the rules of this game with the command \n
   'Rules' or learn the commands of this game with the command 'Commands'\n
   Have Fun and Good Luck!\n";
-  let begin_uno = Gamestate.from_json (Yojson.Basic.from_file "init.json") in 
+  let begin_uno = Gamestate.from_json (Yojson.Basic.from_file "init.json") 7 in 
   recurse_command begin_uno User
 
 (* Execute the game engine. *)

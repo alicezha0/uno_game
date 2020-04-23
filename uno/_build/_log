@@ -1,33 +1,36 @@
 ### Starting build.
+# Target: main.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:mli, file:main.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules main.mli > main.mli.depends # cached
+# Target: main.cmi, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:mli, file:main.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o main.cmi main.mli # cached
+# Target: main.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules main.ml > main.ml.depends
+# Target: command.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:mli, file:command.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules command.mli > command.mli.depends # cached
 # Target: gamestate.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:mli, file:gamestate.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules gamestate.mli > gamestate.mli.depends # cached
 # Target: gamestate.cmi, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:mli, file:gamestate.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o gamestate.cmi gamestate.mli
-# Target: gamestate.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:gamestate.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules gamestate.ml > gamestate.ml.depends # cached
-# Target: gamestate.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:gamestate.cmo, file:gamestate.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o gamestate.cmo gamestate.ml
-# Target: command.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:mli, file:command.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules command.mli > command.mli.depends # cached
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o gamestate.cmi gamestate.mli # cached
 # Target: command.cmi, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:mli, file:command.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o command.cmi command.mli
-# Target: command.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:command.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules command.ml > command.ml.depends # cached
-# Target: command.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:command.cmo, file:command.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o command.cmo command.ml
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o command.cmi command.mli # cached
 # Target: player.mli.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:mli, file:player.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules player.mli > player.mli.depends # cached
 # Target: player.cmi, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:mli, file:player.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o player.cmi player.mli # cached
+# Target: main.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o main.cmo main.ml
+# Target: command.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:command.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules command.ml > command.ml.depends # cached
+# Target: command.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:command.cmo, file:command.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o command.cmo command.ml # cached
+# Target: gamestate.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:gamestate.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules gamestate.ml > gamestate.ml.depends # cached
+# Target: gamestate.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:gamestate.cmo, file:gamestate.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o gamestate.cmo gamestate.ml # cached
 # Target: player.ml.depends, tags: { package(ANSITerminal), package(oUnit), package(yojson), extension:ml, file:player.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ANSITerminal -package yojson -package oUnit -modules player.ml > player.ml.depends # cached
 # Target: player.cmo, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, compile, extension:cmo, extension:ml, file:player.cmo, file:player.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o player.cmo player.ml
-+ ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o player.cmo player.ml
-File "player.ml", line 24, characters 39-40:
-24 |   | h::t -> if Gamestate.number_search t Player h = number then h 
-                                            ^
-Error: This expression has type 'a list
-       but an expression was expected of type Gamestate.t
-Command exited with code 2.
-# Compilation unsuccessful.
+ocamlfind ocamlc -c -package ANSITerminal -package yojson -package oUnit -o player.cmo player.ml # cached
+# Target: main.byte, tags: { package(ANSITerminal), package(oUnit), package(yojson), byte, dont_link_with, extension:byte, file:main.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -package ANSITerminal -package yojson -package oUnit gamestate.cmo command.cmo player.cmo main.cmo -o main.byte
+# Compilation successful.
