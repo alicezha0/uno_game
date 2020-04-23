@@ -27,6 +27,11 @@
     },
     {
       "name": "Red 5",
+      "number": 5,
+      "color": "red"
+    },
+    {
+      "name": "Red 6",
       "number": 6,
       "color": "red"
     }

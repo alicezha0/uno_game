@@ -5,16 +5,60 @@ open Command
 let json_uno = Yojson.Basic.from_file "init.json"
 let gs_7 = from_json_unshuffled json_uno 7 
 
-let json_test = Yojson.Basic.from_file "test_deck.json"
+let json_test = Yojson.Basic.from_file "test_deck_1.json"
+
 
 (* User and Player start out with 1 card in hand each *)
 let gs_1 = from_json_unshuffled json_test 1
+
 let gs_11 = Gamestate.draw gs_1 User 1 
 let gs_12 = Gamestate.draw gs_1 Player 1
 let gs_13 = Gamestate.draw gs_1 User 2 
+let gs_14 = Gamestate.draw gs_13 Player 1 
+
+(* User and Player each call uno_defensive *)
+let gs_15 = Gamestate.uno_defensive gs_1 User 
+let gs_16 = Gamestate.uno_defensive gs_15 Player
+
+(* User and Player each call uno_offensive *)
+let gs_17 = Gamestate.uno_offensive gs_1 User Player 
+let gs_18 = Gamestate.uno_offensive gs_1 Player User 
+
+(* User and Player each win *)
+let gs_19 = Gamestate.play gs_15 User "Red 0"
+let gs_20 = Gamestate.play gs_1 Player "Red 1"
+
+
 
 (* User and Player start out with 2 cards in hand each *)
 let gs_2 = from_json_unshuffled json_test 2 
+
+let gs_21 = Gamestate.play gs_2 User "Red 0"
+let gs_22 = Gamestate.play gs_21 Player "Red 2"
+
+(* draw pile is empty. discard pile is shuffled*)
+let gs_23 = Gamestate.draw gs_22 User 2 
+let gs_24 = Gamestate.draw gs_23 Player 1
+
+
+
+(* Helper functions to test exceptions*)
+let exn_test_1 gs g card_name =
+  (try gs_1 = (Gamestate.play gs g card_name) 
+   with (Gamestate.CardNotInHand card_name)-> true)
+
+let exn_test_2 gs g card_name = 
+  try gs_1 = (Gamestate.play gs g card_name)
+  with (Gamestate.MisMatch card_name)-> true
+
+let exn_test_3 gs g = 
+  try gs_1 = (Gamestate.uno_defensive gs g) 
+  with (Gamestate.Nouno g)-> true
+
+let exn_test_4 gs g1 g2 = 
+  try gs_1 = (Gamestate.uno_offensive gs g1 g2) 
+  with (Gamestate.Nouno g) -> (g = g1) 
+
 
 let gamestate_tests =
   [
@@ -62,12 +106,61 @@ let gamestate_tests =
                           ["Red 3";"Red 0"] (hand gs_11 User)); 
     "draw_test_2" >:: (fun _ -> assert_equal 
                           ["Red 3";"Red 1"] (hand gs_12 Player)); 
-    "draw_test_3" >:: (fun _ -> assert_equal "Red 2" (last_card_played gs_11)); 
-    "draw_test_4" >:: (fun _ -> assert_equal
+    "draw_test_3" >:: (fun _ -> assert_equal
                           ["Red 4"; "Red 3"; "Red 0"] (hand gs_13 User));
+    "draw_test_4" >:: (fun _ -> assert_equal 
+                          ["Red 5"; "Red 1"] (hand gs_14 Player));
+    "draw_test_5" >:: (fun _ -> assert_equal 
+                          ["Red 6"; "Red 5"; "Red 1"] (hand gs_23 User));
+
+    (* testing that draw shuffles discard pile to draw pile when necessary*)
+
+    "draw_test_6" >:: (fun _ -> assert_equal "Red 2" (last_card_played gs_24));
+
+    "draw_test_7" >:: (fun _ -> assert_equal
+                          ["Red 0"; "Red 3"] (hand gs_24 Player));
 
 
+    (* testing play *)
+    (*.......................................................................*)
 
+    "play_test_1" >:: (fun _ -> assert_equal ["Red 1"] (hand gs_21 User));
+    "play_test_2" >:: (fun _ -> assert_equal "Red 0" (last_card_played gs_21));
+
+    "play_test_3" >:: (fun _ -> assert_equal ["Red 3"] (hand gs_22 Player));
+    "play_test_4" >:: (fun _ -> assert_equal "Red 2" (last_card_played gs_22));
+
+    (*Find a way to test the right exceptions are thrown *)
+    "play_test_5" >:: (fun _ -> assert_equal true 
+                          (exn_test_1  gs_2 User "Green 0"));
+    "play_test_5" >:: (fun _ -> assert_equal true
+                          (exn_test_1  gs_2 Player "Red 00"));  
+
+    (* testing uno_defensive*) 
+    (*.......................................................................*)
+
+    "uno_d_test_1" >:: (fun _ -> assert_equal true (uno_state gs_15 User));
+    "uno_d_test_2" >:: (fun _ -> assert_equal false (uno_state gs_15 Player));
+    "uno_d_test_3" >:: (fun _ -> assert_equal true (uno_state gs_16 Player));
+    "uno_d_test_4" >:: (fun _ -> assert_equal true (exn_test_3 gs_2 User)); 
+
+
+    (* testing uno_offensive *)   
+    (*.......................................................................*)
+
+    "uno_o_test_1" >:: (fun _ -> assert_equal 5 (hand_size gs_17 Player)); 
+    "uno_o_test_2" >:: (fun _ -> assert_equal 5 (hand_size gs_18 User));
+    "uno_o_test_3" >:: (fun _ -> assert_equal true 
+                           (exn_test_4 gs_16 User Player));
+    "uno_o_test_4" >:: (fun _ -> assert_equal true 
+                           (exn_test_4 gs_2 User Player));
+
+
+    (* testing win_or_not *)
+    (*.......................................................................*)
+
+    "win_test_1" >:: (fun _ -> assert_equal true (win_or_not gs_19 User)); 
+    "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player))
   ]
 
 let command_tests =

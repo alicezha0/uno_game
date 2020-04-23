@@ -48,6 +48,9 @@ val hand : t -> gamer -> card_name list
 (** [hand_size t gamer] is the size of the gamer's deck. *)
 val hand_size : t -> gamer -> int
 
+(** [uno_state t gamer] is the uno_state of the gamer*)
+val uno_state : t -> gamer -> bool 
+
 (** [number_search t gamer card_name] is the number of the card in [gamer]'s 
     hand with name [card_name]*)
 val number_search : t -> gamer -> card_name -> int 

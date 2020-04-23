@@ -111,6 +111,11 @@ let hand t gamer =
 
 let hand_size t gamer = List.length (hand t gamer)
 
+let uno_state t gamer = 
+  match gamer with 
+  |Player -> t.player_hand.uno_state 
+  |User -> t.user_hand.uno_state
+
 (*----------------------------------------------------------------------------*)
 
 (**[card_of_card_name lst card_name] is the firt card object with name 
@@ -144,14 +149,17 @@ let color_search t gamer card_name =
 
 (** [need_shuffle t] returns whether the discard pile needs shuffling. This will
     be called from Draw. *)
-let need_shuffle t num = List.length t.draw_pile = num
+let need_shuffle t num = (List.length t.draw_pile < num)
 
 (** [shuffle_discard_and_draw] returns the new [t] object after all the cards 
-    in the discard pile except for the last played card is shuffled and added 
-    to the draw pile. *)
-let shuffle_discard_and_draw t = 
+    in the discard pile except for the last played card is added to the draw 
+    pile, which is then shuffled. *)
+let shuffle_discard_and_draw t =
+  let draw = t.draw_pile in  
   let discard = t.discard_pile in 
-  {draw_pile = shuffle(List.tl discard); discard_pile = [List.hd discard]; 
+  let new_discard = [List.hd discard] in 
+  let new_draw = shuffle(draw@(List.tl discard)) in
+  {draw_pile = new_draw; discard_pile = new_discard; 
    user_hand = t.user_hand; player_hand = t.player_hand}
 
 (**[draw_helper t gamer num] is the new [t] object after [num] no. of cards 
@@ -270,7 +278,7 @@ let uno_offensive t gamer1 gamer2 =
   match gamer1 with 
 
   |Player -> if (hand_size t User = 1 && t.user_hand.uno_state = false)
-    then (draw t gamer1 4)
+    then (draw t gamer2 4)
     else raise (Nouno gamer2)
 
   |User -> if (hand_size t Player = 1 && t.player_hand.uno_state = false)
