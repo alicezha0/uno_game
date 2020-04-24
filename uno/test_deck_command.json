@@ -34,6 +34,36 @@
       "name": "Blue 2",
       "number": 2,
       "color": "blue"
+    },
+    {
+      "name": "Blue 3",
+      "number": 3,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 4",
+      "number": 4,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 5",
+      "number": 5,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 6",
+      "number": 6,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 7",
+      "number": 7,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 8",
+      "number": 8,
+      "color": "blue"
     }
   ]
 }

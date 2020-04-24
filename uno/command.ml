@@ -76,7 +76,7 @@ let uno2 gs gamer1 gamer2 =
   match Gamestate.uno_offensive gs gamer1 gamer2 with 
   | exception Gamestate.Nouno gamer -> 
     Illegal ("You did not call a valid offensive uno. The other player does not
-    have Uno.")
+    have Uno. You have forced to draw 4 cards.")
   | _ -> Legal (Gamestate.uno_offensive gs gamer1 gamer2)
 
 let rules =
