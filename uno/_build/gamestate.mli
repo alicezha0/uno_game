@@ -80,6 +80,9 @@ val draw : t -> gamer -> int -> t
     the last_card_played 
     2. (CardNotInDeck of card_name) if the card to be played is not in the
     gamer's hand *)
+
+val just_to_test: t -> card_name list
+
 val play: t -> gamer -> card_name -> t
 
 (** [uno_defensive t gamer] returns a new game state based on which gamer had 

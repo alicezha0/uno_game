@@ -172,7 +172,7 @@ let draw_helper t gamer num =
   match gamer with 
   |Player -> let draw = t.draw_pile in 
     let drawn_by_player = deal {d1 = []; d2 = draw} num in
-    let new_player_hand = {deck = (drawn_by_player.d1)@t.player_hand.deck; 
+    let new_player_hand = {deck = (drawn_by_player.d1)@(t.player_hand.deck); 
                            uno_state = t.player_hand.uno_state} in
     {draw_pile = drawn_by_player.d2;
      discard_pile = t.discard_pile; 
@@ -180,7 +180,7 @@ let draw_helper t gamer num =
      player_hand = new_player_hand}
   |User -> let draw = t.draw_pile in 
     let drawn_by_user = deal {d1 = []; d2 = draw} num in 
-    let new_user_hand = {deck = (drawn_by_user.d1)@t.user_hand.deck; 
+    let new_user_hand = {deck = (drawn_by_user.d1)@(t.user_hand.deck); 
                          uno_state = t.user_hand.uno_state} in
     {draw_pile = drawn_by_user.d2;
      discard_pile = t.discard_pile; 
@@ -192,6 +192,8 @@ let draw t gamer num =
   then let new_t = shuffle_discard_and_draw t in 
     draw_helper new_t gamer num 
   else draw_helper t gamer num 
+
+let just_to_test t = (List.map name_of_card t.draw_pile)
 
 (*----------------------------------------------------------------------------*)
 
