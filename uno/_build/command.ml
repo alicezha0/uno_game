@@ -76,7 +76,7 @@ let uno2 gs gamer1 gamer2 =
   match Gamestate.uno_offensive gs gamer1 gamer2 with 
   | exception Gamestate.Nouno gamer -> 
     Illegal ("You did not call a valid offensive uno. The other player does not
-    have Uno. You have forced to draw 4 cards.")
+    have Uno. You have been forced to draw 4 cards.")
   | _ -> Legal (Gamestate.uno_offensive gs gamer1 gamer2)
 
 let rules =
@@ -89,4 +89,4 @@ let commands =
   let json = Yojson.Basic.from_file "commands.json" in 
   let lines each_line = each_line |> member "b" |> to_string in
   let commands_list = json |> member "commands" |> to_list |> List.map lines in 
-  String.concat "\n" commands_list
+  String.concat "\n\n" commands_list

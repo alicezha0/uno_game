@@ -183,7 +183,7 @@ let gs_c8 = Gamestate.uno_defensive gs_c4 Player
 let gs_c9 = Gamestate.uno_offensive gs_c1 User Player
 let gs_c10 = Gamestate.uno_offensive gs_c2 Player User
 let uno2_il = "You did not call a valid offensive uno. The other player does not
-    have Uno. You have forced to draw 4 cards."
+    have Uno. You have been forced to draw 4 cards."
 
 let command_tests =
   [
