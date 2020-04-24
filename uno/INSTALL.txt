@@ -1,0 +1,18 @@
+Hello! 
+Here are the instructions to play our Uno game: 
+
+1. You have to unzip the zip file, and cd into the right directory. Then you 
+   to run (make build) to build the game! 
+   Then you have to run (make play), read the instructions, and you're ready to
+   begin! 
+
+P.S don't forget to install the OPAM packages below if you don't have them :)   
+
+There are two OPAM packages required to play our game: 
+1. yojson : 
+   You will need to install yojson if it isn't installed in your computer. It’s 
+   easiest to install via OPAM by running: opam install yojson.
+2. OUnit : 
+   You will need to install OUnit if it isn't installed in your computer. It’s 
+   easiest to install via OPAM by running: opam install ounit. 
+  
