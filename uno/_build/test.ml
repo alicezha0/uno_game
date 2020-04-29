@@ -182,8 +182,8 @@ let gs_c8 = Gamestate.uno_defensive gs_c4 Player
 (* for uno2 *)
 let gs_c9 = Gamestate.uno_offensive gs_c1 User Player
 let gs_c10 = Gamestate.uno_offensive gs_c2 Player User
-let uno2_il = "You did not call a valid offensive uno. The other player does not
-    have Uno. You have been forced to draw 4 cards."
+let uno2_il = "\nYou did not call a valid offensive uno. The other player does \
+               not have Uno. You have been forced to draw 4 cards."
 
 let command_tests =
   [
@@ -215,22 +215,22 @@ let command_tests =
                                 (Legal gs_c4) 
                                 (Command.play gs_c2 Player "Red 3"));
     "play_not_in_hand" >:: (fun _ -> assert_equal
-                               (Illegal "You tried to play a card not in your \
-                                         hand: Red 4")
+                               (Illegal "\nYou tried to play a card not in \
+                                         your hand: Red 4")
                                (Command.play gs_c1 User "Red 4"));
 
     "play_mismatch" >:: (fun _ -> assert_equal
-                            (Illegal "Your card does not match the card last \
+                            (Illegal "\nYour card does not match the card last \
                                       played: Blue 0")
                             (Command.play gs_c5 User "Blue 0"));
     (* ---------------------------------------------------------------------- *)
     (* test out uno *)
     "uno_not_in_hand" >:: (fun _ -> assert_equal
-                              (Illegal "You tried to play a card not in your \
+                              (Illegal "\nYou tried to play a card not in your \
                                         hand: Red 4")
                               (Command.uno gs_c1 User "Red 4"));
     "uno_mismatch" >:: (fun _ -> assert_equal
-                           (Illegal "Your card does not match the card last \
+                           (Illegal "\nYour card does not match the card last \
                                      played: Blue 0")
                            (Command.uno gs_c5 User "Blue 0"));
     "uno_user_illegal" >:: (fun _ -> assert_equal

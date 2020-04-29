@@ -21,12 +21,13 @@ let turn gamer =
   if gamer = User then Player else User
 
 let print_for_user gs =
-  (print_endline ("\nThe last card played was: " ^ Gamestate.last_card_played gs);
+  (print_endline ("\nThe last card played was: " ^ 
+                  Gamestate.last_card_played gs);
    print_endline ("Your current hand has: " ^ 
-                  (String.concat " " (Gamestate.hand gs User)));
+                  String.concat ", " (Gamestate.hand gs User));
    print_endline ("The other player has " ^ 
                   (string_of_int (Gamestate.hand_size gs Player)) ^ 
-                  " number of card(s).");
+                  " card(s).");
    print_endline ("\nIt is your turn to play!");
    print_endline "\nEnter Your Command: \n";)
 
@@ -36,9 +37,12 @@ let print_for_player gs =
 let winning gs gamer =
   if Gamestate.win_or_not gs gamer then
     if gamer = User then 
-      ((print_endline ("\nYou have won the game! Congratulations! Thanks for playing. Bye-bye.\n")); 
+      ((print_endline ("\nYou have won the game! Congratulations! 
+      \nThanks for playing!
+      \nBest: Alice, Caroline, Nat")); 
        true)
-    else ((print_endline ("\nThe AI has won the game. You suck. Bye.\n")); true)
+    else ((print_endline ("\nThe AI has won the game. Sucks to be you. 
+    \nYou should play again to redeem your honor.\n")); true)
   else false
 
 let rec parse_check str = 
@@ -50,13 +54,14 @@ let rec parse_check str =
     parse_check (read_line ())
 
 let uno2_valid_print gamer =
-  if gamer = User then "The AI called uno on you. You have been penalized 4 cards. 
-\n Get wrecked."
-  else "You called uno on the AI. The AI has been forced to draw 4 cards. litty"
+  if gamer = User then "\nYou called uno on the AI. The AI has been forced \
+                        to draw 4 cards."
+  else "\nThe AI called uno on you. You have been penalized 4 cards."
 
 let uno_valid_print gamer = 
-  if gamer = User then "You have called Uno successfully!"
-  else "The AI has called uno! Are you just gonna lose?"
+  if gamer = User then "\nYou have called Uno successfully! One card away from \
+                        winning!"
+  else "\nThe AI has called uno! Looks like you're gonna lose...unless...?"
 
 let rec recurse_command (gs:Gamestate.t) (gamer:Gamestate.gamer) (win:bool) =
   let _ = if win then exit 0 else
@@ -90,7 +95,8 @@ and c_draw gs gamer num =
 and c_play gs gamer phr win =
   let play_result = Command.play gs gamer phr in 
   match play_result with 
-  | Legal gamestate -> recurse_command gamestate (turn gamer) (winning gamestate gamer)
+  | Legal gamestate -> 
+    recurse_command gamestate (turn gamer) (winning gamestate gamer)
   | Illegal string -> print_endline string; recurse_command gs gamer win
 
 (** [c_uno gs gamer phr] is mutually recursive with [recurse_command gs gamer]
@@ -104,7 +110,8 @@ and c_uno gs gamer phr win =
     recurse_command gamestate (turn gamer) win
   | Illegal string -> 
     if string = "nouno" then 
-      (print_endline "You did not call a valid uno. You've been penalized four cards.";
+      (print_endline "\nYou did not call a valid uno. You've been penalized \
+                      four cards.";
        recurse_command (c_draw gs gamer 4) (turn gamer)) win
     else print_endline string; recurse_command gs gamer win
 
@@ -123,7 +130,8 @@ and c_uno2 gs gamer win =
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
   print_endline 
-    "\nWelcome to Uno! This game was coded by: Caroline Chu, Nishat Peuly, and Alice Zhao.
+    "\nWelcome to Uno! This game was coded by: Caroline Chu, Nishat Peuly, and \
+     Alice Zhao.
     \nPlease take some time to review the rules of this game with the command 
     \n'Rules' or learn the commands of this game with the command 'Commands'
     \nHave Fun and Good Luck!\n";

@@ -20,6 +20,9 @@
     },
     {
       "b": "Commands: Lists the commands of this game."
+    },
+    {
+      "b": "Quit: Ends the game."
     }
   ]
 }
