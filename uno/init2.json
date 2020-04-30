@@ -21,42 +21,42 @@
       "color": "blue"
     },
     {
-      "name": "Black 0",
+      "name": "Wild",
       "number": 0,
       "color": "black"
     },
     {
-      "name": "Black 0",
+      "name": "Wild",
       "number": 0,
       "color": "black"
     },
     {
-      "name": "Black 0",
+      "name": "Wild",
       "number": 0,
       "color": "black"
     },
     {
-      "name": "Black 0",
+      "name": "Wild",
       "number": 0,
       "color": "black"
     },
     {
-      "name": "Black 4",
+      "name": "Wild +4",
       "number": 4,
       "color": "black"
     },
     {
-      "name": "Black 4",
+      "name": "Wild +4",
       "number": 4,
       "color": "black"
     },
     {
-      "name": "Black 4",
+      "name": "Wild +4",
       "number": 4,
       "color": "black"
     },
     {
-      "name": "Black 4",
+      "name": "Wild +4",
       "number": 4,
       "color": "black"
     },
@@ -106,17 +106,17 @@
       "color": "red"
     },
     {
-      "name": "Red 10",
+      "name": "Red Skip",
       "number": 10,
       "color": "red"
     },
     {
-      "name": "Red 11",
+      "name": "Red Reverse",
       "number": 11,
       "color": "red"
     },
     {
-      "name": "Red 12",
+      "name": "Red +2",
       "number": 12,
       "color": "red"
     },
@@ -166,17 +166,17 @@
       "color": "yellow"
     },
     {
-      "name": "Yellow 10",
+      "name": "Yellow Skip",
       "number": 10,
       "color": "yellow"
     },
     {
-      "name": "Yellow 11",
+      "name": "Yellow Reverse",
       "number": 11,
       "color": "yellow"
     },
     {
-      "name": "Yellow 12",
+      "name": "Yellow +2",
       "number": 12,
       "color": "yellow"
     },
@@ -226,17 +226,17 @@
       "color": "green"
     },
     {
-      "name": "Green 10",
+      "name": "Green Skip",
       "number": 10,
       "color": "green"
     },
     {
-      "name": "Green 11",
+      "name": "Green Reverse",
       "number": 11,
       "color": "green"
     },
     {
-      "name": "Green 12",
+      "name": "Green +2",
       "number": 12,
       "color": "green"
     },
@@ -286,17 +286,17 @@
       "color": "blue"
     },
     {
-      "name": "Blue 10",
+      "name": "Blue Skip",
       "number": 10,
       "color": "blue"
     },
     {
-      "name": "Blue 11",
+      "name": "Blue Reverse",
       "number": 11,
       "color": "blue"
     },
     {
-      "name": "Blue 12",
+      "name": "Blue +2",
       "number": 12,
       "color": "blue"
     },
@@ -346,17 +346,17 @@
       "color": "red"
     },
     {
-      "name": "Red 10",
+      "name": "Red Skip",
       "number": 10,
       "color": "red"
     },
     {
-      "name": "Red 11",
+      "name": "Red Reverse",
       "number": 11,
       "color": "red"
     },
     {
-      "name": "Red 12",
+      "name": "Red +2",
       "number": 12,
       "color": "red"
     },
@@ -406,17 +406,17 @@
       "color": "yellow"
     },
     {
-      "name": "Yellow 10",
+      "name": "Yellow Skip",
       "number": 10,
       "color": "yellow"
     },
     {
-      "name": "Yellow 11",
+      "name": "Yellow Reverse",
       "number": 11,
       "color": "yellow"
     },
     {
-      "name": "Yellow 12",
+      "name": "Yellow +2",
       "number": 12,
       "color": "yellow"
     },
@@ -466,17 +466,17 @@
       "color": "green"
     },
     {
-      "name": "Green 10",
+      "name": "Green Skip",
       "number": 10,
       "color": "green"
     },
     {
-      "name": "Green 11",
+      "name": "Green Reverse",
       "number": 11,
       "color": "green"
     },
     {
-      "name": "Green 12",
+      "name": "Green +2",
       "number": 12,
       "color": "green"
     },
@@ -526,17 +526,17 @@
       "color": "blue"
     },
     {
-      "name": "Blue 10",
+      "name": "Blue Skip",
       "number": 10,
       "color": "blue"
     },
     {
-      "name": "Blue 11",
+      "name": "Blue Reverse",
       "number": 11,
       "color": "blue"
     },
     {
-      "name": "Blue 12",
+      "name": "Blue +2",
       "number": 12,
       "color": "blue"
     }
