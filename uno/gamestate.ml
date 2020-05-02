@@ -15,6 +15,7 @@ type card = {name: card_name; number: int; color: string}
 (*This is just a list of card objects *)
 type deck = card list 
 
+type color = string 
 
 type hand = {deck:deck; uno_state: bool}
 
@@ -23,14 +24,24 @@ type hand = {deck:deck; uno_state: bool}
    to return two deck objects in one function, also i searched in Ocaml list but didn't find anything.*)
 type decks = {d1: deck; d2: deck}
 
-type t = {draw_pile:deck ;discard_pile:deck ;user_hand:hand ;player_hand:hand}
 
 type gamer = User | Player
+
+type tally = {num:int; gamer: gamer}
+
+
+type t = {draw_pile:deck ;discard_pile:deck ;user_hand:hand 
+         ;player_hand:hand; color_state:color; tally:tally}
+
+
+
+
 
 
 exception CardNotInHand of card_name 
 exception MisMatch of card_name 
 exception Nouno of gamer
+exception TallyIllegal of card_name 
 
 (** [card_of_json] is the card object that [j] represents *)
 let card_of_json j = {
@@ -80,7 +91,9 @@ let from_json j num =
     draw_pile = draw_pile; 
     discard_pile = discard_pile; 
     user_hand = user_hand; 
-    player_hand = player_hand
+    player_hand = player_hand;
+    color_state = (List.hd discard_pile).color;
+    tally = {num = 0; gamer = User}
   }
 
 let from_json_unshuffled j num = 
@@ -95,7 +108,9 @@ let from_json_unshuffled j num =
     draw_pile = draw_pile; 
     discard_pile = discard_pile; 
     user_hand = user_hand; 
-    player_hand = player_hand
+    player_hand = player_hand;
+    color_state = (List.hd discard_pile).color;
+    tally = {num = 0; gamer = User}
   }
 
 
@@ -164,28 +179,54 @@ let shuffle_discard_and_draw t =
   let new_discard = [List.hd discard] in 
   let new_draw = shuffle(draw@(List.tl discard)) in
   {draw_pile = new_draw; discard_pile = new_discard; 
-   user_hand = t.user_hand; player_hand = t.player_hand}
+   user_hand = t.user_hand; player_hand = t.player_hand;
+   color_state = t.color_state; tally = t.tally}
+
+
+let update_tally t num gamer = 
+  {draw_pile = t.draw_pile; discard_pile = t.discard_pile; 
+   user_hand = t.user_hand; player_hand = t.player_hand;
+   color_state = t.color_state; tally = {num = num; gamer = gamer}}
+
 
 (**[draw_helper t gamer num] is the new [t] object after [num] no. of cards 
    have been drawn and added to the [gamer]'s hand.  *)
-let draw_helper t gamer num =
-  match gamer with 
-  |Player -> let draw = t.draw_pile in 
-    let drawn_by_player = deal {d1 = []; d2 = draw} num in
-    let new_player_hand = {deck = (drawn_by_player.d1)@(t.player_hand.deck); 
-                           uno_state = t.player_hand.uno_state} in
-    {draw_pile = drawn_by_player.d2;
-     discard_pile = t.discard_pile; 
-     user_hand = t.user_hand;
-     player_hand = new_player_hand}
-  |User -> let draw = t.draw_pile in 
-    let drawn_by_user = deal {d1 = []; d2 = draw} num in 
-    let new_user_hand = {deck = (drawn_by_user.d1)@(t.user_hand.deck); 
-                         uno_state = t.user_hand.uno_state} in
-    {draw_pile = drawn_by_user.d2;
-     discard_pile = t.discard_pile; 
-     user_hand = new_user_hand;
-     player_hand = t.player_hand}
+
+
+
+let rec draw_helper t gamer num =
+  let num_of_cards = t.tally.num in 
+  if (t.tally.gamer = gamer && num_of_cards <> 0) 
+  then forced_draw_for_tally t gamer num_of_cards
+  else 
+    match gamer with 
+    |Player -> let draw = t.draw_pile in 
+      let drawn_by_player = deal {d1 = []; d2 = draw} num in
+      let new_player_hand = {deck = (drawn_by_player.d1)@(t.player_hand.deck); 
+                             uno_state = t.player_hand.uno_state} in
+      {draw_pile = drawn_by_player.d2;
+       discard_pile = t.discard_pile; 
+       user_hand = t.user_hand;
+       player_hand = new_player_hand;
+       color_state = t.color_state;
+       tally = t.tally}
+    |User -> let draw = t.draw_pile in 
+      let drawn_by_user = deal {d1 = []; d2 = draw} num in 
+      let new_user_hand = {deck = (drawn_by_user.d1)@(t.user_hand.deck); 
+                           uno_state = t.user_hand.uno_state} in
+      {draw_pile = drawn_by_user.d2;
+       discard_pile = t.discard_pile; 
+       user_hand = new_user_hand;
+       player_hand = t.player_hand;
+       color_state = t.color_state;
+       tally = t.tally}
+
+
+(* if the gamer is being forced to draw [n] number of cards, then *)
+and forced_draw_for_tally t gamer n = 
+  let new_t = update_tally t 0 gamer in 
+  draw_helper new_t gamer n 
+
 
 let draw t gamer num = 
   if (need_shuffle t num) 
@@ -203,14 +244,27 @@ let rec deck_without_card lst card init =
   |[] -> failwith "card not in list"
   |h::t -> if (h = card) then (t@init) else deck_without_card t card (h::init)
 
+(*make wild not legal after +4 or +2*)
 let legal_play_or_not t card = 
   let card2 = card_of_card_name t.discard_pile (last_card_played t) in 
-  (card2.color = card.color || card2.number = card.number)
+  (card2.color = card.color||card2.number = card.number||card2.color = "black" )
+
+
+let update_color t card = 
+  let color = card.color in
+  {draw_pile = t.draw_pile; discard_pile = t.discard_pile; 
+   user_hand = t.user_hand; player_hand = t.player_hand;
+   color_state = color; tally = t.tally}
+
+let other_gamer gamer =
+  match gamer with 
+  |User -> Player 
+  |Player -> User
 
 
 (** [play_helper t gamer card] is new gamestate after [gamer] successfully 
     plays [card] *)
-let play_helper t gamer card =
+let play_helper_4 t gamer card =
   match gamer with 
 
   |Player -> let hand = t.player_hand.deck in 
@@ -220,7 +274,9 @@ let play_helper t gamer card =
     {draw_pile = t.draw_pile; 
      discard_pile = card::(t.discard_pile); 
      user_hand = t.user_hand; 
-     player_hand = new_hand}
+     player_hand = new_hand;
+     color_state = t.color_state; 
+     tally = t.tally}
 
   |User -> let hand = t.user_hand.deck in 
     let new_deck = deck_without_card hand card [] in 
@@ -229,9 +285,56 @@ let play_helper t gamer card =
     {draw_pile = t.draw_pile; 
      discard_pile = card::(t.discard_pile); 
      user_hand = new_hand; 
-     player_hand = t.player_hand}
+     player_hand = t.player_hand;
+     color_state = t.color_state; 
+     tally = t.tally}
 
 
+let play_helper_3 t gamer card = 
+  if card.number = 12 then 
+    update_tally t 2 (other_gamer gamer)
+  else play_helper_4 t gamer card
+
+
+
+
+(* tally = 0, but a card of color "black" has been played. appropriate changes
+   are made to t such as color and tally (if +4 is played) *)
+let play_helper_2 t gamer card = 
+  if (card.color = "black" && card.number = 13) 
+  then play_helper_4 (update_color t card) gamer card
+  else if (card.color = "black" && card.number = 14) 
+  then let new_t = update_color t card in
+    play_helper_4 (update_tally new_t 4 (other_gamer gamer)) gamer card 
+  else play_helper_4 t gamer card
+
+
+(* raises TallyIllegal if the gamer tries to play a card that doesn't match 
+   the tally or the earlier played action card *)
+let legal_play_tally t lcard card gamer= 
+  if (lcard.number = 12 && card.number = 12 )
+  then update_color (update_tally t (t.tally.num + 2) gamer) card
+  else if (lcard.number = 12 && card.number = 14)
+  then update_color (update_tally t (t.tally.num + 4) gamer) card
+  else if (lcard.number = 14 && card.number = 14)
+  then update_tally t (t.tally.num + 4) gamer
+  else raise (TallyIllegal card.name)
+
+
+
+(* to check if the tally is 0 or not, if it isn't 0 then you can only play 
+   certain cards *)
+let play_helper_1 t gamer card = 
+  if (t.tally.num <> 0 && t.tally.gamer = gamer)  
+  then let lcard_n = last_card_played t in 
+    match gamer with 
+    |User -> let lcard = card_of_card_name t.user_hand.deck lcard_n in 
+      let new_t = legal_play_tally t lcard card Player in 
+      play_helper_4 new_t User card 
+    |Player -> let lcard = card_of_card_name t.player_hand.deck lcard_n in 
+      let new_t = legal_play_tally t lcard card User in
+      play_helper_3 new_t Player card 
+  else play_helper_4 t gamer card
 
 
 let play t gamer card_name = 
@@ -239,11 +342,11 @@ let play t gamer card_name =
   (* Remember: our AI does not make mistakes. Might be able to get rid of this 
      part *)
   |Player -> let card = card_of_card_name t.player_hand.deck card_name in 
-    if (legal_play_or_not t card) then play_helper t gamer card 
+    if (legal_play_or_not t card) then play_helper_1 t gamer card 
     else raise (MisMatch card_name) 
 
   |User-> let card = card_of_card_name t.user_hand.deck card_name in 
-    if (legal_play_or_not t card) then play_helper t gamer card 
+    if (legal_play_or_not t card) then play_helper_1 t gamer card 
     else raise (MisMatch card_name) 
 
 (*---------------------------------------------------------------------------*)
@@ -256,13 +359,17 @@ let uno_state_change t gamer =
     {draw_pile = t.draw_pile; 
      discard_pile = t.discard_pile; 
      user_hand = t.user_hand; 
-     player_hand = new_hand}
+     player_hand = new_hand;
+     color_state = t.color_state;
+     tally = t.tally}
   |User -> 
     let new_hand = {deck = t.user_hand.deck; uno_state= true} in 
     {draw_pile = t.draw_pile; 
      discard_pile = t.discard_pile; 
      user_hand = new_hand; 
-     player_hand = t.player_hand}
+     player_hand = t.player_hand;
+     color_state = t.color_state;
+     tally = t.tally}
 
 
 

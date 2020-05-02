@@ -1,419 +1,439 @@
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Runner: processes
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Chooser: simple
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration suite_name = "test suite for uno_game"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration cache_filename = "/mnt/c/Users/nisha/CS_3110/uno_final_project/uno/_build/oUnit-$(suite_name).cache"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration run_gc_full_major = "true"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration display = "true"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration results_style_1_X = "false"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration testdata_dir = "none"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration health_check_interval = "1."
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration verbose = "false"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration chooser = "simple"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_html_dir = "none"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration processes_kill_period = "5."
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration runner = "processes"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration shards = "4"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration processes_grace_period = "5."
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration log_encoding = "utf-8"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_junit_file = "none"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration ci = "false"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_file = "/mnt/c/Users/nisha/CS_3110/uno_final_project/uno/_build/oUnit-$(suite_name)-$(shard_id).log"
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Using 4 workers maximum.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#01.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#01 started.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#02.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#02 started.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#03.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#03 started.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#04.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#04 started.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:0:from_json_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:4:from_json_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:4:from_json_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:4:from_json_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:1:from_json_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:5:from_json_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:6:from_json_7.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:2:from_json_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:5:from_json_6 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:5:from_json_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:6:from_json_7 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:6:from_json_7.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:7:from_json_8.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:8:ns_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:3:from_json_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:7:from_json_8 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:8:ns_test1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:9:ns_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:7:from_json_8.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:8:ns_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:9:ns_test2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:3:from_json_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:9:ns_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:11:cs_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:13:draw_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:10:cs_test1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:12:draw_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:13:draw_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:13:draw_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:11:cs_test2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:15:draw_test_4, test suite for uno_game:14:draw_test_3, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:11:cs_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:14:draw_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:15:draw_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:15:draw_test_4, test suite for uno_game:14:draw_test_3, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:12:draw_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:14:draw_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:15:draw_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4, test suite for uno_game:14:draw_test_3, test suite for uno_game:12:draw_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:12:draw_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:14:draw_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:15:draw_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4, test suite for uno_game:14:draw_test_3, test suite for uno_game:12:draw_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:19:play_test_1, test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:17:draw_test_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:18:draw_test_7.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:19:play_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:19:play_test_1, test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:16:draw_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:19:play_test_1, test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:18:draw_test_7 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:19:play_test_1, test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:18:draw_test_7.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:19:play_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1, test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:17:draw_test_6 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:19:play_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:20:play_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1, test suite for uno_game:17:draw_test_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:17:draw_test_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:21:play_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:17:draw_test_6.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:22:play_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:23:play_test_5, test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:20:play_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:21:play_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:22:play_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:23:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:23:play_test_5, test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:20:play_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:21:play_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:22:play_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:23:play_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:23:play_test_5, test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:23:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:25:uno_d_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:26:uno_d_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:27:uno_d_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:24:play_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:25:uno_d_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:26:uno_d_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:25:uno_d_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:26:uno_d_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:27:uno_d_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:27:uno_d_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:29:uno_o_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:30:uno_o_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:31:uno_o_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:29:uno_o_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:28:uno_d_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:29:uno_o_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:30:uno_o_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:31:uno_o_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:30:uno_o_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:31:uno_o_test_3.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:28:uno_d_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:33:win_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:34:win_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:35:pars_draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:32:uno_o_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:33:win_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:33:win_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:34:win_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:35:pars_draw is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:34:win_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:35:pars_draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:37:pars_uno, test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno, test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:37:pars_uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:39:pars_rules.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno, test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:36:pars_play is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno, test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno, test suite for uno_game:36:pars_play.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:37:pars_uno is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:37:pars_uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:41:pars_empty.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:38:pars_uno2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:39:pars_rules is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:39:pars_rules.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:40:pars_commands is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:41:pars_empty is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:41:pars_empty.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:45:play_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:42:pars_malf is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:46:play_player_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:43:draw_user is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:47:play_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:44:draw_player is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:45:play_user_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:46:play_player_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:45:play_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:46:play_player_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:47:play_not_in_hand is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:49:uno_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:50:uno_user_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:47:play_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:51:uno_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:49:uno_not_in_hand is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:49:uno_not_in_hand.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:48:play_mismatch is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:50:uno_user_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:50:uno_user_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal, test suite for uno_game:50:uno_user_illegal, test suite for uno_game:48:play_mismatch.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:51:uno_user_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:53:uno_player_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:54:uno2_user_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:51:uno_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal, test suite for uno_game:51:uno_user_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2, test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:55:uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2, test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:53:uno_player_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:54:uno2_user_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2, test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:52:uno_player_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:53:uno_player_legal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:54:uno2_user_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2, test suite for uno_game:54:uno2_user_illegal, test suite for uno_game:53:uno_player_legal, test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:55:uno2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable, test suite for uno_game:55:uno2, test suite for uno_game:52:uno_player_illegal.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:55:uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:57:uno with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable, test suite for uno_game:55:uno2.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:59:play with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:56:uno with one playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:57:uno with multiple playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:57:uno with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:59:play with one playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable, test suite for uno_game:57:uno with multiple playable, test suite for uno_game:56:uno with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:58:play with multiple playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:59:play with one playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Still 4 tests running : test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw, test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw, test suite for uno_game:59:play with one playable, test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:61:draw despite uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Still 3 tests running : test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw, test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 3 tests running: test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw, test suite for uno_game:58:play with multiple playable.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Still 2 tests running : test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 2 tests running: test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:60:draw is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:61:draw despite uno is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Still 2 tests running : test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 2 tests running: test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:61:draw despite uno.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Still 2 tests running : test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 2 tests running: test suite for uno_game:61:draw despite uno, test suite for uno_game:60:draw.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: 0 tests running: .
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#01 has ended.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#04 has ended.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#03 has ended.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#02 has ended.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Used 4 worker during test execution.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Run 16 tests with shard DESKTOP-TPPIG9J#03.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Run 17 tests with shard DESKTOP-TPPIG9J#02.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Run 13 tests with shard DESKTOP-TPPIG9J#04.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Run 16 tests with shard DESKTOP-TPPIG9J#01.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#03, 1 times.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#02, 1 times.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#04, 4 times.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#01, 5 times.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: ==============
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Summary:
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:61:draw despite uno is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:60:draw is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:58:play with multiple playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:59:play with one playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:57:uno with multiple playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:56:uno with one playable is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:55:uno2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:52:uno_player_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:54:uno2_user_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:53:uno_player_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:51:uno_user_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:50:uno_user_illegal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:48:play_mismatch is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:49:uno_not_in_hand is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:47:play_not_in_hand is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:46:play_player_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:45:play_user_legal is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:44:draw_player is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:43:draw_user is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:42:pars_malf is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:41:pars_empty is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:40:pars_commands is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:39:pars_rules is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:38:pars_uno2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:37:pars_uno is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:36:pars_play is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:35:pars_draw is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:34:win_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:33:win_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:32:uno_o_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:31:uno_o_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:30:uno_o_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:28:uno_d_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:29:uno_o_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:27:uno_d_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:26:uno_d_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:25:uno_d_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:24:play_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:23:play_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:22:play_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:21:play_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:20:play_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:17:draw_test_6 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:19:play_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:18:draw_test_7 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:16:draw_test_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:15:draw_test_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:14:draw_test_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:12:draw_test_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:11:cs_test2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:13:draw_test_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:10:cs_test1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:9:ns_test2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:8:ns_test1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:7:from_json_8 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:3:from_json_4 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:6:from_json_7 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:5:from_json_6 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:2:from_json_3 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:1:from_json_2 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:4:from_json_5 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:0:from_json_1 is successful.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Ran: 62 tests in: 0.23 seconds.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Cases: 62.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Tried: 62.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Errors: 0.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Failures: 0.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Skip: 0.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Todo: 0.
-2020-04-24T00:54:10+00:00 DESKTOP-TPPIG9J#00 I: Timeout: 0.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Runner: processes
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Chooser: simple
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration suite_name = "test suite for uno_game"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration cache_filename = "/mnt/c/Users/nisha/CS_3110/uno_final_project/uno/_build/oUnit-$(suite_name).cache"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration run_gc_full_major = "true"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration display = "true"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration results_style_1_X = "false"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration testdata_dir = "none"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration health_check_interval = "1."
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration verbose = "false"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration chooser = "simple"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_html_dir = "none"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration processes_kill_period = "5."
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration runner = "processes"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration shards = "4"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration processes_grace_period = "5."
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration log_encoding = "utf-8"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_junit_file = "none"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration ci = "false"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Configuration output_file = "/mnt/c/Users/nisha/CS_3110/uno_final_project/uno/_build/oUnit-$(suite_name)-$(shard_id).log"
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Using 4 workers maximum.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#01.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#01 started.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#02.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#02 started.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#03.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#03 started.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Starting worker number DESKTOP-TPPIG9J#04.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#04 started.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:2:from_json_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:0:from_json_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2, test suite for uno_game:0:from_json_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:4:from_json_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:1:from_json_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:2:from_json_3 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:4:from_json_5 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:2:from_json_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:4:from_json_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:4:from_json_5, test suite for uno_game:3:from_json_4, test suite for uno_game:2:from_json_3, test suite for uno_game:1:from_json_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:5:from_json_6.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:6:from_json_7.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:7:from_json_8.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:5:from_json_6 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:5:from_json_6.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:5:from_json_6, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:6:from_json_7 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:6:from_json_7.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:6:from_json_7, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:7:from_json_8 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:3:from_json_4 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:7:from_json_8.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:9:ns_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:7:from_json_8, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1, test suite for uno_game:3:from_json_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:8:ns_test1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:9:ns_test2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2, test suite for uno_game:8:ns_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:9:ns_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1, test suite for uno_game:9:ns_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:12:draw_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:13:draw_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:10:cs_test1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2, test suite for uno_game:10:cs_test1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:14:draw_test_3, test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:14:draw_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:14:draw_test_3, test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:11:cs_test2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:12:draw_test_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:13:draw_test_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:14:draw_test_3 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:14:draw_test_3, test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:12:draw_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:13:draw_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:14:draw_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:14:draw_test_3, test suite for uno_game:13:draw_test_2, test suite for uno_game:12:draw_test_1, test suite for uno_game:11:cs_test2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:16:draw_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:17:draw_test_6.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:18:draw_test_7.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:15:draw_test_4 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:16:draw_test_5 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:17:draw_test_6 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:18:draw_test_7 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:16:draw_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:17:draw_test_6.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:18:draw_test_7.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:18:draw_test_7, test suite for uno_game:17:draw_test_6, test suite for uno_game:16:draw_test_5, test suite for uno_game:15:draw_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:20:play_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:21:play_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:22:play_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:19:play_test_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:22:play_test_4 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:20:play_test_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:21:play_test_3 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:22:play_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:22:play_test_4, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2, test suite for uno_game:19:play_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:20:play_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:21:play_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5, test suite for uno_game:21:play_test_3, test suite for uno_game:20:play_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:24:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:25:uno_d_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:26:uno_d_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:23:play_test_5 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:25:uno_d_test_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:24:play_test_5 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:25:uno_d_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:26:uno_d_test_2, test suite for uno_game:25:uno_d_test_1, test suite for uno_game:24:play_test_5, test suite for uno_game:23:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:24:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2, test suite for uno_game:24:play_test_5.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:26:uno_d_test_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:28:uno_d_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:26:uno_d_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3, test suite for uno_game:26:uno_d_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:30:uno_o_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:27:uno_d_test_3 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:28:uno_d_test_4 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:28:uno_d_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1, test suite for uno_game:28:uno_d_test_4, test suite for uno_game:27:uno_d_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:32:uno_o_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:29:uno_o_test_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:30:uno_o_test_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:30:uno_o_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3, test suite for uno_game:30:uno_o_test_2, test suite for uno_game:29:uno_o_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:34:win_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:31:uno_o_test_3 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:32:uno_o_test_4 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:32:uno_o_test_4.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1, test suite for uno_game:32:uno_o_test_4, test suite for uno_game:31:uno_o_test_3.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:35:pars_draw.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:36:pars_play.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:33:win_test_1 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:34:win_test_2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:35:pars_draw is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:36:pars_play is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:34:win_test_2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:35:pars_draw.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:36:pars_play.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:36:pars_play, test suite for uno_game:35:pars_draw, test suite for uno_game:34:win_test_2, test suite for uno_game:33:win_test_1.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:38:pars_uno2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:39:pars_rules.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:40:pars_commands.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:37:pars_uno is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:38:pars_uno2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:40:pars_commands is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2, test suite for uno_game:37:pars_uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:38:pars_uno2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:39:pars_rules is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:40:pars_commands.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:41:pars_empty, test suite for uno_game:40:pars_commands, test suite for uno_game:39:pars_rules, test suite for uno_game:38:pars_uno2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:39:pars_rules.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty, test suite for uno_game:39:pars_rules.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:42:pars_malf.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:43:draw_user.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:44:draw_player.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:41:pars_empty is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:43:draw_user is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf, test suite for uno_game:41:pars_empty.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:42:pars_malf is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:43:draw_user.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:44:draw_player is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:43:draw_user, test suite for uno_game:42:pars_malf.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:42:pars_malf.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:44:draw_player.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal, test suite for uno_game:44:draw_player, test suite for uno_game:42:pars_malf.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:46:play_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:47:play_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:48:play_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:45:play_user_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:46:play_player_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal, test suite for uno_game:45:play_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:46:play_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:47:play_not_in_hand is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand, test suite for uno_game:46:play_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:47:play_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch, test suite for uno_game:47:play_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:48:play_mismatch is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:50:uno_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:48:play_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:51:uno_user_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand, test suite for uno_game:48:play_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_user_legal, test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:52:uno_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_user_legal, test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:51:uno_user_illegal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_user_legal, test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:49:uno_not_in_hand is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:50:uno_mismatch is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:51:uno_user_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:52:uno_user_legal, test suite for uno_game:51:uno_user_illegal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:50:uno_mismatch.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:53:uno_player_illegal, test suite for uno_game:52:uno_user_legal, test suite for uno_game:50:uno_mismatch, test suite for uno_game:49:uno_not_in_hand.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:52:uno_user_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:53:uno_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal, test suite for uno_game:53:uno_player_illegal, test suite for uno_game:52:uno_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:52:uno_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:54:uno_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:55:uno2_user_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal, test suite for uno_game:53:uno_player_illegal, test suite for uno_game:52:uno_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:56:uno2_user_legal, test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal, test suite for uno_game:53:uno_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:53:uno_player_illegal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:56:uno2_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:56:uno2_user_legal, test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal, test suite for uno_game:53:uno_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:53:uno_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:54:uno_player_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:55:uno2_user_illegal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:56:uno2_user_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:56:uno2_user_legal, test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal, test suite for uno_game:53:uno_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:54:uno_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:55:uno2_user_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:56:uno2_user_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:57:uno2_player_illegal, test suite for uno_game:56:uno2_user_legal, test suite for uno_game:55:uno2_user_illegal, test suite for uno_game:54:uno_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:58:uno2_player_legal, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:58:uno2_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:59:uno2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:58:uno2_player_legal, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:60:uno with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:58:uno2_player_legal, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:58:uno2_player_legal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:58:uno2_player_legal, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:57:uno2_player_illegal is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:58:uno2_player_legal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:59:uno2 is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:58:uno2_player_legal, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:59:uno2.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:61:uno with multiple playable, test suite for uno_game:60:uno with one playable, test suite for uno_game:59:uno2, test suite for uno_game:57:uno2_player_illegal.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:60:uno with one playable is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable, test suite for uno_game:60:uno with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:60:uno with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Start test test suite for uno_game:62:play with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable, test suite for uno_game:60:uno with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Start test test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Start test test suite for uno_game:64:draw.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:61:uno with multiple playable is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: Test test suite for uno_game:62:play with multiple playable is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable, test suite for uno_game:61:uno with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#02 I: End test test suite for uno_game:62:play with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: Test test suite for uno_game:64:draw is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 4 tests running : test suite for uno_game:65:draw despite uno, test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 4 tests running: test suite for uno_game:65:draw despite uno, test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable, test suite for uno_game:62:play with multiple playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: Test test suite for uno_game:63:play with one playable is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#03 I: End test test suite for uno_game:64:draw.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Start test test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 3 tests running : test suite for uno_game:65:draw despite uno, test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 3 tests running: test suite for uno_game:65:draw despite uno, test suite for uno_game:64:draw, test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#04 I: End test test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 2 tests running : test suite for uno_game:65:draw despite uno, test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 2 tests running: test suite for uno_game:65:draw despite uno, test suite for uno_game:63:play with one playable.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 1 tests running : test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 1 tests running: test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: Test test suite for uno_game:65:draw despite uno is successful.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 1 tests running : test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 1 tests running: test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#01 I: End test test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Still 1 tests running : test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 1 tests running: test suite for uno_game:65:draw despite uno.
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: 0 tests running: .
+2020-05-02T04:18:45+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#02 has ended.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#01 has ended.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#04 died unexpectedly.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Worker DESKTOP-TPPIG9J#03 died unexpectedly.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Used 4 worker during test execution.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Run 17 tests with shard DESKTOP-TPPIG9J#03.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Run 17 tests with shard DESKTOP-TPPIG9J#02.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Run 14 tests with shard DESKTOP-TPPIG9J#04.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Run 18 tests with shard DESKTOP-TPPIG9J#01.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#03, 6 times.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#02, 6 times.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#04, 5 times.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Check health of shard DESKTOP-TPPIG9J#01, 1 times.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: ==============
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Summary:
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:65:draw despite uno is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:63:play with one playable is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:64:draw is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:62:play with multiple playable is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:61:uno with multiple playable is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:60:uno with one playable is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:59:uno2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:57:uno2_player_illegal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:58:uno2_player_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:56:uno2_user_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:55:uno2_user_illegal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:54:uno_player_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:53:uno_player_illegal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:52:uno_user_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:50:uno_mismatch is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:49:uno_not_in_hand is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:51:uno_user_illegal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:48:play_mismatch is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:47:play_not_in_hand is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:46:play_player_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:45:play_user_legal is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:44:draw_player is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:42:pars_malf is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:43:draw_user is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:41:pars_empty is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:39:pars_rules is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:40:pars_commands is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:38:pars_uno2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:37:pars_uno is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:36:pars_play is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:35:pars_draw is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:34:win_test_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:33:win_test_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:32:uno_o_test_4 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:31:uno_o_test_3 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:30:uno_o_test_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:29:uno_o_test_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:28:uno_d_test_4 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:27:uno_d_test_3 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:26:uno_d_test_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:24:play_test_5 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:25:uno_d_test_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:23:play_test_5 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:21:play_test_3 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:20:play_test_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:22:play_test_4 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:19:play_test_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:18:draw_test_7 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:17:draw_test_6 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:16:draw_test_5 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:15:draw_test_4 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:14:draw_test_3 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:13:draw_test_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:12:draw_test_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:11:cs_test2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:10:cs_test1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:9:ns_test2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:8:ns_test1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:3:from_json_4 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:7:from_json_8 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:6:from_json_7 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:5:from_json_6 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:4:from_json_5 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:2:from_json_3 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:1:from_json_2 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Test test suite for uno_game:0:from_json_1 is successful.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Ran: 66 tests in: 0.21 seconds.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Cases: 66.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Tried: 66.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Errors: 0.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Failures: 0.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Skip: 0.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Todo: 0.
+2020-05-02T04:18:46+00:00 DESKTOP-TPPIG9J#00 I: Timeout: 0.
