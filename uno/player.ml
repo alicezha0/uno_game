@@ -8,7 +8,10 @@ open Command
    4. Drawing if none of the above options are possible
 
    When playing a card, it prioritizes playing the first card of the same color, 
-   then playing the first card of the same number.  *)
+   then playing the first card of the same number. When playing a wildcard, 
+  it will choose a random color.
+  
+  This AI calls Uno and Uno2 when appropriate without fail. *)
 
 
 (** [number_search hand number] is the name of the first card in [hand] with
@@ -40,6 +43,14 @@ let find_playable_card t hand card_name =
   | _ -> same_color_card
 
 
+let wildcard_color =
+match Random.int 4 with
+| 0 -> "Red"
+| 1 -> "Blue"
+| 2 -> "Green"
+| 3 -> "Yellow"
+| _ -> "Red"
+
 let player_turn t =
   let hand = Gamestate.hand t Player in
   let last_card = Gamestate.last_card_played t in 
@@ -47,8 +58,12 @@ let player_turn t =
     let playable_card = find_playable_card t hand last_card in
     if Gamestate.hand_size t Player = 2 then match playable_card with
       | "" -> Draw
+      | "Wild" -> Uno (playable_card ^ wildcard_color)
+      | "Wild +4" -> Uno (playable_card ^ wildcard_color)
       | _ -> Uno playable_card
     else
       match playable_card with
       | "" -> Draw
+      | "Wild" -> Play (playable_card ^ wildcard_color)
+      | "Wild +4" -> Play (playable_card ^ wildcard_color)
       | _ -> Play playable_card

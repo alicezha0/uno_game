@@ -261,6 +261,7 @@ let command_tests =
   ]
 
 
+
 open Player
 
 (* Making gamestates to test player: *)
@@ -321,11 +322,84 @@ let player_tests =
     make_player_turn_test "draw despite uno" gs_205 (Draw);
   ]
 
+
+open Player2
+
+(* Making gamestates to test player2: *)
+
+(* gs_2 is where User has 2 cards, Player has 2 (0 action), Red 4 is the last card played (from above) *)
+
+(* In json_test_4, some action cards are included *)
+let json_test_4 = Yojson.Basic.from_file "test_deck_4.json"
+
+(* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last card played *)
+let gs_400 = from_json_unshuffled json_test_4 3
+let gs_401 = Gamestate.play gs_400 User "Red +2"
+
+(* gs_401 is where User has 2 cards, Player has 3 (1 action), Wild +4 is the last card played *)
+let gs_402 = Gamestate.draw gs_401 User 1 
+let gs_403 = Gamestate.draw gs_402 Player 1 
+let gs_404 = Gamestate.play gs_403 User "Wild +4"
+
+(* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last card played *)
+let gs_405 = Gamestate.draw gs_400 Player 1 
+
+(* gs_406 is where User has 4 cards, Player has 4 (2 action), Red 2 is the last card played *)
+let gs_406 = Gamestate.draw gs_405 User 1 
+
+(* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last card played *)
+let gs_407 = Gamestate.play gs_406 Player "Red 3"
+let gs_408 = Gamestate.play gs_407 Player "Red 4"
+
+
+(* In json_test_5, some action cards plus different colors are included *)
+let json_test_5 = Yojson.Basic.from_file "test_deck_5.json"
+
+(* gs_501 is where User has 1 cards, Player has 5 (1 action, 2 blue), Red 1 is the last card played *)
+let gs_500 = from_json_unshuffled json_test_5 1
+let gs_501 = Gamestate.draw gs_500 Player 4
+
+(* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is the last card played *)
+let gs_502 = Gamestate.draw gs_501 Player 2
+
+(* gs_503 is where User has 1 cards, Player has 10 (1 action, 4 yellow), Red 1 is the last card played *)
+let gs_503 = Gamestate.draw gs_502 Player 3
+
+(* gs_506 is where User has 1 cards, Player has 13 (1 action, 5 red), Blue 4 is the last card played *)
+let gs_504 = Gamestate.play gs_503 Player "Blue 3"
+let gs_505 = Gamestate.play gs_504 Player "Blue 4"
+let gs_506 = Gamestate.draw gs_505 Player 5
+
+(** [make_player2_turn_test name t expected_output] constructs an OUnit
+    test named [name] that asserts the quality of [expected_output]
+    with [player2_turn_test t]. *)
+let make_player2_turn_test
+    (name : string) 
+    (t)
+    (expected_output) : test =
+  name >:: (fun _ -> assert_equal (Player2.player_turn t) expected_output )
+
+let player2_tests =
+  [
+    make_player2_turn_test "play +2 against +2" gs_401 (Play "Red +2");
+    make_player2_turn_test "play +4 against +4" gs_401 (Play "Wild +4 Red");
+    make_player2_turn_test "play action card when user hand <4" gs_405 (Play "Wild +4 Red");
+    make_player2_turn_test "play norm card when user hand >=4" gs_406 (Play "Red 3");
+    make_player2_turn_test "play norm card when u.h. <4 w/o choice" gs_2 (Play "Red 3");
+    make_player2_turn_test "play action card when u.h. >=4 w/o choice" gs_408 (Play "Wild +4 Red");
+    make_player2_turn_test "play wild card with most color blue" gs_501 (Play "Wild +4 Blue");
+    make_player2_turn_test "play wild card with most color green" gs_502 (Play "Wild +4 Green");
+    make_player2_turn_test "play wild card with most color yellow" gs_503 (Play "Wild +4 Yellow");
+    make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red");
+]
+
+
 let suite =
   "test suite for uno_game"  >::: List.flatten [
     gamestate_tests;
     command_tests;
     player_tests;
+    player2_tests;
   ]
 
 let _ = run_test_tt_main suite

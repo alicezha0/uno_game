@@ -137,12 +137,12 @@ let find_optimal_card t hand =
   match Gamestate.last_card_played_number t with
   | 12 -> let plus2_inhand = number_search t hand 12 in
     (match plus2_inhand with
-     | "" -> find_op_card_pt2 t hand
+     | "" -> ""
      | _ -> plus2_inhand)
   | 14 -> let plus4_inhand = number_search t hand 14 in
     (match plus4_inhand with
      | "" -> ""
-     | _ -> plus4_inhand wildcard_color t hand)
+     | _ -> plus4_inhand)
   | _ -> find_op_card_pt2 t hand
 
 let player_turn t =
@@ -151,8 +151,12 @@ let player_turn t =
     let next_card = find_optimal_card t hand in
     if Gamestate.hand_size t Player = 2 then match next_card with
       | "" -> Draw
+      | "Wild" -> Uno next_card (wildcard_color t hand)
+      | "Wild +4" -> Uno next_card (wildcard_color t hand)
       | _ -> Uno next_card
     else
       match next_card with
       | "" -> Draw
+      | "Wild" -> Play next_card (wildcard_color t hand)
+      | "Wild +4" -> Play next_card (wildcard_color t hand)
       | _ -> Play next_card
