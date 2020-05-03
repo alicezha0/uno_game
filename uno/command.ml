@@ -33,10 +33,10 @@ let parse_helper str =
   let split_str = String.split_on_char ' ' str in 
   let remove_empty = List.rev (no_empty split_str []) in 
   let list_head = List.hd remove_empty in 
-  let card_phr = String.concat " " (List.tl remove_empty) in
-  let capitalized = String.capitalize_ascii card_phr in
-  if list_head = "play" then Play capitalized
-  else if list_head = "uno" then Uno capitalized
+  let caps_first = List.map String.capitalize_ascii (List.tl remove_empty) in
+  let card_phr = String.concat " " caps_first in
+  if list_head = "play" then Play card_phr
+  else if list_head = "uno" then Uno card_phr
   else raise Malformed
 
 let parse str =
