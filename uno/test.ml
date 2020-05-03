@@ -41,7 +41,7 @@ let gs_22 = Gamestate.play gs_21 Player "Red 2" ""
 let gs_23 = Gamestate.draw gs_22 User 2 
 let gs_24 = Gamestate.draw gs_23 Player 1
 
-
+(*
 
 (* Helper functions to test exceptions*)
 let exn_test_1 gs g card_name =
@@ -260,6 +260,7 @@ let command_tests =
 
   ]
 
+*)
 
 open Player
 
@@ -354,8 +355,8 @@ let gs_408 = Gamestate.play gs_407 Player "Red 4" ""
 (* In json_test_5, some action cards plus different colors are included *)
 let json_test_5 = Yojson.Basic.from_file "test_deck_5.json"
 
-(* gs_501 is where User has 1 cards, Player has 5 (1 action, 2 blue), Red 1 is the last card played *)
-let gs_500 = from_json_unshuffled json_test_5 1
+(* gs_501 is where User has 2 cards, Player has 6 (2 action, 2 blue), Red 1 is the last card played *)
+let gs_500 = from_json_unshuffled json_test_5 2
 let gs_501 = Gamestate.draw gs_500 Player 4
 
 (* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is the last card played *)
@@ -381,22 +382,22 @@ let make_player2_turn_test
 let player2_tests =
   [
     make_player2_turn_test "play +2 against +2" gs_401 (Play "Red +2");
-    make_player2_turn_test "play +4 against +4" gs_401 (Play "Wild +4 Red");
-    (*make_player2_turn_test "play action card when user hand <4" gs_405 (Play "Wild +4 Red");
-    make_player2_turn_test "play norm card when user hand >=4" gs_406 (Play "Red 3");
-    make_player2_turn_test "play norm card when u.h. <4 w/o choice" gs_2 (Play "Red 3");
-    make_player2_turn_test "play action card when u.h. >=4 w/o choice" gs_408 (Play "Wild +4 Red");
+    make_player2_turn_test "play +4 against +4" gs_404 (Play "Wild +4 Red");
+    make_player2_turn_test "play action card when user hand <4" gs_405 (Play "Wild +4 Red");
+    make_player2_turn_test "play norm card when user hand >=4" gs_406 (Play "Red 4");
+    make_player2_turn_test "play norm card when u.h. <4 w/o choice" gs_2 (Uno "Red 3");
+    make_player2_turn_test "play action card when u.h. >=4 w/o choice" gs_408 (Uno "Red +2");
     make_player2_turn_test "play wild card with most color blue" gs_501 (Play "Wild +4 Blue");
     make_player2_turn_test "play wild card with most color green" gs_502 (Play "Wild +4 Green");
     make_player2_turn_test "play wild card with most color yellow" gs_503 (Play "Wild +4 Yellow");
-    make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red");*)
+    make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red");
   ]
 
 
 let suite =
   "test suite for uno_game"  >::: List.flatten [
-    gamestate_tests;
-    command_tests;
+    (*gamestate_tests;
+    command_tests;*)
     player_tests;
     player2_tests;
   ]

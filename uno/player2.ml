@@ -36,8 +36,9 @@ let rec number_search t1 hand number =
 let rec color_search t1 hand color =
   match hand with
   | [] -> ""
-  | h::t -> if Gamestate.color_search t1 Player h = color then h 
-    else color_search t1 t color
+  | h::t -> if Gamestate.color_search t1 Player h = "black"
+            || Gamestate.color_search t1 Player h = color then h 
+            else color_search t1 t color
 
 (** [color_search_bounds t1 hand color lwr upr] is the name of the first card in [hand] 
     with color [color] and number between lwr and upr (both inclusive), 
@@ -45,10 +46,10 @@ let rec color_search t1 hand color =
 let rec color_search_bounds t1 hand color lwr upr =
   match hand with
   | [] -> ""
-  | h::t -> if Gamestate.color_search t1 Player h = color 
+  | h::t -> if (Gamestate.color_search t1 Player h = color || Gamestate.color_search t1 Player h = "black")
             && Gamestate.number_search t1 Player h >= lwr 
-            && Gamestate.number_search t1 Player h <= upr 
-    then h else color_search_bounds t1 t color lwr upr
+            && Gamestate.number_search t1 Player h <= upr then h
+            else color_search_bounds t1 t color lwr upr
 
 
 
@@ -72,10 +73,10 @@ let rec max_color col_lst color num =
     (in other words, the color that [hand] contains most of), choosing in order of
     Red, Blue, Green, Yellow in the case of ties. *)
 let wildcard_color t hand =
-  let num_red = color_count t hand "Red" 0 in
-  let num_blue = color_count t hand "Blue" 0 in
-  let num_green = color_count t hand "Green" 0 in
-  let num_yellow = color_count t hand "Yellow" 0 in
+  let num_red = color_count t hand "red" 0 in
+  let num_blue = color_count t hand "blue" 0 in
+  let num_green = color_count t hand "green" 0 in
+  let num_yellow = color_count t hand "yellow" 0 in
   let color_list = [("Red", num_red); ("Blue", num_blue); ("Green", num_green); ("Yellow", num_yellow)] in
   max_color color_list "Red" (0)
 

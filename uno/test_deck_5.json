@@ -6,6 +6,16 @@
       "color": "red"
     },
     {
+      "name": "Red 0",
+      "number": 0,
+      "color": "red"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
       "name": "Wild +4",
       "number": 14,
       "color": "black"
