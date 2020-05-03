@@ -1,0 +1,59 @@
+{
+  "cards": [
+    {
+      "name": "Red 0",
+      "number": 0,
+      "color": "red"
+    },
+    {
+      "name": "Red 1",
+      "number": 1,
+      "color": "red"
+    },
+    {
+      "name": "Red +2",
+      "number": 12,
+      "color": "red"
+    },
+    {
+      "name": "Red 3",
+      "number": 3,
+      "color": "red"
+    },
+    {
+      "name": "Red 4",
+      "number": 4,
+      "color": "red"
+    },
+    {
+      "name": "Red +2",
+      "number": 12,
+      "color": "red"
+    },
+    {
+      "name": "Red 2",
+      "number": 2,
+      "color": "red"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Red 7",
+      "number": 7,
+      "color": "red"
+    },
+    {
+      "name": "Red 8",
+      "number": 8,
+      "color": "red"
+    }
+  ]
+}
