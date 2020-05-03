@@ -270,12 +270,12 @@ open Player
 
 (* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
 let gs_101 = Gamestate.draw gs_2 User 1 
-let gs_102 = Gamestate.play gs_101 User "Red 0"
+let gs_102 = Gamestate.play gs_101 User "Red 0" ""
 
 (* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last card played *)
 let gs_111 = Gamestate.draw gs_2 User 1 
 let gs_112 = Gamestate.draw gs_111 Player 1 
-let gs_113 = Gamestate.play gs_112 User "Red 0"
+let gs_113 = Gamestate.play gs_112 User "Red 0" ""
 
 (* In json_test_2, some of the cards are blue instead of red *)
 let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
@@ -284,21 +284,21 @@ let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
 let gs_200 = from_json_unshuffled json_test_2 2
 let gs_201 = Gamestate.draw gs_200 User 1 
 let gs_202 = Gamestate.draw gs_201 Player 1 
-let gs_203 = Gamestate.play gs_202 User "Red 0"
+let gs_203 = Gamestate.play gs_202 User "Red 0" ""
 
 (* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the last card played *)
 let gs_204 = Gamestate.draw gs_203 Player 1 
 
 (* gs_205 is where User has 2 red cards, Player has 2 blue, Red 0 is the last card played *)
-let gs_205 = Gamestate.play gs_201 User "Red 0"
+let gs_205 = Gamestate.play gs_201 User "Red 0" ""
 
 (* gs_304 is where User has 2 red cards, Player has 2 blue, Blue 0 is the last card played *)
 let json_test_3 = Yojson.Basic.from_file "test_deck_3.json"
 let gs_300 = from_json_unshuffled json_test_3 2
 let gs_301 = Gamestate.draw gs_300 User 1 
 let gs_302 = Gamestate.draw gs_301 User 1 
-let gs_303 = Gamestate.play gs_302 User "Red 0"
-let gs_304 = Gamestate.play gs_303 User "Blue 0"
+let gs_303 = Gamestate.play gs_302 User "Red 0" ""
+let gs_304 = Gamestate.play gs_303 User "Blue 0" ""
 
 
 (** [make_player_turn_test name t expected_output] constructs an OUnit
@@ -334,12 +334,12 @@ let json_test_4 = Yojson.Basic.from_file "test_deck_4.json"
 
 (* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last card played *)
 let gs_400 = from_json_unshuffled json_test_4 3
-let gs_401 = Gamestate.play gs_400 User "Red +2"
+let gs_401 = Gamestate.play gs_400 User "Red +2" ""
 
 (* gs_401 is where User has 2 cards, Player has 3 (1 action), Wild +4 is the last card played *)
 let gs_402 = Gamestate.draw gs_401 User 1 
 let gs_403 = Gamestate.draw gs_402 Player 1 
-let gs_404 = Gamestate.play gs_403 User "Wild +4"
+let gs_404 = Gamestate.play gs_403 User "Wild +4" ""
 
 (* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last card played *)
 let gs_405 = Gamestate.draw gs_400 Player 1 
@@ -348,8 +348,8 @@ let gs_405 = Gamestate.draw gs_400 Player 1
 let gs_406 = Gamestate.draw gs_405 User 1 
 
 (* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last card played *)
-let gs_407 = Gamestate.play gs_406 Player "Red 3"
-let gs_408 = Gamestate.play gs_407 Player "Red 4"
+let gs_407 = Gamestate.play gs_406 Player "Red 3" ""
+let gs_408 = Gamestate.play gs_407 Player "Red 4" ""
 
 
 (* In json_test_5, some action cards plus different colors are included *)
@@ -366,8 +366,8 @@ let gs_502 = Gamestate.draw gs_501 Player 2
 let gs_503 = Gamestate.draw gs_502 Player 3
 
 (* gs_506 is where User has 1 cards, Player has 13 (1 action, 5 red), Blue 4 is the last card played *)
-let gs_504 = Gamestate.play gs_503 Player "Blue 3"
-let gs_505 = Gamestate.play gs_504 Player "Blue 4"
+let gs_504 = Gamestate.play gs_503 Player "Blue 3" ""
+let gs_505 = Gamestate.play gs_504 Player "Blue 4" ""
 let gs_506 = Gamestate.draw gs_505 Player 5
 
 (** [make_player2_turn_test name t expected_output] constructs an OUnit
@@ -391,7 +391,7 @@ let player2_tests =
     make_player2_turn_test "play wild card with most color green" gs_502 (Play "Wild +4 Green");
     make_player2_turn_test "play wild card with most color yellow" gs_503 (Play "Wild +4 Yellow");
     make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red");
-]
+  ]
 
 
 let suite =
