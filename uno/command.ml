@@ -6,9 +6,9 @@ type card_phrase = string
 
 type command = 
   | Draw
-  | Play of string
-  | Uno of string
-  | Uno2
+  | Play of card_phrase
+  | Uno of card_phrase
+  | Uno2 of Gamestate.gamer
   | Rules
   | Commands
   | Quit
@@ -34,9 +34,13 @@ let parse_helper str =
   let remove_empty = List.rev (no_empty split_str []) in 
   let list_head = List.hd remove_empty in 
   let caps_first = List.map String.capitalize_ascii (List.tl remove_empty) in
-  let card_phr = String.concat " " caps_first in
-  if list_head = "play" then Play card_phr
-  else if list_head = "uno" then Uno card_phr
+  let phr = String.concat " " caps_first in
+  if list_head = "play" then Play phr
+  else if list_head = "uno" then Uno phr
+  else if list_head = "uno2" then 
+    if phr = "Player" then Uno2 Player
+    else if phr = "User" then Uno2 User
+    else raise Malformed
   else raise Malformed
 
 let parse str =
@@ -45,7 +49,6 @@ let parse str =
   else if trim_lc = "rules" then Rules
   else if trim_lc = "commands" then Commands
   else if trim_lc = "draw" then Draw
-  else if trim_lc = "uno2" then Uno2
   else if trim_lc = "quit" then Quit
   else if trim_lc = "play" then raise Malformed
   else if trim_lc = "uno" then raise Malformed

@@ -193,7 +193,7 @@ let command_tests =
                         (Command.parse "PlaY Red 2"));
     "pars_uno" >:: (fun _ -> assert_equal (Uno "Blue 0") 
                        (Command.parse "uNo bLue 0"));
-    "pars_uno2" >:: (fun _ -> assert_equal Uno2 (Command.parse "uno2 "));
+    "pars_uno2" >:: (fun _ -> assert_equal (Uno2 User) (Command.parse "uno2 User"));
     "pars_rules" >:: (fun _ -> assert_equal Rules (Command.parse "    ruLes"));
     "pars_commands" >:: (fun _ -> assert_equal Commands 
                             (Command.parse "COmmands "));
@@ -312,7 +312,7 @@ let make_player_turn_test
 let player_tests =
   [
     (* testing player_turn, which in turn tests the rest of the helper functions in player *)
-    make_player_turn_test "uno2" gs_21 (Uno2);
+    make_player_turn_test "uno2" gs_21 (Uno2 User);
     make_player_turn_test "uno with one playable" gs_102 (Uno "Red 3");
     make_player_turn_test "uno with multiple playable" gs_304 (Uno "Blue 3");
     make_player_turn_test "play with multiple playable" gs_113 (Play "Red 6");

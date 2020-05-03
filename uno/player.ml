@@ -43,7 +43,7 @@ let find_playable_card t hand card_name =
 let player_turn t =
   let hand = Gamestate.hand t Player in
   let last_card = Gamestate.last_card_played t in 
-  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) then Uno2 else
+  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) then Uno2 User else
     let playable_card = find_playable_card t hand last_card in
     if Gamestate.hand_size t Player = 2 then match playable_card with
       | "" -> Draw

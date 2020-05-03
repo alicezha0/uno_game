@@ -19,7 +19,7 @@ type command =
   | Draw
   | Play of card_phrase
   | Uno of card_phrase
-  | Uno2
+  | Uno2 of Gamestate.gamer
   | Rules
   | Commands
   | Quit
