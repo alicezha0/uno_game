@@ -41,7 +41,7 @@ type t = {draw_pile:deck ;discard_pile:deck ;user_hand:hand
 exception CardNotInHand of card_name 
 exception MisMatch of card_name 
 exception Nouno of gamer
-exception TallyIllegal of card_name 
+exception TallyIllegal 
 
 (** [card_of_json] is the card object that [j] represents *)
 let card_of_json j = {
@@ -328,7 +328,7 @@ let legal_play_tally t lcard card gamer color_str=
   then update_color (update_tally t (t.tally.num + 4) other_gamer) color_str
   else if (lcard.number = 14 && card.number = 14) (*a +4 is countered with a +4*)
   then update_color (update_tally t (t.tally.num + 4) other_gamer) color_str
-  else raise (TallyIllegal card.name)
+  else raise (TallyIllegal)
 
 
 

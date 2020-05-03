@@ -72,6 +72,20 @@ let rec parse_check str =
   | exception Command.Malformed -> print_endline c_malformed; 
     parse_check (read_line ())
 
+let rec parse_color str =
+  match (Command.parse_color str) with 
+  | color -> color
+  | exception Command.Empty -> print_endline c_empty; 
+    parse_color (read_line ())
+  | exception Command.Malformed -> print_endline c_malformed; 
+    parse_color (read_line ())
+
+let pick_color =
+  print_endline "\nYou played a wild card, which means you get to choose the \
+                 next color to be played. Please enter the next color \
+                 (Red, Yellow, Green, Blue):\n";
+  parse_color (read_line ())
+
 let rec recurse_command gs gamer (gamer_lst:Gamestate.gamer list) win =
   let _ = if win then exit 0 else
     if gamer = User then print_for_user gs else print_for_player gs in
@@ -104,7 +118,8 @@ and c_draw gs gamer num =
     [gamer]. If the move is Illegal, the error statement is printed and the
     [gamer] has another chance to play.*)
 and c_play gs gamer gamer_lst phr win =
-  let play_result = Command.play gs gamer phr in 
+  let pick = if phr = "Wild" || phr = "Wild +4" then pick_color else Any in
+  let play_result = Command.play gs gamer phr pick in 
   match play_result with 
   | Legal gamestate -> 
     let turn_g = turn gamer gamer_lst phr in
@@ -117,9 +132,10 @@ and c_play gs gamer gamer_lst phr win =
     If the move is Illegal no uno situation, [gamer] is forced to draw 4 cards 
     and then it will be the other gamer's move.*)
 and c_uno gs gamer gamer_lst phr win =
-  let uno_result = Command.uno gs gamer phr in 
+  let pick = if phr = "Wild" || phr = "Wild +4" then pick_color else Any in
+  let uno_result = Command.uno gs gamer phr pick in 
   match uno_result with
-  | Legal gamestate -> print_endline (uno_valid_print gamer) ;
+  | Legal gamestate -> print_endline (uno_valid_print gamer);
     let turn_g = turn gamer gamer_lst phr in
     recurse_command gamestate (List.hd turn_g) turn_g win
   | Illegal string -> 

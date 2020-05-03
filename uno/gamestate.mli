@@ -28,7 +28,7 @@ exception Nouno of gamer
 
 (** Raised when a gamer tries to play a card that does not match the power card 
     played in the last play *)
-exception TallyIllegal of card_name 
+exception TallyIllegal 
 
 (** [from_json j] is the initial game state formed from shuffling and dealing 
     the cards in the deck that [j] represents. The game rules require that the 

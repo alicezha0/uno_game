@@ -29,6 +29,15 @@ type result =
   | Illegal of string
   | Legal of Gamestate.t
 
+(** Gamer gets to choose the next color card to be played if they played a wild
+    card. *)
+type color =
+  | Red
+  | Yellow
+  | Green
+  | Blue
+  | Any
+
 (** Raised when an empty command or card_phrase is parsed. *)
 exception Empty
 
@@ -49,18 +58,22 @@ exception Malformed
     Raises: [Malformed] if the command is malformed. *)
 val parse : string -> command
 
+(** [parse_color str] does the same thing as parse except checks for a valid
+    color. *)
+val parse_color : string -> color
+
 (** [draw gs gamer num] is Legal of the new game state in which the gamer
     [gamer] has drawn number [num] new card(s). *)
 val draw : Gamestate.t -> Gamestate.gamer -> int -> result
 
-(** [play gs gamer phr] is Legal of the new game state or Illegal with an 
+(** [play gs gamer phr clr] is Legal of the new game state or Illegal with an 
     error message for the [gamer] who played the card [phr]. *)
-val play : Gamestate.t -> Gamestate.gamer -> card_phrase -> result
+val play : Gamestate.t -> Gamestate.gamer -> card_phrase -> color -> result
 
-(** [uno gs gamer phr] is Legal of the new game state or Illegal of an 
+(** [uno gs gamer phr clr] is Legal of the new game state or Illegal of an 
     error message for the [gamer] who did not have a valid uno with card 
     [phr]. *)
-val uno : Gamestate.t -> Gamestate.gamer -> card_phrase -> result
+val uno : Gamestate.t -> Gamestate.gamer -> card_phrase -> color -> result
 
 (** [uno2 gs gamer1 gamer2] is Legal of the new game state or Illegal of 
     an error message for the gamer who called uno [gamer1] trying to call uno on 
