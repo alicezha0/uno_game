@@ -118,6 +118,8 @@ let last_card_played t = (List.hd t.discard_pile).name
 
 let last_card_played_color t = (List.hd t.discard_pile).color
 
+let color_state t = t.color_state
+
 let last_card_played_number t = (List.hd t.discard_pile).number
 
 (** [name_of_card c] is the name of the card [c] *)
@@ -289,6 +291,7 @@ let play_helper_4 t gamer card =
      player_hand = t.player_hand;
      color_state = t.color_state; 
      tally = t.tally}
+
 
 
 let play_helper_3 t gamer card = 

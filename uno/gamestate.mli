@@ -50,6 +50,10 @@ val last_card_played : t -> card_name
     game state. *)
 val last_card_played_color : t -> string
 
+(** [color_state t] is the color_state of the gamestate that has to be matched
+    when a gamer plays a card if that card is not a wild card *)
+val color_state : t -> string
+
 (** [last_card_played_number t] is the number of the card that was played in the last 
     game state. *)
 val last_card_played_number : t -> int
@@ -87,7 +91,7 @@ val draw : t -> gamer -> int -> t
 
 val just_to_test: t -> card_name list
 
-val play: t -> gamer -> card_name -> t
+val play: t -> gamer -> card_name -> string -> t
 
 (** [uno_defensive t gamer] returns a new game state based on which gamer had 
     called uno for themself. If gamer has one card in hand, then their uno_state
