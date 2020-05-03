@@ -247,11 +247,10 @@ let rec deck_without_card lst card init =
 (*make wild not legal after +4 or +2*)
 let legal_play_or_not t card = 
   let card2 = card_of_card_name t.discard_pile (last_card_played t) in 
-  (card2.color = card.color||card2.number = card.number||card2.color = "black" )
+  (card2.color = t.color_state ||card2.number = card.number||card2.color = "black" )
 
 
-let update_color t card = 
-  let color = card.color in
+let update_color t color = 
   {draw_pile = t.draw_pile; discard_pile = t.discard_pile; 
    user_hand = t.user_hand; player_hand = t.player_hand;
    color_state = color; tally = t.tally}
@@ -262,9 +261,11 @@ let other_gamer gamer =
   |Player -> User
 
 
+
 (** [play_helper t gamer card] is new gamestate after [gamer] successfully 
     plays [card] *)
 let play_helper_4 t gamer card =
+
   match gamer with 
 
   |Player -> let hand = t.player_hand.deck in 
@@ -292,61 +293,67 @@ let play_helper_4 t gamer card =
 
 let play_helper_3 t gamer card = 
   if card.number = 12 then 
-    update_tally t 2 (other_gamer gamer)
-  else play_helper_4 t gamer card
+    let updated_tally = update_tally t 2 (other_gamer gamer) in 
+    let updated_color = update_color updated_tally (card.color) in 
+    play_helper_4 updated_color gamer card
+  else if (card.color <> t.color_state) then 
+    play_helper_4 (update_color t card.color) gamer card 
+  else 
+    play_helper_4 t gamer card
 
 
 
 
 (* tally = 0, but a card of color "black" has been played. appropriate changes
    are made to t such as color and tally (if +4 is played) *)
-let play_helper_2 t gamer card = 
-  if (card.color = "black" && card.number = 13) 
-  then play_helper_4 (update_color t card) gamer card
-  else if (card.color = "black" && card.number = 14) 
-  then let new_t = update_color t card in
+let play_helper_2 t gamer card color_str = 
+  if (card.color = "black" && card.number = 13) (* a wild is thrown, color_state is changed *) 
+  then play_helper_4 (update_color t color_str) gamer card
+  else if (card.color = "black" && card.number = 14) (* a +4 is thrown, tally is updated, and color_state is changed*)
+  then let new_t = update_color t color_str in
     play_helper_4 (update_tally new_t 4 (other_gamer gamer)) gamer card 
-  else play_helper_4 t gamer card
+  else play_helper_3 t gamer card
 
 
 (* raises TallyIllegal if the gamer tries to play a card that doesn't match 
    the tally or the earlier played action card *)
-let legal_play_tally t lcard card gamer= 
-  if (lcard.number = 12 && card.number = 12 )
-  then update_color (update_tally t (t.tally.num + 2) gamer) card
-  else if (lcard.number = 12 && card.number = 14)
-  then update_color (update_tally t (t.tally.num + 4) gamer) card
-  else if (lcard.number = 14 && card.number = 14)
-  then update_tally t (t.tally.num + 4) gamer
+let legal_play_tally t lcard card gamer color_str= 
+  let other_gamer = other_gamer gamer in 
+  if (lcard.number = 12 && card.number = 12 ) (*a +2 is countered with a +2*)
+  then update_color (update_tally t (t.tally.num + 2) other_gamer)(card.color)
+  else if (lcard.number = 12 && card.number = 14) (*a +2 is countered with a +4*)
+  then update_color (update_tally t (t.tally.num + 4) other_gamer) color_str
+  else if (lcard.number = 14 && card.number = 14) (*a +4 is countered with a +4*)
+  then update_color (update_tally t (t.tally.num + 4) other_gamer) color_str
   else raise (TallyIllegal card.name)
 
 
 
 (* to check if the tally is 0 or not, if it isn't 0 then you can only play 
    certain cards *)
-let play_helper_1 t gamer card = 
+let play_helper_1 t gamer card color_str = 
   if (t.tally.num <> 0 && t.tally.gamer = gamer)  
   then let lcard_n = last_card_played t in 
     match gamer with 
     |User -> let lcard = card_of_card_name t.user_hand.deck lcard_n in 
-      let new_t = legal_play_tally t lcard card Player in 
+      let new_t = legal_play_tally t lcard card User color_str in 
       play_helper_4 new_t User card 
     |Player -> let lcard = card_of_card_name t.player_hand.deck lcard_n in 
-      let new_t = legal_play_tally t lcard card User in
-      play_helper_3 new_t Player card 
-  else play_helper_4 t gamer card
+      let new_t = legal_play_tally t lcard card Player color_str in
+      play_helper_4 new_t Player card 
+  else play_helper_2 t gamer card color_str
 
 
-let play t gamer card_name = 
+let play t gamer card_name color_str = 
   match gamer with 
   (* Remember: our AI does not make mistakes. Might be able to get rid of this 
      part *)
   |Player -> let card = card_of_card_name t.player_hand.deck card_name in 
-    if (legal_play_or_not t card) then play_helper_1 t gamer card 
+    if (legal_play_or_not t card) then play_helper_1 t gamer card color_str
     else raise (MisMatch card_name) 
 
   |User-> let card = card_of_card_name t.user_hand.deck card_name in 
-    if (legal_play_or_not t card) then play_helper_1 t gamer card 
+    if (legal_play_or_not t card) then play_helper_1 t gamer card color_str
     else raise (MisMatch card_name) 
 
 (*---------------------------------------------------------------------------*)
