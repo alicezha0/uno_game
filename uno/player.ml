@@ -58,12 +58,12 @@ let player_turn t =
     let playable_card = find_playable_card t hand last_card in
     if Gamestate.hand_size t Player = 2 then match playable_card with
       | "" -> Draw
-      | "Wild" -> Uno (playable_card ^ wildcard_color)
-      | "Wild +4" -> Uno (playable_card ^ wildcard_color)
+      | "Wild" -> Uno (playable_card ^ " " ^  wildcard_color)
+      | "Wild +4" -> Uno (playable_card ^ " " ^  wildcard_color)
       | _ -> Uno playable_card
     else
       match playable_card with
       | "" -> Draw
-      | "Wild" -> Play (playable_card ^ wildcard_color)
-      | "Wild +4" -> Play (playable_card ^ wildcard_color)
+      | "Wild" -> Play (playable_card ^ " " ^  wildcard_color)
+      | "Wild +4" -> Play (playable_card ^ " " ^  wildcard_color)
       | _ -> Play playable_card

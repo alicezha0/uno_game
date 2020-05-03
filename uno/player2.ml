@@ -77,13 +77,13 @@ let wildcard_color t hand =
   let num_green = color_count t hand "Green" 0 in
   let num_yellow = color_count t hand "Yellow" 0 in
   let color_list = [("Red", num_red); ("Blue", num_blue); ("Green", num_green); ("Yellow", num_yellow)] in
-  max_color hand "" (-1)
+  max_color color_list "Red" (0)
 
 
 (** [find_playable_card t hand] is the first playable card in [hand], 
     prioritizing color, then number. Returns an empty string if no such card exists *)
 let find_playable_card t hand =
-  let same_color_card = color_search t hand (Gamestate.last_card_played_color t) in
+  let same_color_card = color_search t hand (Gamestate.color_state t) in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) in
   match (same_color_card) with
   | "" -> 
@@ -95,7 +95,7 @@ let find_playable_card t hand =
 (** [find_playable_action_card t hand] is the first playable ACTION card in [hand], 
     prioritizing color, then number. Returns an empty string if no such card exists *)
 let find_playable_action_card t hand =
-  let same_color_card = color_search_bounds t hand (Gamestate.last_card_played_color t) 10 14 in
+  let same_color_card = color_search_bounds t hand (Gamestate.color_state t) 10 14 in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) in
   match (same_color_card) with
   | "" -> if Gamestate.last_card_played_number t < 10 then "" else
@@ -107,7 +107,7 @@ let find_playable_action_card t hand =
 (** [find_playable_norm_card t hand] is the first playable NON-ACTION card in [hand], 
     prioritizing color, then number. Returns an empty string if no such card exists *)
 let find_playable_norm_card t hand =
-  let same_color_card = color_search_bounds t hand (Gamestate.last_card_played_color t) 0 9 in
+  let same_color_card = color_search_bounds t hand (Gamestate.color_state t) 0 9 in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) in
   match (same_color_card) with
   | "" -> if Gamestate.last_card_played_number t > 9 then "" else
@@ -147,16 +147,16 @@ let find_optimal_card t hand =
 
 let player_turn t =
   let hand = Gamestate.hand t Player in
-  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) then Uno2 else
+  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) then Uno2 User else
     let next_card = find_optimal_card t hand in
     if Gamestate.hand_size t Player = 2 then match next_card with
       | "" -> Draw
-      | "Wild" -> Uno next_card (wildcard_color t hand)
-      | "Wild +4" -> Uno next_card (wildcard_color t hand)
+      | "Wild" -> Uno (next_card ^ " " ^ (wildcard_color t hand))
+      | "Wild +4" -> Uno (next_card ^ " " ^  (wildcard_color t hand))
       | _ -> Uno next_card
     else
       match next_card with
       | "" -> Draw
-      | "Wild" -> Play next_card (wildcard_color t hand)
-      | "Wild +4" -> Play next_card (wildcard_color t hand)
+      | "Wild" -> Play (next_card ^ " " ^  (wildcard_color t hand))
+      | "Wild +4" -> Play (next_card ^ " " ^  (wildcard_color t hand))
       | _ -> Play next_card
