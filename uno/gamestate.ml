@@ -77,6 +77,10 @@ let rec deal initial_decks (n:int)  =
 let from_json_init json = json 
                           |> member "cards" |> to_list |> List.map card_of_json
 
+let init_colorstate discard_pile= 
+  let card = (List.hd discard_pile) in 
+  if (card.color = "black") then "red" else card.color
+
 
 let from_json j num =
   let cards = from_json_init j in 
@@ -92,7 +96,7 @@ let from_json j num =
     discard_pile = discard_pile; 
     user_hand = user_hand; 
     player_hand = player_hand;
-    color_state = (List.hd discard_pile).color;
+    color_state = (init_colorstate discard_pile);
     tally = {num = 0; gamer = User}
   }
 
@@ -109,7 +113,7 @@ let from_json_unshuffled j num =
     discard_pile = discard_pile; 
     user_hand = user_hand; 
     player_hand = player_hand;
-    color_state = (List.hd discard_pile).color;
+    color_state = init_colorstate discard_pile;
     tally = {num = 0; gamer = User}
   }
 

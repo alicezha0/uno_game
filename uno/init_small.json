@@ -1,0 +1,384 @@
+{
+  "cards": [
+    {
+      "name": "Red 0",
+      "number": 0,
+      "color": "red"
+    },
+    {
+      "name": "Yellow 0",
+      "number": 0,
+      "color": "yellow"
+    },
+    {
+      "name": "Green 0",
+      "number": 0,
+      "color": "green"
+    },
+    {
+      "name": "Blue 0",
+      "number": 0,
+      "color": "blue"
+    },
+    {
+      "name": "Wild",
+      "number": 13,
+      "color": "black"
+    },
+    {
+      "name": "Wild",
+      "number": 13,
+      "color": "black"
+    },
+    {
+      "name": "Wild",
+      "number": 13,
+      "color": "black"
+    },
+    {
+      "name": "Wild",
+      "number": 13,
+      "color": "black"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Wild +4",
+      "number": 14,
+      "color": "black"
+    },
+    {
+      "name": "Red 1",
+      "number": 1,
+      "color": "red"
+    },
+    {
+      "name": "Red 2",
+      "number": 2,
+      "color": "red"
+    },
+    {
+      "name": "Red 3",
+      "number": 3,
+      "color": "red"
+    },
+    {
+      "name": "Red 4",
+      "number": 4,
+      "color": "red"
+    },
+    {
+      "name": "Red 5",
+      "number": 5,
+      "color": "red"
+    },
+    {
+      "name": "Red Skip",
+      "number": 10,
+      "color": "red"
+    },
+    {
+      "name": "Red Reverse",
+      "number": 11,
+      "color": "red"
+    },
+    {
+      "name": "Red +2",
+      "number": 12,
+      "color": "red"
+    },
+    {
+      "name": "Yellow 1",
+      "number": 1,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 2",
+      "number": 2,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 3",
+      "number": 3,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 4",
+      "number": 4,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 5",
+      "number": 5,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow Skip",
+      "number": 10,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow Reverse",
+      "number": 11,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow +2",
+      "number": 12,
+      "color": "yellow"
+    },
+    {
+      "name": "Green 1",
+      "number": 1,
+      "color": "green"
+    },
+    {
+      "name": "Green 2",
+      "number": 2,
+      "color": "green"
+    },
+    {
+      "name": "Green 3",
+      "number": 3,
+      "color": "green"
+    },
+    {
+      "name": "Green 4",
+      "number": 4,
+      "color": "green"
+    },
+    {
+      "name": "Green 5",
+      "number": 5,
+      "color": "green"
+    },
+    {
+      "name": "Green Skip",
+      "number": 10,
+      "color": "green"
+    },
+    {
+      "name": "Green Reverse",
+      "number": 11,
+      "color": "green"
+    },
+    {
+      "name": "Green +2",
+      "number": 12,
+      "color": "green"
+    },
+    {
+      "name": "Blue 1",
+      "number": 1,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 2",
+      "number": 2,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 3",
+      "number": 3,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 4",
+      "number": 4,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 5",
+      "number": 5,
+      "color": "blue"
+    },
+    {
+      "name": "Blue Skip",
+      "number": 10,
+      "color": "blue"
+    },
+    {
+      "name": "Blue Reverse",
+      "number": 11,
+      "color": "blue"
+    },
+    {
+      "name": "Blue +2",
+      "number": 12,
+      "color": "blue"
+    },
+    {
+      "name": "Red 1",
+      "number": 1,
+      "color": "red"
+    },
+    {
+      "name": "Red 2",
+      "number": 2,
+      "color": "red"
+    },
+    {
+      "name": "Red 3",
+      "number": 3,
+      "color": "red"
+    },
+    {
+      "name": "Red 4",
+      "number": 4,
+      "color": "red"
+    },
+    {
+      "name": "Red 5",
+      "number": 5,
+      "color": "red"
+    },
+    {
+      "name": "Red Skip",
+      "number": 10,
+      "color": "red"
+    },
+    {
+      "name": "Red Reverse",
+      "number": 11,
+      "color": "red"
+    },
+    {
+      "name": "Red +2",
+      "number": 12,
+      "color": "red"
+    },
+    {
+      "name": "Yellow 1",
+      "number": 1,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 2",
+      "number": 2,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 3",
+      "number": 3,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 4",
+      "number": 4,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow 5",
+      "number": 5,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow Skip",
+      "number": 10,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow Reverse",
+      "number": 11,
+      "color": "yellow"
+    },
+    {
+      "name": "Yellow +2",
+      "number": 12,
+      "color": "yellow"
+    },
+    {
+      "name": "Green 1",
+      "number": 1,
+      "color": "green"
+    },
+    {
+      "name": "Green 2",
+      "number": 2,
+      "color": "green"
+    },
+    {
+      "name": "Green 3",
+      "number": 3,
+      "color": "green"
+    },
+    {
+      "name": "Green 4",
+      "number": 4,
+      "color": "green"
+    },
+    {
+      "name": "Green 5",
+      "number": 5,
+      "color": "green"
+    },
+    {
+      "name": "Green Skip",
+      "number": 10,
+      "color": "green"
+    },
+    {
+      "name": "Green Reverse",
+      "number": 11,
+      "color": "green"
+    },
+    {
+      "name": "Green +2",
+      "number": 12,
+      "color": "green"
+    },
+    {
+      "name": "Blue 1",
+      "number": 1,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 2",
+      "number": 2,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 3",
+      "number": 3,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 4",
+      "number": 4,
+      "color": "blue"
+    },
+    {
+      "name": "Blue 5",
+      "number": 5,
+      "color": "blue"
+    },
+    {
+      "name": "Blue Skip",
+      "number": 10,
+      "color": "blue"
+    },
+    {
+      "name": "Blue Reverse",
+      "number": 11,
+      "color": "blue"
+    },
+    {
+      "name": "Blue +2",
+      "number": 12,
+      "color": "blue"
+    }
+  ]
+}

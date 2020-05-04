@@ -9,9 +9,9 @@ open Command
 
    When playing a card, it prioritizes playing the first card of the same color, 
    then playing the first card of the same number. When playing a wildcard, 
-  it will choose a random color.
-  
-  This AI calls Uno and Uno2 when appropriate without fail. *)
+   it will choose a random color.
+
+   This AI calls Uno and Uno2 when appropriate without fail. *)
 
 
 (** [number_search hand number] is the name of the first card in [hand] with
@@ -27,7 +27,9 @@ let rec number_search t1 hand number =
 let rec color_search t1 hand color =
   match hand with
   | [] -> ""
-  | h::t -> if Gamestate.color_search t1 Player h = color then h 
+  | h::t -> if Gamestate.color_search t1 Player h = "black"
+            || Gamestate.color_search t1 Player h = color 
+    then h 
     else color_search t1 t color
 
 (** [find_playable_card hand card_name] is the first playable card in [hand], 
@@ -35,21 +37,16 @@ let rec color_search t1 hand color =
 let find_playable_card t hand card_name =
   let same_color_card = color_search t hand (Gamestate.last_card_played_color t) in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) in
-  match (same_color_card) with
+  match (same_num_card) with
   | "" -> 
-    (match (same_num_card) with
-     | "" -> ""
-     | _ -> same_num_card)
-  | _ -> same_color_card
+    (if (Gamestate.last_card_played_number t != 12 
+         && Gamestate.last_card_played_number t != 14) then 
+       (match (same_color_card) with
+        | "" -> ""
+        | _ -> same_color_card) 
+     else "")
+  | _ -> same_num_card
 
-
-let wildcard_color =
-match Random.int 4 with
-| 0 -> "Red"
-| 1 -> "Blue"
-| 2 -> "Green"
-| 3 -> "Yellow"
-| _ -> "Red"
 
 let player_turn t =
   let hand = Gamestate.hand t Player in
@@ -58,12 +55,20 @@ let player_turn t =
     let playable_card = find_playable_card t hand last_card in
     if Gamestate.hand_size t Player = 2 then match playable_card with
       | "" -> Draw
-      | "Wild" -> Uno (playable_card ^ " " ^  wildcard_color)
-      | "Wild +4" -> Uno (playable_card ^ " " ^  wildcard_color)
+      | "Wild" -> Uno (playable_card)
+      | "Wild +4" -> Uno (playable_card)
       | _ -> Uno playable_card
     else
       match playable_card with
       | "" -> Draw
-      | "Wild" -> Play (playable_card ^ " " ^  wildcard_color)
-      | "Wild +4" -> Play (playable_card ^ " " ^  wildcard_color)
+      | "Wild" -> Play (playable_card)
+      | "Wild +4" -> Play (playable_card)
       | _ -> Play playable_card
+
+let choose_color t =
+  match Random.int 4 with
+  | 0 -> Red
+  | 1 -> Blue
+  | 2 -> Green
+  | 3 -> Yellow
+  | _ -> Red

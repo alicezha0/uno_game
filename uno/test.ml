@@ -497,7 +497,6 @@ let player2_tests =
     (* make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red"); *)
   ]
 
-
 let suite =
   "test suite for uno_game"  >::: List.flatten [
     gamestate_tests;
