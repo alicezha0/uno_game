@@ -14,7 +14,7 @@ type card_name = string
 
 (** The type of the gamer. User represents the person playing the game while
     player represents the AI. *)
-type gamer = User | Player
+type gamer = User | Player1 | Player2 | Player3
 
 (** Raised when the card to be played is not in deck *)
 exception CardNotInHand of card_name 
@@ -30,16 +30,18 @@ exception Nouno of gamer
     played in the last play *)
 exception TallyIllegal 
 
+exception InvalidGamer
+
 (** [from_json j] is the initial game state formed from shuffling and dealing 
     the cards in the deck that [j] represents. The game rules require that the 
     int is 7, and that from_json is called. 
     Requires: [j] is a valid JSON deck representation. *)
-val from_json : Yojson.Basic.t -> int -> t
+val from_json : Yojson.Basic.t -> int -> int -> t
 
 (** [from_json_unshuffled j] is the game state formed from dealing the cards in 
     [j]. Formed only for testing purposes. Functionality and implementation
     same as from_json. *)
-val from_json_unshuffled : Yojson.Basic.t -> int -> t 
+val from_json_unshuffled : Yojson.Basic.t -> int -> int -> t 
 
 
 (** [last_card_played t] is the name of the card that was played in the last 
@@ -86,18 +88,20 @@ val color_search : t -> gamer -> card_name -> string
     a number num cards. *)
 val draw : t -> gamer -> int -> t
 
-(** [play t gamer card_name] gives a new game state in which the card has been
-    added to the discard pile and the gamer's hand has been adjusted 
-    accordingly. 
+val just_to_test: t -> card_name list
+
+(** [play t gamer gamer_ncard_name] gives a new game state in which the 
+    card has been added to the discard pile and the gamer's hand has been 
+    adjusted accordingly. 
     Raises: 
     1. (Mismatch of card_name) if the card to be played does not match the 
     the last_card_played 
     2. (CardNotInDeck of card_name) if the card to be played is not in the
-    gamer's hand *)
+    gamer's hand 
+    3. TallyIllegal if the tally is not 0 and the card to be played does not 
+    match the last action card played *)
 
-val just_to_test: t -> card_name list
-
-val play: t -> gamer -> card_name -> string -> t
+val play: t -> gamer -> gamer -> card_name -> string -> t
 
 (** [uno_defensive t gamer] returns a new game state based on which gamer had 
     called uno for themself. If gamer has one card in hand, then their uno_state
