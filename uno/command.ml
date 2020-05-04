@@ -81,14 +81,16 @@ let color_to_string clr =
   else if clr = Blue then "blue"
   else ""
 
+(** [tally_illegal gs] is the Illegal state with a helpful error message after
+    an illegal move has been played on top of a +2 or +4 card. *)
 let tally_illegal gs =
   let num_last_card = Gamestate.last_card_played_number gs in 
   if num_last_card = 12 then
-    Illegal ("\nThe last card played was a +2, which means you must draw cards if \
-              you do not have a +2 or +4 card to play.")
+    Illegal ("\nThe last card played was a +2, which means you must draw \
+              cards if you do not have a +2 or +4 card to play.")
   else
-    Illegal ("\nThe last card played was a +4, which means you must draw cards if \
-              you do not have a +4 card.")
+    Illegal ("\nThe last card played was a +4, which means you must draw \
+              cards if you do not have a +4 card.")
 
 let play gs gamer phr clr =
   let clr_str = color_to_string clr in
@@ -109,9 +111,11 @@ let uno gs gamer phr clr =
     Illegal ("\nYour card does not match the card last played: " ^ card)
   | exception Gamestate.TallyIllegal -> tally_illegal gs
   | _ -> begin
-      match Gamestate.uno_defensive (Gamestate.play gs gamer phr clr_str) gamer with 
+      match Gamestate.uno_defensive 
+              (Gamestate.play gs gamer phr clr_str) gamer with 
       | exception Gamestate.Nouno gamer -> Illegal "nouno"
-      | _ -> Legal (Gamestate.uno_defensive (Gamestate.play gs gamer phr clr_str) gamer)
+      | _ -> Legal (Gamestate.uno_defensive 
+                      (Gamestate.play gs gamer phr clr_str) gamer)
     end
 
 let uno2 gs gamer1 gamer2 =
