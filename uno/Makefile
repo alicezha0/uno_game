@@ -1,4 +1,4 @@
-MODULES=gamestate command player main author
+MODULES=gamestate command player main author player2
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

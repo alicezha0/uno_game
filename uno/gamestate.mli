@@ -58,6 +58,12 @@ val color_state : t -> string
     game state. *)
 val last_card_played_number : t -> int
 
+(** [current_tally_num t] is the number of the tally in the current gamestate *)
+val current_tally_num : t -> int 
+
+(** [current_tally_gamer t] is the gamer that the current tally is against  *)
+val current_tally_gamer: t -> gamer
+
 (** [hand t gamer] is a list of cards that the gamer has in hand. *)
 val hand : t -> gamer -> card_name list
 

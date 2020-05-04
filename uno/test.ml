@@ -41,15 +41,41 @@ let gs_22 = Gamestate.play gs_21 Player "Red 2" ""
 let gs_23 = Gamestate.draw gs_22 User 2 
 let gs_24 = Gamestate.draw gs_23 Player 1
 
-(*
+(*---------------------------------------------------------------------------*)
+(* SECOND SPRINT: ACTION CARDS *)
 
-(* Helper functions to test exceptions*)
+(*testing that wild works*)
+let json_test_6 = Yojson.Basic.from_file "test_deck_6.json" 
+let gs_3 = from_json_unshuffled json_test_6 2
+
+let gs_31 = Gamestate.play gs_3 User "Wild" "red"
+let gs_32 = Gamestate.play gs_31 Player "Wild" "blue"
+
+let gs_33 = Gamestate.draw gs_32 User 1
+let gs_331 = Gamestate.draw gs_33 Player 1
+let gs_34 = Gamestate.play gs_331 User "Blue +2" ""
+let gs_341 = Gamestate.play gs_34 Player "Red +2" ""
+
+let gs_35 = Gamestate.draw gs_34 Player 1
+
+(*testing that wild +4 works*)
+let json_test_7 = Yojson.Basic.from_file "test_deck_7.json"
+let gs_4 = from_json_unshuffled json_test_7 2 
+
+let gs_41 = Gamestate.play gs_4 User "Wild +4" "red"
+let gs_42 = Gamestate.play gs_41 Player "Wild +4" "blue"
+
+let gs_411 = Gamestate.draw gs_41 Player 2
+
+
+
+(*Helper functions to test exceptions*)
 let exn_test_1 gs g card_name =
-  (try gs_1 = (Gamestate.play gs g card_name) 
+  (try gs_1 = (Gamestate.play gs g card_name "") 
    with (Gamestate.CardNotInHand card)-> (card = card_name))
 
-let exn_test_2 gs g card_name = 
-  try gs_1 = (Gamestate.play gs g card_name)
+let exn_test_2 gs g card_name color_str = 
+  try gs_1 = (Gamestate.play gs g card_name color_str)
   with (Gamestate.MisMatch card)-> (card = card_name)
 
 let exn_test_3 gs g = 
@@ -60,6 +86,9 @@ let exn_test_4 gs g1 g2 =
   try gs_1 = (Gamestate.uno_offensive gs g1 g2) 
   with (Gamestate.Nouno g) -> (g = g1) 
 
+let exn_test_5 gs g card_name color_str = 
+  try gs_1 = (Gamestate.play gs g card_name color_str)
+  with (Gamestate.TallyIllegal) -> true
 
 let gamestate_tests =
   [
@@ -119,7 +148,7 @@ let gamestate_tests =
     "draw_test_6" >:: (fun _ -> assert_equal "Red 2" (last_card_played gs_24));
 
     "draw_test_7" >:: (fun _ -> assert_equal
-                          ["Red 0"; "Red 3"] (hand gs_24 Player));
+                          ["Red 4"; "Red 3"] (hand gs_24 Player));
 
 
     (* testing play *)
@@ -160,7 +189,38 @@ let gamestate_tests =
     (*.......................................................................*)
 
     "win_test_1" >:: (fun _ -> assert_equal true (win_or_not gs_19 User)); 
-    "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player))
+    "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player));
+
+    (* testing after adding action cards into the deck *)
+
+    (* testing that adding wild works: changes color*)
+    "wild_test_1" >:: (fun _ -> assert_equal "red" (color_state gs_31));
+    "wild_test_2" >:: (fun _ -> assert_equal "black" (last_card_played_color gs_31));
+    "wild_test_3" >:: (fun _ -> assert_equal 0 (current_tally_num gs_31));
+    "wild_test_31" >:: (fun _ -> assert_equal true (exn_test_2 gs_31 Player "Blue 0" ""));
+    "wild_test_4" >:: (fun _ -> assert_equal "blue" (color_state gs_32)); 
+    "wild_test_5" >:: (fun _ -> assert_equal 13 (last_card_played_number gs_32)); 
+    "wild_test_51" >::(fun _ -> assert_equal true (exn_test_2 gs_32 User "Red 0" ""));
+
+    (* testing +2*)
+    "+2_test_1" >::(fun _ -> assert_equal 2 (current_tally_num gs_34)); 
+    "+2_test_2" >::(fun _ -> assert_equal Player (current_tally_gamer gs_34));
+    "+2_test_3" >::(fun _ -> assert_equal true (exn_test_5 gs_34 Player "Blue 0" ""));
+
+    "+2_test_4" >:: (fun _ -> assert_equal 4 (hand_size gs_35 Player));
+    "+2_test_5" >:: (fun _ -> assert_equal 4 (current_tally_num gs_341));
+    "+2_test_6" >:: (fun _ -> assert_equal User (current_tally_gamer gs_341));
+
+    (* testing Wild +4 *)
+    "+4_test_1" >:: (fun _ -> assert_equal 4 (current_tally_num gs_41));
+    "+4_test_2" >:: (fun _ -> assert_equal Player (current_tally_gamer gs_41));
+    "+4_test_3" >:: (fun _ -> assert_equal true (exn_test_5 gs_41 Player "Red +2" ""));
+    "+4_test_4" >:: (fun _ -> assert_equal 8 (current_tally_num gs_42));
+    "+4_test_5" >:: (fun _ -> assert_equal User (current_tally_gamer gs_42));
+    "+4_test_6" >:: (fun _ -> assert_equal 6 (hand_size gs_411 Player));
+
+
+
   ]
 
 (*.........................testing command below..............................*)
@@ -185,82 +245,82 @@ let gs_c10 = Gamestate.uno_offensive gs_c2 Player User
 let uno2_il = "\nYou did not call a valid offensive uno. The other player does \
                not have Uno. You have been forced to draw 4 cards."
 
-let command_tests =
+(*let command_tests =
   [
-    (* test out parse *)
-    "pars_draw" >:: (fun _ -> assert_equal Draw (Command.parse " drAw "));
-    "pars_play" >:: (fun _ -> assert_equal (Play "Red 2") 
-                        (Command.parse "PlaY Red 2"));
-    "pars_uno" >:: (fun _ -> assert_equal (Uno "Blue 0") 
-                       (Command.parse "uNo bLue 0"));
-    "pars_uno2" >:: (fun _ -> assert_equal (Uno2 User) (Command.parse "uno2 User"));
-    "pars_rules" >:: (fun _ -> assert_equal Rules (Command.parse "    ruLes"));
-    "pars_commands" >:: (fun _ -> assert_equal Commands 
-                            (Command.parse "COmmands "));
-    "pars_empty" >:: (fun _ -> assert_raises 
-                         Empty (fun () -> Command.parse "  "));
-    "pars_malf" >:: (fun _ -> assert_raises 
-                        Malformed (fun () -> Command.parse "blaH"));
-    (* ---------------------------------------------------------------------- *)
-    (* test out draw *)
-    "draw_user" >:: (fun _ -> assert_equal 
-                        (Legal gs_c1) (Command.draw gs_c User 1));
-    "draw_player" >:: (fun _ -> assert_equal 
-                          (Legal gs_c2) (Command.draw gs_c Player 1));
-    (* ---------------------------------------------------------------------- *)
-    (* test out play *)
-    "play_user_legal" >:: (fun _ -> assert_equal
-                              (Legal gs_c3) (Command.play gs_c1 User "Red 0"));
-    "play_player_legal" >:: (fun _ -> assert_equal
-                                (Legal gs_c4) 
-                                (Command.play gs_c2 Player "Red 3"));
-    "play_not_in_hand" >:: (fun _ -> assert_equal
-                               (Illegal "\nYou tried to play a card not in \
-                                         your hand: Red 4")
-                               (Command.play gs_c1 User "Red 4"));
+  (* test out parse *)
+  "pars_draw" >:: (fun _ -> assert_equal Draw (Command.parse " drAw "));
+  "pars_play" >:: (fun _ -> assert_equal (Play "Red 2") 
+                 (Command.parse "PlaY Red 2"));
+  "pars_uno" >:: (fun _ -> assert_equal (Uno "Blue 0") 
+                (Command.parse "uNo bLue 0"));
+  "pars_uno2" >:: (fun _ -> assert_equal (Uno2 User) (Command.parse "uno2 User"));
+  "pars_rules" >:: (fun _ -> assert_equal Rules (Command.parse "    ruLes"));
+  "pars_commands" >:: (fun _ -> assert_equal Commands 
+                     (Command.parse "COmmands "));
+  "pars_empty" >:: (fun _ -> assert_raises 
+                  Empty (fun () -> Command.parse "  "));
+  "pars_malf" >:: (fun _ -> assert_raises 
+                 Malformed (fun () -> Command.parse "blaH"));
+  (* ---------------------------------------------------------------------- *)
+  (* test out draw *)
+  "draw_user" >:: (fun _ -> assert_equal 
+                 (Legal gs_c1) (Command.draw gs_c User 1));
+  "draw_player" >:: (fun _ -> assert_equal 
+                   (Legal gs_c2) (Command.draw gs_c Player 1));
+  (* ---------------------------------------------------------------------- *)
+  (* test out play *)
+  "play_user_legal" >:: (fun _ -> assert_equal
+                       (Legal gs_c3) (Command.play gs_c1 User "Red 0" ));
+  "play_player_legal" >:: (fun _ -> assert_equal
+                         (Legal gs_c4) 
+                         (Command.play gs_c2 Player "Red 3"));
+  "play_not_in_hand" >:: (fun _ -> assert_equal
+                        (Illegal "\nYou tried to play a card not in \
+                                  your hand: Red 4")
+                        (Command.play gs_c1 User "Red 4"));
 
-    "play_mismatch" >:: (fun _ -> assert_equal
-                            (Illegal "\nYour card does not match the card last \
-                                      played: Blue 0")
-                            (Command.play gs_c5 User "Blue 0"));
-    (* ---------------------------------------------------------------------- *)
-    (* test out uno *)
-    "uno_not_in_hand" >:: (fun _ -> assert_equal
-                              (Illegal "\nYou tried to play a card not in your \
-                                        hand: Red 4")
-                              (Command.uno gs_c1 User "Red 4"));
-    "uno_mismatch" >:: (fun _ -> assert_equal
-                           (Illegal "\nYour card does not match the card last \
-                                     played: Blue 0")
-                           (Command.uno gs_c5 User "Blue 0"));
-    "uno_user_illegal" >:: (fun _ -> assert_equal
-                               (Illegal "nouno") 
-                               (Command.uno gs_c5 User "Red 3"));
-    "uno_user_legal" >:: (fun _ -> assert_equal
-                             (Legal gs_c7) (Command.uno gs_c1 User "Red 0"));
-    "uno_player_illegal" >:: (fun _ -> assert_equal
-                                 (Illegal "nouno") 
-                                 (Command.uno gs_c6 Player "Red 1"));
-    "uno_player_legal" >:: (fun _ -> assert_equal
-                               (Legal gs_c8) 
-                               (Command.uno gs_c2 Player "Red 3"));
-    (* ---------------------------------------------------------------------- *)
-    (* test out uno2 *)
-    "uno2_user_illegal" >:: (fun _ -> assert_equal
-                                (Illegal uno2_il) 
-                                (Command.uno2 gs_c2 User Player));
-    "uno2_user_legal" >:: (fun _ -> assert_equal
-                              (Legal gs_c9) (Command.uno2 gs_c1 User Player));
-    "uno2_player_illegal" >:: (fun _ -> assert_equal
-                                  (Illegal uno2_il) 
-                                  (Command.uno2 gs_c1 Player User));
-    "uno2_player_legal" >:: (fun _ -> assert_equal
-                                (Legal gs_c10) 
-                                (Command.uno2 gs_c2 Player User));
+  "play_mismatch" >:: (fun _ -> assert_equal
+                     (Illegal "\nYour card does not match the card last \
+                               played: Blue 0")
+                     (Command.play gs_c5 User "Blue 0"));
+  (* ---------------------------------------------------------------------- *)
+  (* test out uno *)
+  "uno_not_in_hand" >:: (fun _ -> assert_equal
+                       (Illegal "\nYou tried to play a card not in your \
+                                 hand: Red 4")
+                       (Command.uno gs_c1 User "Red 4"));
+  "uno_mismatch" >:: (fun _ -> assert_equal
+                    (Illegal "\nYour card does not match the card last \
+                              played: Blue 0")
+                    (Command.uno gs_c5 User "Blue 0"));
+  "uno_user_illegal" >:: (fun _ -> assert_equal
+                        (Illegal "nouno") 
+                        (Command.uno gs_c5 User "Red 3"));
+  "uno_user_legal" >:: (fun _ -> assert_equal
+                      (Legal gs_c7) (Command.uno gs_c1 User "Red 0"));
+  "uno_player_illegal" >:: (fun _ -> assert_equal
+                          (Illegal "nouno") 
+                          (Command.uno gs_c6 Player "Red 1"));
+  "uno_player_legal" >:: (fun _ -> assert_equal
+                        (Legal gs_c8) 
+                        (Command.uno gs_c2 Player "Red 3"));
+  (* ---------------------------------------------------------------------- *)
+  (* test out uno2 *)
+  "uno2_user_illegal" >:: (fun _ -> assert_equal
+                         (Illegal uno2_il) 
+                         (Command.uno2 gs_c2 User Player));
+  "uno2_user_legal" >:: (fun _ -> assert_equal
+                       (Legal gs_c9) (Command.uno2 gs_c1 User Player));
+  "uno2_player_illegal" >:: (fun _ -> assert_equal
+                           (Illegal uno2_il) 
+                           (Command.uno2 gs_c1 Player User));
+  "uno2_player_legal" >:: (fun _ -> assert_equal
+                         (Legal gs_c10) 
+                         (Command.uno2 gs_c2 Player User));
 
-  ]
+  ]*)
 
-*)
+
 
 open Player
 
@@ -366,9 +426,9 @@ let gs_502 = Gamestate.draw gs_501 Player 2
 let gs_503 = Gamestate.draw gs_502 Player 3
 
 (* gs_506 is where User has 1 cards, Player has 13 (1 action, 5 red), Blue 4 is the last card played *)
-let gs_504 = Gamestate.play gs_503 Player "Blue 3" ""
-let gs_505 = Gamestate.play gs_504 Player "Blue 4" ""
-let gs_506 = Gamestate.draw gs_505 Player 5
+(* let gs_504 = Gamestate.play gs_503 Player "Blue 3" ""
+   let gs_505 = Gamestate.play gs_504 Player "Blue 4" ""
+   let gs_506 = Gamestate.draw gs_505 Player 5 *)
 
 (** [make_player2_turn_test name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
@@ -390,14 +450,14 @@ let player2_tests =
     make_player2_turn_test "play wild card with most color blue" gs_501 (Play "Wild +4 Blue");
     make_player2_turn_test "play wild card with most color green" gs_502 (Play "Wild +4 Green");
     make_player2_turn_test "play wild card with most color yellow" gs_503 (Play "Wild +4 Yellow");
-    make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red");
+    (* make_player2_turn_test "play wild card with most color red" gs_506 (Play "Wild +4 Red"); *)
   ]
 
 
 let suite =
   "test suite for uno_game"  >::: List.flatten [
-    (*gamestate_tests;
-    command_tests;*)
+    gamestate_tests;
+    (* command_tests;*)
     player_tests;
     player2_tests;
   ]

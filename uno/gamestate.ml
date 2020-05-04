@@ -113,6 +113,7 @@ let from_json_unshuffled j num =
     tally = {num = 0; gamer = User}
   }
 
+(* Information that the other modules need *)
 
 let last_card_played t = (List.hd t.discard_pile).name
 
@@ -121,6 +122,10 @@ let last_card_played_color t = (List.hd t.discard_pile).color
 let color_state t = t.color_state
 
 let last_card_played_number t = (List.hd t.discard_pile).number
+
+let current_tally_num t = t.tally.num
+
+let current_tally_gamer t = t.tally.gamer
 
 (** [name_of_card c] is the name of the card [c] *)
 let name_of_card (c:card) = c.name 
@@ -249,7 +254,7 @@ let rec deck_without_card lst card init =
 (*make wild not legal after +4 or +2*)
 let legal_play_or_not t card = 
   let card2 = card_of_card_name t.discard_pile (last_card_played t) in 
-  (card2.color = t.color_state ||card2.number = card.number||card2.color = "black" )
+  (card.color = t.color_state || card.number = card2.number || card.color = "black" )
 
 
 let update_color t color = 
@@ -338,10 +343,10 @@ let play_helper_1 t gamer card color_str =
   if (t.tally.num <> 0 && t.tally.gamer = gamer)  
   then let lcard_n = last_card_played t in 
     match gamer with 
-    |User -> let lcard = card_of_card_name t.user_hand.deck lcard_n in 
+    |User -> let lcard = card_of_card_name t.discard_pile lcard_n in 
       let new_t = legal_play_tally t lcard card User color_str in 
       play_helper_4 new_t User card 
-    |Player -> let lcard = card_of_card_name t.player_hand.deck lcard_n in 
+    |Player -> let lcard = card_of_card_name t.discard_pile lcard_n in 
       let new_t = legal_play_tally t lcard card Player color_str in
       play_helper_4 new_t Player card 
   else play_helper_2 t gamer card color_str
