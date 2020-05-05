@@ -370,13 +370,14 @@ open Player
 
 (* Making gamestates to test player: *)
 
-(* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played (from above) *)
+(* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played 
+   (from above) *)
 
 (* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
 let gs_101 = Gamestate.draw gs_2 User 1 
 let gs_102 = Gamestate.play gs_101 User "Red 0" ""
 
-(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last card played *)
+(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last played *)
 let gs_111 = Gamestate.draw gs_2 User 1 
 let gs_112 = Gamestate.draw gs_111 Player 1 
 let gs_113 = Gamestate.play gs_112 User "Red 0" ""
@@ -384,19 +385,23 @@ let gs_113 = Gamestate.play gs_112 User "Red 0" ""
 (* In json_test_2, some of the cards are blue instead of red *)
 let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
 
-(* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last card played *)
+(* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last 
+   card played *)
 let gs_200 = from_json_unshuffled json_test_2 2
 let gs_201 = Gamestate.draw gs_200 User 1 
 let gs_202 = Gamestate.draw gs_201 Player 1 
 let gs_203 = Gamestate.play gs_202 User "Red 0" ""
 
-(* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the last card played *)
+(* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the 
+   last card played *)
 let gs_204 = Gamestate.draw gs_203 Player 1 
 
-(* gs_205 is where User has 2 red cards, Player has 2 blue, Red 0 is the last card played *)
+(* gs_205 is where User has 2 red cards, Player has 2 blue, Red 0 is the last 
+   card played *)
 let gs_205 = Gamestate.play gs_201 User "Red 0" ""
 
-(* gs_304 is where User has 2 red cards, Player has 2 blue, Blue 0 is the last card played *)
+(* gs_304 is where User has 2 red cards, Player has 2 blue, Blue 0 is the last 
+   card played *)
 let json_test_3 = Yojson.Basic.from_file "test_deck_3.json"
 let gs_300 = from_json_unshuffled json_test_3 2
 let gs_301 = Gamestate.draw gs_300 User 1 
@@ -416,7 +421,7 @@ let make_player_turn_test
 
 let player_tests =
   [
-    (* testing player_turn, which in turn tests the rest of the helper functions in player *)
+    (* testing player_turn *)
     make_player_turn_test "uno2" gs_21 (Uno2 User);
     make_player_turn_test "uno with one playable" gs_102 (Uno "Red 3");
     make_player_turn_test "uno with multiple playable" gs_304 (Uno "Blue 3");
@@ -431,27 +436,33 @@ open Player2
 
 (* Making gamestates to test player2: *)
 
-(* gs_2 is where User has 2 cards, Player has 2 (0 action), Red 4 is the last card played (from above) *)
+(* gs_2 is where User has 2 cards, Player has 2 (0 action), Red 4 is the last 
+   card played (from above) *)
 
 (* In json_test_4, some action cards are included *)
 let json_test_4 = Yojson.Basic.from_file "test_deck_4.json"
 
-(* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last card played *)
+(* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last 
+   card played *)
 let gs_400 = from_json_unshuffled json_test_4 3
 let gs_401 = Gamestate.play gs_400 User "Red +2" ""
 
-(* gs_404 is where User has 4 cards, Player has 4 (1 action), Wild +4 is the last card played *)
+(* gs_404 is where User has 4 cards, Player has 4 (1 action), Wild +4 is the 
+   last card played *)
 let gs_402 = Gamestate.draw gs_400 User 1 
 let gs_403 = Gamestate.draw gs_402 Player 1 
 let gs_404 = Gamestate.play gs_403 User "Wild +4" "Red"
 
-(* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last card played *)
+(* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last 
+   card played *)
 let gs_405 = Gamestate.draw gs_400 Player 1 
 
-(* gs_406 is where User has 4 cards, Player has 4 (2 action), Red 2 is the last card played *)
+(* gs_406 is where User has 4 cards, Player has 4 (2 action), Red 2 is the last 
+   card played *)
 let gs_406 = Gamestate.draw gs_405 User 1 
 
-(* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last card played *)
+(* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last 
+   card played *)
 let gs_407 = Gamestate.play gs_406 Player "Red 3" ""
 let gs_408 = Gamestate.play gs_407 Player "Red 4" ""
 
@@ -459,17 +470,21 @@ let gs_408 = Gamestate.play gs_407 Player "Red 4" ""
 (* In json_test_5, some action cards plus different colors are included *)
 let json_test_5 = Yojson.Basic.from_file "test_deck_5.json"
 
-(* gs_501 is where User has 2 cards, Player has 6 (2 action, 2 blue), Red 1 is the last card played *)
+(* gs_501 is where User has 2 cards, Player has 6 (2 action, 2 blue), Red 1 is 
+   the last card played *)
 let gs_500 = from_json_unshuffled json_test_5 2
 let gs_501 = Gamestate.draw gs_500 Player 4
 
-(* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is the last card played *)
+(* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is 
+   the last card played *)
 let gs_502 = Gamestate.draw gs_501 Player 2
 
-(* gs_503 is where User has 1 cards, Player has 10 (1 action, 4 yellow), Red 1 is the last card played *)
+(* gs_503 is where User has 1 cards, Player has 10 (1 action, 4 yellow), Red 1 
+   is the last card played *)
 let gs_503 = Gamestate.draw gs_502 Player 3
 
-(* gs_506 is where User has 1 cards, Player has 13 (1 action, 5 red), Blue 4 is the last card played *)
+(* gs_506 is where User has 1 cards, Player has 13 (1 action, 5 red), Blue 4 is 
+   the last card played *)
 (* let gs_504 = Gamestate.play gs_503 Player "Blue 3" ""
    let gs_505 = Gamestate.play gs_504 Player "Blue 4" ""
    let gs_506 = Gamestate.draw gs_505 Player 5 *)
