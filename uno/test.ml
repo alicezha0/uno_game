@@ -432,7 +432,7 @@ let player_tests =
   ]
 
 
-open Player2
+open Ai_hard
 
 (* Making gamestates to test player2: *)
 

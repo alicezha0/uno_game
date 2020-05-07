@@ -1,8 +1,8 @@
 open Gamestate
 open Command
-open Player
-open Player2 (*rename*)
-open Player3 (*rename*)
+open Ai_med
+open Ai_hard 
+open Ai_easy 
 
 type ai_diff = Easy | Medium | Hard
 
@@ -153,9 +153,10 @@ let pick_color str =
 
 let player_plays (gs:Gamestate.t) (gamer_lst:record list) : Command.command = 
   let difficulty = (List.hd gamer_lst).diff in 
-  if difficulty = Easy then Player3.player_turn gs (* rename *)
-  else if difficulty = Medium then Player.player_turn gs (* rename *)
-  else Player2.player_turn gs (*rename*)
+  let the_gamer = (List.hd gamer_lst).gamer in
+  if difficulty = Easy then Ai_easy.player_turn gs the_gamer
+  else if difficulty = Medium then Ai_med.player_turn gs the_gamer
+  else Ai_hard.player_turn gs the_gamer
 
 let rec recurse_command gs gamer (gamer_lst:record list) win =
   let _ = 
@@ -231,11 +232,12 @@ and c_uno gs gamer gamer_lst phr win =
 
 and c_color_ai gs gamer_lst phr =
   if phr = "Wild" || phr = "Wild +4" then 
-    let curr_player_diff = (List.hd gamer_lst).diff in 
+    let curr_player_diff = (List.hd gamer_lst).diff in
+    let curr_player = (List.hd gamer_lst).gamer in 
     match curr_player_diff with 
-    | Easy -> Player3.choose_color gs (* rename *)
-    | Medium -> Player.choose_color gs (* rename *)
-    | Hard -> Player2.choose_color gs (* rename *)
+    | Easy -> Ai_easy.choose_color gs
+    | Medium -> Ai_med.choose_color gs
+    | Hard -> Ai_hard.choose_color gs curr_player
   else Any
 
 (** [c_uno2 gs gamer] is mutually recursive with [recurse_command gs gamer]
