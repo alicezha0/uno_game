@@ -66,14 +66,16 @@ val parse_color : string -> color
     [gamer] has drawn number [num] new card(s). *)
 val draw : Gamestate.t -> Gamestate.gamer -> int -> result
 
-(** [play gs gamer phr clr] is Legal of the new game state or Illegal with an 
-    error message for the [gamer] who played the card [phr]. *)
-val play : Gamestate.t -> Gamestate.gamer -> card_phrase -> color -> result
+(** [play gs gamer n_gamer phr clr] is Legal of the new game state or Illegal 
+    with an error message for the [gamer] who played the card [phr]. *)
+val play : Gamestate.t -> Gamestate.gamer -> Gamestate.gamer ->
+  card_phrase -> color -> result
 
-(** [uno gs gamer phr clr] is Legal of the new game state or Illegal of an 
+(** [uno gs gamer n_gamer phr clr] is Legal of the new game state or Illegal of an 
     error message for the [gamer] who did not have a valid uno with card 
     [phr]. *)
-val uno : Gamestate.t -> Gamestate.gamer -> card_phrase -> color -> result
+val uno : Gamestate.t -> Gamestate.gamer -> Gamestate.gamer ->
+  card_phrase -> color -> result
 
 (** [uno2 gs gamer1 gamer2] is Legal of the new game state or Illegal of 
     an error message for the gamer who called uno [gamer1] trying to call uno on 

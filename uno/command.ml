@@ -45,7 +45,9 @@ let parse_helper str =
   if list_head = "play" then Play phr
   else if list_head = "uno" then Uno phr
   else if list_head = "uno2" then 
-    if phr = "Player" then Uno2 Player
+    if phr = "Player1" then Uno2 Player1
+    else if phr = "Player2" then Uno2 Player2
+    else if phr = "Player3" then Uno2 Player3
     else if phr = "User" then Uno2 User
     else raise Malformed
   else raise Malformed
@@ -92,19 +94,19 @@ let tally_illegal gs =
     Illegal ("\nThe last card played was a +4, which means you must draw \
               cards if you do not have a +4 card.")
 
-let play gs gamer phr clr =
+let play gs gamer n_gamer (phr:card_phrase) clr =
   let clr_str = color_to_string clr in
-  match Gamestate.play gs gamer phr clr_str with 
+  match Gamestate.play gs gamer n_gamer phr clr_str with 
   | exception Gamestate.CardNotInHand card -> 
     Illegal ("\nYou tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card -> 
     Illegal ("\nYour card does not match the card last played: " ^ card)
   | exception Gamestate.TallyIllegal -> tally_illegal gs
-  | _ -> Legal (Gamestate.play gs gamer phr clr_str)
+  | _ -> Legal (Gamestate.play gs gamer n_gamer phr clr_str)
 
-let uno gs gamer phr clr =
+let uno gs gamer n_gamer (phr:card_phrase) clr =
   let clr_str = color_to_string clr in 
-  match Gamestate.play gs gamer phr clr_str with
+  match Gamestate.play gs gamer n_gamer phr clr_str with
   | exception Gamestate.CardNotInHand card ->
     Illegal ("\nYou tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card ->
@@ -112,10 +114,10 @@ let uno gs gamer phr clr =
   | exception Gamestate.TallyIllegal -> tally_illegal gs
   | _ -> begin
       match Gamestate.uno_defensive 
-              (Gamestate.play gs gamer phr clr_str) gamer with 
+              (Gamestate.play gs gamer n_gamer phr clr_str) gamer with 
       | exception Gamestate.Nouno gamer -> Illegal "nouno"
       | _ -> Legal (Gamestate.uno_defensive 
-                      (Gamestate.play gs gamer phr clr_str) gamer)
+                      (Gamestate.play gs gamer n_gamer phr clr_str) gamer)
     end
 
 let uno2 gs gamer1 gamer2 =
@@ -123,6 +125,9 @@ let uno2 gs gamer1 gamer2 =
   | exception Gamestate.Nouno gamer -> 
     Illegal ("\nYou did not call a valid offensive uno. The other player does \
               not have Uno. You have been forced to draw 4 cards.")
+  | exception Gamestate.InvalidGamer ->
+    Illegal ("\nYou did not call a valid offensive uno on a player that is \
+              in the game.")
   | _ -> Legal (Gamestate.uno_offensive gs gamer1 gamer2)
 
 let rules =

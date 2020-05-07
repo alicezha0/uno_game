@@ -177,7 +177,9 @@ let rec get_gamer_hand (lst:hands) (gamerh) : hand =
   |h::t -> if (h.gamer = gamerh) then h else get_gamer_hand t gamerh
 
 let hand t gamer = 
-  let hand_lst = t.hands in (get_gamer_hand hand_lst gamer).deck
+  let hand_lst = t.hands in 
+  let deck = (get_gamer_hand hand_lst gamer).deck in 
+  List.map name_of_card deck
 
 
 let hand_size t gamer = List.length (hand t gamer)
