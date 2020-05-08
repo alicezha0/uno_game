@@ -279,10 +279,6 @@ let rec ass_play_to_ai int_lst play_lst =
 
 let rec check_malformed_init (str_lst: string list) = 
   match str_lst with
-  (* | [] -> let len = List.length str_lst in 
-     if (len < 1 || len > 3)
-     then ((print_endline ("shouldn't be here" ^ string_of_int len)); false )
-     else ((print_endline "should be here"); true)  *)
   | [] -> true
   | h::t -> if (h = "1" || h = "2" || h = "3") then check_malformed_init t 
     else false 
@@ -297,7 +293,8 @@ let rec prompt_init_players () =
                   your choice: \n");
   let diff = read_line() in 
   let no_empty_spaces = String.trim diff in 
-  if no_empty_spaces = "" then prompt_init_players () 
+  if no_empty_spaces = "" then prompt_init_players ()
+  else if no_empty_spaces = "quit" || no_empty_spaces = "Quit" then exit 0
   else let str_lst = String.split_on_char ' ' no_empty_spaces in 
     if (List.length str_lst > 0 && 
         List.length str_lst < 4 

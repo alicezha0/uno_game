@@ -4,19 +4,19 @@
       "b": "Here are the commands for this game: "
     },
     {
-      "b": "Draw: Picks up a card from the draw pile and transfers it to your hand."
+      "b": "Draw: Picks up a card from the draw pile and transfers it to your hand. Ex: 'Draw'."
     },
     {
-      "b": "Play (of card): Puts specified card on top of the discard pile if the move is legal."
+      "b": "Play (of card): Puts specified card on top of the discard pile if the move is legal. Ex: 'Play Green +2', 'Play Wild', 'Play Blue 5'."
     },
     {
-      "b": "Uno (of card): Plays the card if the card is legal and if you would have one card left in your hand after playing it."
+      "b": "Uno (of card): Plays the card if the card is legal and if you will have one card left in your hand after playing it. Ex: 'Uno Yellow 2', 'Uno Red Skip'."
     },
     {
-      "b": "Uno2: When the other player only has one card and has not called uno yet, you can call uno on them to make them draw four cards."
+      "b": "Uno2: When the other player only has one card and has not called uno yet, you can call uno on them to make them draw four cards. Ex: 'Uno2 <player name>."
     },
     {
-      "b": "Rules: Lists the rules of Uno out."
+      "b": "Rules: Lists the rules of our Uno game."
     },
     {
       "b": "Commands: Lists the commands of this game."

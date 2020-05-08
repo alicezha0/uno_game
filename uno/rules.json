@@ -1,25 +1,22 @@
 {
   "rules": [
     {
-      "a": "Here are the rules for our Uno: "
+      "a": "Here are the rules to play our Uno: "
     },
     {
-      "a": "Both you and the AI are dealt 7 cards (either Number, Action cards, or Wild cards)."
+      "a": "Both you, the user, and the AI(s) are dealt 7 cards from a classic Uno deck, which can be number, action, or wild cards. Numbers range from 0-9. Action cards are Skip, Reverse, or +2. Wild cards are used to change the color. Number and action cards have colors attached (Red, Yellow, Blue, Green)."
     },
     {
-      "a": "The rest are placed in the Draw pile. The top card of the Draw pile begins the Discard pile."
+      "a": "The top card of the draw pile begins the discard pile. The goal of the game is to get rid of your cards first."
     },
     {
-      "a": "Try to match the card on top of the Discard pile by number, color, or action."
+      "a": "Try to match the discard pile card by number, color, or action. If you can't you must draw a card. Then the AI(s) play."
     },
     {
-      "a": "If you have no matches, you must draw a card from the Draw pile. This continues until you have two cards left."
+      "a": "Once you get to two cards, that is when you can call uno as you play your second to last card. If you fail to do so and play the card, the AI(s) have the opportunity to call uno on you, in which case you are forced to draw 4 cards as penalty."
     },
     {
-      "a": "On that turn, you must play 'Uno'. If you do not play 'Uno' and the AI plays 'Uno' on their next turn, you will draw four new cards as penalty."
-    },
-    {
-      "a": "Similarly, if The AI does not play 'Uno' on the turn they have two cards left and you play 'Uno' on your turn, the AI will draw four new cards as penalty."
+      "a": "Similarly, if the AI(s) do(es) not play uno on the turn they have two cards left and you call uno on your turn, the AI will draw four new cards as penalty."
     },
     {
       "a": "The player who plays all cards in their hands first wins."

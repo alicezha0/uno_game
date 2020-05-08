@@ -34,8 +34,9 @@ let rec no_empty str_list acc =
   | [] -> acc 
   | h::t -> if h = "" then no_empty t acc else no_empty t (h::acc)
 
-(** [parse_helper str] is the command that has a card_phrase attached to it.
-    Raises: Malformed if the input does not match Play or Uno. *)
+(** [parse_helper str] is the type command that has a card phrase attached to 
+    it.
+    Raises: Malformed if the input does not match Play, Uno, or Uno2. *)
 let parse_helper str =
   let split_str = String.split_on_char ' ' str in 
   let remove_empty = List.rev (no_empty split_str []) in 
@@ -75,7 +76,7 @@ let parse_color str =
 let draw gs gamer num =
   Legal (Gamestate.draw gs gamer num)
 
-(** [color_to_string clr] is the string that corresponds to the color. *)
+(** [color_to_string clr] is the string that corresponds to the type color. *)
 let color_to_string clr =
   if clr = Red then "red"
   else if clr = Yellow then "yellow"
