@@ -14,7 +14,7 @@ open Command
    This AI calls Uno and Uno2 when appropriate without fail. *)
 
 
-(** [number_search hand number] is the name of the first card in [hand] with
+(** [number_search hand number gamer] is the name of the first card in [hand] with
     number [number], or an empty string if no such card exists in [hand] *)
 let rec number_search t1 hand number gamer =
   match hand with
@@ -22,7 +22,7 @@ let rec number_search t1 hand number gamer =
   | h::t -> if Gamestate.number_search t1 gamer h = number then h 
     else number_search t1 t number gamer
 
-(** [color_search hand color] is the name of the first card in [hand] with
+(** [color_search hand color gamer] is the name of the first card in [hand] with
     color [color], or an empty string if no such card exists in [hand] *)
 let rec color_search t1 hand color gamer =
   match hand with
@@ -32,7 +32,7 @@ let rec color_search t1 hand color gamer =
     then h 
     else color_search t1 t color gamer
 
-(** [find_playable_card hand card_name] is the first playable card in [hand], 
+(** [find_playable_card hand card_name gamer] is the first playable card in [hand], 
     prioritizing color then number. Returns an empty string if no such card exists *)
 let find_playable_card t hand card_name gamer =
   let same_color_card = color_search t hand (Gamestate.color_state t) gamer in
@@ -40,7 +40,9 @@ let find_playable_card t hand card_name gamer =
   match (same_num_card) with
   | "" -> 
     (if (Gamestate.last_card_played_number t != 12 
-         && Gamestate.last_card_played_number t != 14) then 
+         && (Gamestate.last_card_played_number t != 14 || 
+             (Gamestate.last_card_played_number t = 14 
+              && Gamestate.current_tally_num t = 0))) then 
        (match (same_color_card) with
         | "" -> ""
         | _ -> same_color_card) 
