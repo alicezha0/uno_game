@@ -32,20 +32,31 @@ let end_game =
   "\nSorry to see you go.... Hope you liked the game! \
    Best: Caroline, Nat, Alice :)"
 
-let print_for_user gs gamer =
+let rec print_hand_players gs (gamer_lst:record list) acc =
+  match gamer_lst with 
+  | [] -> acc
+  | h::t -> begin 
+      let hand_size = string_of_int (Gamestate.hand_size gs h.gamer) in 
+      match h.gamer with 
+      | Player1 -> print_hand_players gs t 
+                     (acc ^ "\nSpongebob has " ^ hand_size ^ " cards. ")
+      | Player2 -> print_hand_players gs t 
+                     (acc ^ "\nPatrick has " ^ hand_size ^ " cards. ")
+      | Player3 -> print_hand_players gs t 
+                     (acc ^ "\nMr. Krabs has " ^ hand_size ^ " cards. ")
+      | User -> print_hand_players gs t 
+                  (acc ^ "\nYou have " ^ hand_size ^ " cards. ")
+    end
+
+let print_for_user gs gamer gamer_lst =
   (print_endline ("\nThe card on top of the discard pile is: " ^ 
                   Gamestate.last_card_played gs);
    print_endline ("The color you should match is: " ^ 
                   (Gamestate.color_state gs));
    print_endline ("Your current hand has: " ^ 
                   String.concat ", " (Gamestate.hand gs User));
-   let player_name = 
-     if gamer = Player1 then "Spongebob Squarepants"
-     else if gamer = Player2 then "Patrick Star"
-     else "Mr. Krabs" in 
-   print_endline (player_name ^ " has " ^ 
-                  (string_of_int (Gamestate.hand_size gs gamer)) ^ 
-                  " card(s).");
+   let hand_to_str = print_hand_players gs gamer_lst "" in 
+   print_endline (hand_to_str);
    print_endline ("\nIt is your turn to play!");
    print_endline "\nEnter Your Command: \n";)
 
@@ -162,7 +173,7 @@ let rec recurse_command gs gamer (gamer_lst:record list) win =
   let _ = 
     if win then exit 0 
     else
-    if gamer = User then print_for_user gs gamer
+    if gamer = User then print_for_user gs gamer gamer_lst
     else print_for_player gs gamer in
   let command_from_gamer = 
     if gamer <> User then player_plays gs gamer_lst
@@ -268,12 +279,13 @@ let rec ass_play_to_ai int_lst play_lst =
 
 let rec check_malformed_init (str_lst: string list) = 
   match str_lst with
-  | [] -> let len = List.length str_lst in 
-    if (len < 1 || len > 3)
-    then false 
-    else true 
+  (* | [] -> let len = List.length str_lst in 
+     if (len < 1 || len > 3)
+     then ((print_endline ("shouldn't be here" ^ string_of_int len)); false )
+     else ((print_endline "should be here"); true)  *)
+  | [] -> true
   | h::t -> if (h = "1" || h = "2" || h = "3") then check_malformed_init t 
-    else true 
+    else false 
 
 let rec prompt_init_players () =
   print_endline ("\nFirst, before we begin, choose the number of AIs (up to 3) \
@@ -285,10 +297,11 @@ let rec prompt_init_players () =
                   your choice: \n");
   let diff = read_line() in 
   let no_empty_spaces = String.trim diff in 
-  if no_empty_spaces = "" 
-  then prompt_init_players () 
+  if no_empty_spaces = "" then prompt_init_players () 
   else let str_lst = String.split_on_char ' ' no_empty_spaces in 
-    if (check_malformed_init str_lst) 
+    if (List.length str_lst > 0 && 
+        List.length str_lst < 4 
+        && check_malformed_init str_lst) 
     then let int_lst = List.map (int_of_string) str_lst in 
       ass_play_to_ai int_lst []
     else prompt_init_players ()
