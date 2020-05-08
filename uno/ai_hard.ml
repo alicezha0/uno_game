@@ -143,10 +143,12 @@ let find_optimal_card t hand gamer =
     (match plus2_inhand with
      | "" -> ""
      | _ -> plus2_inhand)
-  | 14 -> let plus4_inhand = number_search t hand 14 gamer in
-    (match plus4_inhand with
-     | "" -> ""
-     | _ -> plus4_inhand)
+  | 14 -> if Gamestate.current_tally_num t != 0 
+    then let plus4_inhand = number_search t hand 14 gamer in
+      (match plus4_inhand with
+       | "" -> ""
+       | _ -> plus4_inhand) 
+    else find_op_card_pt2 t hand gamer
   | _ -> find_op_card_pt2 t hand gamer
 
 let player_turn t gamer =
