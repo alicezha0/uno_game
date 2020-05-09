@@ -14,8 +14,8 @@ open Command
    This AI calls Uno and Uno2 when appropriate without fail. *)
 
 
-(** [number_search hand number gamer] is the name of the first card in [hand] with
-    number [number], or an empty string if no such card exists in [hand] *)
+(** [number_search hand number gamer] is the name of the first card in [hand] 
+    with number [number], or an empty string if no such card exists in [hand] *)
 let rec number_search t1 hand number gamer =
   match hand with
   | [] -> ""
@@ -32,20 +32,21 @@ let rec color_search t1 hand color gamer =
     then h 
     else color_search t1 t color gamer
 
-(** [find_playable_card hand card_name gamer] is the first playable card in [hand], 
-    prioritizing color then number. Returns an empty string if no such card exists *)
+(** [find_playable_card hand card_name gamer] is the first playable card in 
+    [hand], prioritizing color then number. Returns an empty string if no such 
+    card exists *)
 let find_playable_card t hand card_name gamer =
   let same_color_card = color_search t hand (Gamestate.color_state t) gamer in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
-  match (same_num_card) with
+  match same_num_card with
   | "" -> 
     (if (Gamestate.last_card_played_number t != 12 
          && (Gamestate.last_card_played_number t != 14 || 
              (Gamestate.last_card_played_number t = 14 
               && Gamestate.current_tally_num t = 0))) then 
-       (match (same_color_card) with
+       begin match (same_color_card) with
         | "" -> ""
-        | _ -> same_color_card) 
+        | _ -> same_color_card end
      else "")
   | _ -> same_num_card
 

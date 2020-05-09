@@ -23,26 +23,26 @@ open Command
 
 
 
-(** [number_search t1 hand number gamer] is the name of the first card in [hand] with
-    number [number], or an empty string if no such card exists in [hand] *)
+(** [number_search t1 hand number gamer] is the name of the first card in [hand] 
+    with number [number], or an empty string if no such card exists in [hand] *)
 let rec number_search t1 hand number gamer =
   match hand with
   | [] -> ""
   | h::t -> if Gamestate.number_search t1 gamer h = number then h 
-    else number_search t1 t number gamer
+            else number_search t1 t number gamer
 
-(** [color_search t1 hand color gamer] is the name of the first card in [hand] with
-    color [color], or an empty string if no such card exists in [hand] *)
+(** [color_search t1 hand color gamer] is the name of the first card in [hand] 
+    with color [color], or an empty string if no such card exists in [hand] *)
 let rec color_search t1 hand color gamer =
   match hand with
   | [] -> ""
   | h::t -> if Gamestate.color_search t1 gamer h = "black"
             || Gamestate.color_search t1 gamer h = color then h 
-    else color_search t1 t color gamer
+            else color_search t1 t color gamer
 
-(** [color_search_bounds t1 hand color lwr upr gamer] is the name of the first card in 
-    [hand] with color [color] and number between lwr and upr (both inclusive), 
-    or an empty string if no such card exists in [hand] *)
+(** [color_search_bounds t1 hand color lwr upr gamer] is the name of the first 
+    card in [hand] with color [color] and number between lwr and upr (both 
+    inclusive), or an empty string if no such card exists in [hand] *)
 let rec color_search_bounds t1 hand color lwr upr gamer =
   match hand with
   | [] -> ""
@@ -50,7 +50,7 @@ let rec color_search_bounds t1 hand color lwr upr gamer =
                 || Gamestate.color_search t1 gamer h = "black")
             && Gamestate.number_search t1 gamer h >= lwr 
             && Gamestate.number_search t1 gamer h <= upr then h
-    else color_search_bounds t1 t color lwr upr gamer
+            else color_search_bounds t1 t color lwr upr gamer
 
 
 
@@ -60,8 +60,8 @@ let rec color_count t1 hand color counter gamer =
   match hand with
   | [] -> counter
   | h::t -> if Gamestate.color_search t1 gamer h = color 
-    then color_count t1 t color (counter+1) gamer
-    else color_count t1 t color counter gamer
+            then color_count t1 t color (counter+1) gamer
+            else color_count t1 t color counter gamer
 
 (** [max_color t1 col_lst color num gamer] is the color of card that [col_lst] 
     contains most of. *)
@@ -69,11 +69,11 @@ let rec max_color col_lst color (num:int) gamer =
   match col_lst with 
   | [] -> color
   | (x,y)::t -> if y > num then max_color t x y gamer
-    else max_color t color num gamer
+                else max_color t color num gamer
 
-(** [wildcard_color t hand gamer] is the color that player will choose when playing a 
-    wildcard (i.e., the color that [hand] contains most of), choosing in order of
-    Red, Blue, Green, Yellow in the case of ties. *)
+(** [wildcard_color t hand gamer] is the color that player will choose when 
+    playing a wildcard (i.e., the color that [hand] contains most of), choosing 
+    in order of Red, Blue, Green, Yellow in the case of ties. *)
 let wildcard_color t hand gamer =
   let num_red = color_count t hand "red" 0 gamer in
   let num_blue = color_count t hand "blue" 0 gamer in
@@ -81,7 +81,8 @@ let wildcard_color t hand gamer =
   let num_yellow = color_count t hand "yellow" 0 gamer in
   let color_list = [("Red", num_red); ("Blue", num_blue); ("Green", num_green); 
                     ("Yellow", num_yellow)] in
-  max_color color_list "Red" (0) gamer
+  max_color color_list "Red" 0 gamer
+
 
 
 (** [find_playable_card t hand gamer] is the first playable card in [hand], 
@@ -89,51 +90,54 @@ let wildcard_color t hand gamer =
 let find_playable_card t hand gamer =
   let same_color_card = color_search t hand (Gamestate.color_state t) gamer in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
-  match (same_color_card) with
-  | "" -> 
-    (match (same_num_card) with
+  match same_color_card with
+  | "" ->
+    begin match same_num_card with
      | "" -> ""
-     | _ -> same_num_card)
+     | _ -> same_num_card end
   | _ -> same_color_card
 
-(** [find_playable_action_card t hand gamer] is the first playable ACTION card in [hand], 
-    prioritizing color then number. Returns an empty string if no such card exists *)
+(** [find_playable_action_card t hand gamer] is the first playable ACTION card 
+    in [hand], prioritizing color then number. Returns an empty string if no 
+    such card exists *)
 let find_playable_action_card t hand gamer =
   let same_color_card = color_search_bounds t hand (Gamestate.color_state t) 10 14 gamer in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
-  match (same_color_card) with
+  match same_color_card with
   | "" -> if Gamestate.last_card_played_number t < 10 then "" else
-      (match (same_num_card) with
+      begin match same_num_card with
        | "" -> ""
-       | _ -> same_num_card)
+       | _ -> same_num_card end
   | _ -> same_color_card
 
-(** [find_playable_norm_card t hand gamer] is the first playable NON-ACTION card in [hand], 
-    prioritizing color then number. Returns an empty string if no such card exists *)
+(** [find_playable_norm_card t hand gamer] is the first playable NON-ACTION card 
+    in [hand], prioritizing color then number. Returns an empty string if no 
+    such card exists *)
 let find_playable_norm_card t hand gamer =
   let same_color_card = color_search_bounds t hand (Gamestate.color_state t) 0 9 gamer in
   let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
-  match (same_color_card) with
+  match same_color_card with
   | "" -> if Gamestate.last_card_played_number t > 9 then "" else
-      (match (same_num_card) with
+      begin match same_num_card with
        | "" -> ""
-       | _ -> same_num_card)
+       | _ -> same_num_card end
   | _ -> same_color_card
 
 
 
-(** [find_op_card_pt2 t hand gamer] is an action card if the user's hand has 3 or less
-    cards, a non action card otherwise, or any card if those are not possible *)
+(** [find_op_card_pt2 t hand gamer] is an action card if the user's hand has 3 
+    or less cards, a non action card otherwise, or any card if those are not 
+    possible *)
 let find_op_card_pt2 t hand gamer =
   let playable_action_card = find_playable_action_card t hand gamer in
   let playable_norm_card = find_playable_norm_card t hand gamer in
   if Gamestate.hand_size t User <= 3 then 
-    (match playable_action_card with
+    begin match playable_action_card with
      | "" -> find_playable_card t hand gamer
-     | _ -> playable_action_card)
-  else (match playable_norm_card with
+     | _ -> playable_action_card end
+  else begin match playable_norm_card with
       | "" -> find_playable_card t hand gamer
-      | _ -> playable_norm_card)
+      | _ -> playable_norm_card end
 
 (** [find_optimal_card t hand gamer] is a +2 or +4 card if last played card is 
     a +2 or +4, funneling to handle other situations if not *)
@@ -153,8 +157,9 @@ let find_optimal_card t hand gamer =
 
 let player_turn t gamer =
   let hand = Gamestate.hand t gamer in
-  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) then Uno2 User else
-    let next_card = find_optimal_card t hand gamer in
+  if Gamestate.hand_size t User = 1 && (Gamestate.uno_state t User = false) 
+  then Uno2 User 
+  else let next_card = find_optimal_card t hand gamer in
     if Gamestate.hand_size t gamer = 2 then match next_card with
       | "" -> Draw
       | _ -> Uno next_card
@@ -163,6 +168,7 @@ let player_turn t gamer =
       | "" -> Draw
       | _ -> Play next_card
 
+(** [str_to_command str] is the Command.color corresponding to the color string *)
 let str_to_command str =
   match str with
   | "Blue" -> Blue

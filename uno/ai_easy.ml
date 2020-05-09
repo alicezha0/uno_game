@@ -20,13 +20,13 @@ open Command
    There is a chance that this AI may not call Uno and Uno2 when appropriate. *)
 
 
-(** [number_search hand number gamer] is the name of the first card in [hand] with
-    number [number], or an empty string if no such card exists in [hand] *)
+(** [number_search hand number gamer] is the name of the first card in [hand] 
+    with number [number], or an empty string if no such card exists in [hand] *)
 let rec number_search t1 hand number gamer =
   match hand with
   | [] -> ""
   | h::t -> if Gamestate.number_search t1 gamer h = number then h 
-    else number_search t1 t number gamer
+            else number_search t1 t number gamer
 
 (** [color_search hand color gamer] is the name of the first card in [hand] with
     color [color], or an empty string if no such card exists in [hand] *)
@@ -35,8 +35,8 @@ let rec color_search t1 hand color gamer =
   | [] -> ""
   | h::t -> if Gamestate.color_search t1 gamer h = "black"
             || Gamestate.color_search t1 gamer h = color 
-    then h 
-    else color_search t1 t color gamer
+            then h 
+            else color_search t1 t color gamer
 
 (** [play_or_draw card_name] is [card_name] 75% of the time (player plays the 
     playable card) and an empty string 25% of the time (player draws even when 
@@ -59,19 +59,20 @@ let uno_or_no str =
 
 
 (** [find_playable_card_help hand gamer] is the first playable card in [hand], 
-    prioritizing color then number. Returns an empty string if no such card exists *)
+    prioritizing color then number. Returns an empty string if no such card 
+    exists *)
 let find_playable_card_help t hand gamer =
   (let same_color_card = color_search t hand (Gamestate.color_state t) gamer in
    let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
-   match (same_num_card) with
-   | "" -> 
-     (match (same_color_card) with
+   match same_num_card with
+   | "" -> begin
+     match same_color_card with
       | "" -> ""
-      | _ -> play_or_draw same_color_card) 
+      | _ -> play_or_draw same_color_card end
    | _ -> play_or_draw same_num_card)
 
-(** [find_playable_card hand card_name gamer] is the empty string if the last card played
-    is a +2 or +4, or calls on find_playable_cardhelp otherwise *)
+(** [find_playable_card hand card_name gamer] is the empty string if the last 
+    card played is a +2 or +4, or calls on find_playable_cardhelp otherwise *)
 let find_playable_card t hand card_name gamer =
   match Gamestate.last_card_played_number t with
   | 12 -> ""
@@ -83,12 +84,14 @@ let find_playable_card t hand card_name gamer =
 let player_turn t gamer =
   let hand = Gamestate.hand t gamer in
   let last_card = Gamestate.last_card_played t in 
-  if (Gamestate.hand_size t User = 1) && (Gamestate.uno_state t User = false) 
-     && (uno_or_no "") then Uno2 User else
+  if Gamestate.hand_size t User = 1
+    && Gamestate.uno_state t User = false
+    && uno_or_no "" then Uno2 User 
+  else
     let playable_card = find_playable_card t hand last_card gamer in
     if Gamestate.hand_size t gamer = 2 then match playable_card with
       | "" -> Draw
-      | _ -> if (uno_or_no "") then Uno (playable_card) else Play (playable_card)
+      | _ -> if uno_or_no "" then Uno playable_card else Play playable_card
     else
       match playable_card with
       | "" -> Draw
