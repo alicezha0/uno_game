@@ -269,6 +269,7 @@ let check_uno_state t gamer =
      tally = t.tally}
   else t
 
+
 let draw t gamer num = 
   let t = check_uno_state t gamer in 
   if (need_shuffle t num) 
@@ -314,6 +315,7 @@ let play_helper_4 t gamer card =
    color_state = t.color_state; 
    tally = t.tally}
 
+
 (**[play_helper_3 t gamer n_gamer card] checks if [card] is a +2 and changes 
    color_state and tally according. It also adjusts color_state if a normal 
    card is played that matches number and not color. *)
@@ -328,6 +330,7 @@ let play_helper_3 t gamer n_gamer card =
   else (*the card has same color, no change in color_state needed*)
     play_helper_4 t gamer card
 
+
 (* [play_helper_2 t gamer n_gamer card color_str] if tally = 0, and a card of 
    color "black" has been played. appropriate changes are made to t: color_state
    and tally (if +4 is played) *)
@@ -340,6 +343,7 @@ let play_helper_2 t gamer n_gamer card color_str =
   then let new_t = update_color t color_str in
     play_helper_4 (update_tally new_t 4 n_gamer) gamer card 
   else play_helper_3 t gamer n_gamer card
+
 
 (* [legal_play_tally t lcard card gamer color_str] is the new gamestate with 
    adjustments made [card] is played by [gamer] when there is an active tally
