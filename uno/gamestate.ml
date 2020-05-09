@@ -1,20 +1,13 @@
 open Yojson.Basic.Util
 open Stdlib
 
-(* ALICE! CAROLINE! WRITING SOME HELPFUL COMMENTS BESIDE NEW TYPES THAT I 
-   DEFINED AND TO WALK Y'ALL THROUGH MY IMPLEMENTATIONS. MY HELPER FUNCTIONS 
-   WILL ALL BE DOCUMENTED! We can delete these later. *)
-
+(*Types*)
 type card_name = string
 
 type card = {name: card_name; number: int; color: string}
 
 type gamer = User | Player1 | Player2 | Player3
 
-(* Not sure we need this. maybe our hand function should just extract names from the player_hand and user_hand in t *)
-(* type hand = {deck: card_name list ; name:string}*)
-
-(*This is just a list of card objects *)
 type deck = card list 
 
 type color = string 
@@ -22,25 +15,25 @@ type color = string
 type hand = {gamer: gamer; deck:deck; uno_state: bool}
 
 type hands = hand list 
-(* Had to create this type to implement the deal functions. Basically you want to deal a certain number of cards from
-   a deck of cards, but then you want to return both the deck that you have dealt and the deck you dealt from. No way 
-   to return two deck objects in one function, also i searched in Ocaml list but didn't find anything.*)
+
 type decks = {d1: deck; d2: deck}
+
 type hands_deck = {h1: hands; h2: deck}
-
-
-
 
 type tally = {num:int; gamer: gamer}
 
 type t = {draw_pile:deck ;discard_pile:deck ; hands: hands;
           color_state:color; tally:tally}
 
+(*exceptions*)
 exception CardNotInHand of card_name 
 exception MisMatch of card_name 
 exception Nouno of gamer
 exception TallyIllegal 
 exception InvalidGamer 
+
+(*----------------------------------------------------------------------------*)
+(* Functions for init_json and init_json_unshuffled *)
 
 (** [card_of_json] is the card object that [j] represents *)
 let card_of_json j = {
@@ -50,12 +43,11 @@ let card_of_json j = {
 }
 
 (** [shuffle t] returns a new game state with the cards in the Discard pile
-    shuffled and reinserted into the Draw pile. This is called by need_shuffle *)
+    shuffled and reinserted into the Draw pile. This is called by need_shuffle*)
 let shuffle (d:deck) : deck  =
   let random = List.map (fun c -> (Random.bits (), c)) d in
   let sorted = List.sort compare random in
   List.map snd sorted
-
 
 (** [deal initial_decks n] deals out the first [n] cards from [initial_decks].d2 
     to [initial_decks].d2. 
@@ -63,60 +55,54 @@ let shuffle (d:deck) : deck  =
 let rec deal initial_decks (n:int)  = 
   if n = 0 
   then initial_decks 
-  else 
-    match initial_decks with 
-    |{d1 = delt_cards ;d2 = rem_cards} -> begin
-        match rem_cards with 
-        |[] -> failwith "not enough cards"
-        |h::t -> deal {d1 = h::delt_cards; d2 = t} (n-1)
-      end
+  else let delt_cards = initial_decks.d1 in 
+    let rem_cards = initial_decks.d2 in
+    match rem_cards with 
+    |[] -> failwith "not enough cards"
+    |h::t -> deal {d1 = h::delt_cards; d2 = t} (n-1)
 
-(** [from_json_init json] is the unshuffled list of card objects extracted from 
-    the deck of cards in [json] *)
+
+(**[from_json_init json] is the unshuffled list of card objects extracted from 
+   the deck of cards in [json] *)
 let from_json_init json = json 
                           |> member "cards" |> to_list |> List.map card_of_json
 
-
+(**[init_colorstate] initializes the color_state as the color of the card on 
+   top of the [discard_pile], and if the card is a Wild card, it sets it to 
+   "red"*)
 let init_colorstate discard_pile= 
   let card = (List.hd discard_pile) in 
   if (card.color = "black") then "red" else card.color
 
-
-
+(**[init_hands] initializes the gamers' hands depending on how many AI's are in 
+   the game. *)
 let init_hands (deck:deck) num_g num : hands_deck = 
 
   let deal_to_user = deal {d1 = []; d2 = deck} num in 
-  let user_hand = {gamer = User; deck=deal_to_user.d1; uno_state = false} in 
-
+  let user_hand = {gamer = User; deck=deal_to_user.d1; uno_state = false} in
   let deal_to_player1 = deal {d1 = []; d2 = deal_to_user.d2} num in 
   let player1_hand = {gamer = Player1; 
                       deck = deal_to_player1.d1; uno_state = false} in 
-
   if (num_g = 2) then 
     let deal_to_player2 = deal {d1 = []; d2 = deal_to_player1.d2} num in 
     let player2_hand = {gamer = Player2; 
                         deck = deal_to_player2.d1; uno_state = false} in
     {h1  = [user_hand; player1_hand; player2_hand]; h2 = deal_to_player2.d2}
+
   else 
-  if (num_g = 3) then 
-
+  if (num_g = 3) then
     let deal_to_player2 = deal {d1 = []; d2 = deal_to_player1.d2} num in 
-
     let player2_hand = {gamer = Player2;
                         deck = deal_to_player2.d1; uno_state = false} in
-
     let deal_to_player3 = deal {d1 = []; d2 = deal_to_player2.d2} num in 
-
     let player3_hand = {gamer = Player3; 
                         deck = deal_to_player3.d1; uno_state = false} in
-
     {h1 = [user_hand; player1_hand; player2_hand; player3_hand]; 
      h2 = deal_to_player3.d2}
-  else 
 
+  else 
     {h1 = [user_hand; player1_hand]; 
      h2 = deal_to_player1.d2}
-
 
 
 let from_json j num num_g =
@@ -135,8 +121,6 @@ let from_json j num num_g =
     tally = {num = 0; gamer = User}
   }
 
-
-
 let from_json_unshuffled j num num_g = 
   let cards = from_json_init j in 
   let init_hands = init_hands cards num_g num in 
@@ -152,9 +136,8 @@ let from_json_unshuffled j num num_g =
     tally = {num = 0; gamer = User}
   }
 
-
-(* Information that the other modules need *)
 (*----------------------------------------------------------------------------*)
+(* Information that the other modules need *)
 
 let last_card_played t = (List.hd t.discard_pile).name
 
@@ -168,13 +151,15 @@ let current_tally_num t = t.tally.num
 
 let current_tally_gamer t = t.tally.gamer
 
-(** [name_of_card c] is the name of the card [c] *)
+(**[name_of_card c] is the name of the card [c] *)
 let name_of_card (c:card) = c.name 
 
-let rec get_gamer_hand (lst:hands) (gamerh) : hand = 
-  match lst with 
+(**[get_gamer_hand hand_lst gamer] is [gamer]'s hand in [hand_lst] 
+   Raises: InvalidGamer if [gamer] has no hand in [hand_lst]*)
+let rec get_gamer_hand (hand_lst:hands) (gamer) : hand = 
+  match hand_lst with 
   |[] -> raise InvalidGamer 
-  |h::t -> if (h.gamer = gamerh) then h else get_gamer_hand t gamerh
+  |h::t -> if (h.gamer = gamer) then h else get_gamer_hand t gamer
 
 let hand t gamer = 
   let hand_lst = t.hands in 
@@ -185,7 +170,8 @@ let hand t gamer =
 let hand_size t gamer = List.length (hand t gamer)
 
 let uno_state t gamer = 
-  let hand_lst = t.hands in (get_gamer_hand hand_lst gamer).uno_state
+  let hand_lst = t.hands in
+  (get_gamer_hand hand_lst gamer).uno_state
 
 (*----------------------------------------------------------------------------*)
 
@@ -206,6 +192,7 @@ let color_search t gamer card_name =
   let hand_lst = t.hands in 
   let deck = (get_gamer_hand hand_lst gamer).deck in 
   (card_of_card_name deck card_name).color
+
 (*----------------------------------------------------------------------------*)
 
 
@@ -228,8 +215,8 @@ let shuffle_discard_and_draw t =
     updated to [num] and [t].tally.gamer is updated to [gamer]*)
 let update_tally t num gamer = 
   {draw_pile = t.draw_pile; discard_pile = t.discard_pile; 
-   hands = t.hands; color_state = t.color_state; tally = {num = num; gamer = gamer}}
-
+   hands = t.hands; color_state = t.color_state; 
+   tally = {num = num; gamer = gamer}}
 
 (**[update_hand lst gamer hand new_lst] is the new [hands] object after the
    [gamer]'s hand is changed to [hand] *)
@@ -239,7 +226,6 @@ let rec update_hand (lst:hands) gamer hand new_lst : hands =
   |h::t -> if (h.gamer = gamer) 
     then (List.rev (hand::new_lst))@t 
     else update_hand t gamer hand (h::new_lst)
-
 
 
 (**[draw_helper t gamer num] is the new [t] object after [num] no. of cards 
@@ -262,14 +248,29 @@ let rec draw_helper t gamer num =
      color_state = t.color_state;
      tally = t.tally}
 
-
-(* if the gamer is being forced to draw [n] number of cards, then *)
+(**[forced_draw_for_tally t gamer n] forces [gamer] to draw the number of cards
+   in the tally in [t] if the tally is against the [gamer]*) 
 and forced_draw_for_tally t gamer n = 
   let new_t = update_tally t 0 gamer in 
   draw_helper new_t gamer n 
 
+(**[check_uno_state t gamer] checks if [gamer]'s uno_state is true, and if so, 
+   changes it to false.*)
+let check_uno_state t gamer = 
+  let hands = t.hands in 
+  let hand = get_gamer_hand hands gamer in 
+  if (hand.uno_state = true) then 
+    let new_hand = {gamer = gamer; deck = hand.deck; uno_state = false} in 
+    let new_hands = update_hand hands gamer new_hand [] in 
+    {draw_pile = t.draw_pile;
+     discard_pile = t.discard_pile; 
+     hands = new_hands;
+     color_state = t.color_state;
+     tally = t.tally}
+  else t
 
 let draw t gamer num = 
+  let t = check_uno_state t gamer in 
   if (need_shuffle t num) 
   then let new_t = shuffle_discard_and_draw t in 
     draw_helper new_t gamer num 
@@ -288,18 +289,18 @@ let rec deck_without_card lst card init =
 (*make wild not legal after +4 or +2*)
 let legal_play_or_not t card = 
   let card2 = card_of_card_name t.discard_pile (last_card_played t) in 
-  (card.color = t.color_state || card.number = card2.number || card.color = "black" )
+  (card.color = t.color_state || card.number = card2.number || 
+   card.color = "black" )
 
-
+(*[update_color t color] updates [t]'s color_state to [color]
+  Assumes: [color] is a valid Uno color. *)
 let update_color t color = 
   {draw_pile = t.draw_pile; discard_pile = t.discard_pile; 
    hands = t.hands; color_state = color; tally = t.tally}
 
-
-
-
 (** [play_helper t gamer card] is new gamestate after [gamer] successfully 
-    plays [card] *)
+    plays [card]: 
+    [card] is removed from [gamer]'s deck and put into the discard pile *)
 let play_helper_4 t gamer card =
   let hand_lst = t.hands in 
   let hand = (get_gamer_hand hand_lst gamer) in 
@@ -313,7 +314,9 @@ let play_helper_4 t gamer card =
    color_state = t.color_state; 
    tally = t.tally}
 
-
+(**[play_helper_3 t gamer n_gamer card] checks if [card] is a +2 and changes 
+   color_state and tally according. It also adjusts color_state if a normal 
+   card is played that matches number and not color. *)
 let play_helper_3 t gamer n_gamer card = 
   if card.number = 12 then (* a +2 is thrown *)
     let updated_tally = update_tally t 2 n_gamer in 
@@ -325,37 +328,38 @@ let play_helper_3 t gamer n_gamer card =
   else (*the card has same color, no change in color_state needed*)
     play_helper_4 t gamer card
 
-
-
-
-(* tally = 0, but a card of color "black" has been played. appropriate changes
-   are made to t such as color and tally (if +4 is played) *)
+(* [play_helper_2 t gamer n_gamer card color_str] if tally = 0, and a card of 
+   color "black" has been played. appropriate changes are made to t: color_state
+   and tally (if +4 is played) *)
 let play_helper_2 t gamer n_gamer card color_str = 
-  if (card.color = "black" && card.number = 13) (* a wild is thrown, color_state is changed *) 
+  (* a wild is thrown, color_state is changed *)
+  if (card.color = "black" && card.number = 13)  
   then play_helper_4 (update_color t color_str) gamer card
-  else if (card.color = "black" && card.number = 14) (* a +4 is thrown, tally is updated, and color_state is changed*)
+  (* a +4 is thrown, tally is updated, and color_state is changed*)
+  else if (card.color = "black" && card.number = 14) 
   then let new_t = update_color t color_str in
     play_helper_4 (update_tally new_t 4 n_gamer) gamer card 
   else play_helper_3 t gamer n_gamer card
 
-
-(* raises TallyIllegal if the gamer tries to play a card that doesn't match 
+(* [legal_play_tally t lcard card gamer color_str] is the new gamestate with 
+   adjustments made [card] is played by [gamer] when there is an active tally
+   them.  
+   Raises: TallyIllegal if the gamer tries to play a card that doesn't match 
    the tally or the earlier played action card *)
 let legal_play_tally t lcard card gamer color_str= 
   if (lcard.number = 12 && card.number = 12 ) (*a +2 is countered with a +2*)
   then update_color (update_tally t (t.tally.num + 2) gamer)(card.color)
-  else if (lcard.number = 12 && card.number = 14) (*a +2 is countered with a +4*)
+  else if (lcard.number = 12 && card.number = 14) (*+2 is countered with a +4*)
   then update_color (update_tally t (t.tally.num + 4) gamer) color_str
-  else if (lcard.number = 14 && card.number = 14) (*a +4 is countered with a +4*)
+  else if (lcard.number = 14 && card.number = 14) (*+4 is countered with a +4*)
   then update_color (update_tally t (t.tally.num + 4) gamer) color_str
   else raise (TallyIllegal)
 
 
-
 (** [play_helper_1 t gamer n_gamer card color_str] checks if there is a non-zero
-    tally against [gamer], and if they can play [card] against the last action card
-    played. If its a legal move, it returns the gamestate t after updating tally, 
-    and color_state (if a wild+4 is played), or it throws TallyIllegal. *)
+    tally against [gamer], and if they can play [card] against the last action 
+    card played. If its a legal move, it returns the gamestate t after updating 
+    tally, and color_state (if a wild+4 is played), or it throws TallyIllegal.*)
 let play_helper_1 t gamer n_gamer card color_str = 
   if (t.tally.num <> 0 && t.tally.gamer = gamer)  
   then let lcard = List.hd t.discard_pile in 
@@ -369,7 +373,8 @@ let play t gamer n_gamer card_name color_str =
   let hand = (get_gamer_hand hand_lst gamer) in 
   let deck = hand.deck in 
   let card = card_of_card_name deck card_name in 
-  if (legal_play_or_not t card) then play_helper_1 t gamer n_gamer card color_str
+  if (legal_play_or_not t card) then 
+    play_helper_1 t gamer n_gamer card color_str
   else raise (MisMatch card_name)
 
 (*---------------------------------------------------------------------------*)
@@ -392,7 +397,6 @@ let uno_defensive t gamer =
   then uno_state_change t gamer 
   else raise (Nouno gamer)
 
-
 (*----------------------------------------------------------------------------*)
 
 let uno_offensive t gamer1 gamer2 = 
@@ -401,7 +405,6 @@ let uno_offensive t gamer1 gamer2 =
   if (hand_size t gamer2 = 1 && hand.uno_state = false)
   then (draw t gamer2 4)
   else raise (Nouno gamer2)
-
 
 (*----------------------------------------------------------------------------*)
 
