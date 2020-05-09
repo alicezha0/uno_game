@@ -46,9 +46,9 @@ let parse_helper str =
   if list_head = "play" then Play phr
   else if list_head = "uno" then Uno phr
   else if list_head = "uno2" then 
-    if phr = "Aahlis" then Uno2 Player1
-    else if phr = "Gnat" then Uno2 Player2
-    else if phr = "Carlein" then Uno2 Player3
+    if phr = "Foster" then Uno2 Player1
+    else if phr = "Gries" then Uno2 Player2
+    else if phr = "White" then Uno2 Player3
     else if phr = "User" then Uno2 User
     else raise Malformed
   else raise Malformed
