@@ -46,9 +46,9 @@ let parse_helper str =
   if list_head = "play" then Play phr
   else if list_head = "uno" then Uno phr
   else if list_head = "uno2" then 
-    if phr = "Player1" then Uno2 Player1
-    else if phr = "Player2" then Uno2 Player2
-    else if phr = "Player3" then Uno2 Player3
+    if phr = "Aahlis" then Uno2 Player1
+    else if phr = "Gnat" then Uno2 Player2
+    else if phr = "Carlein" then Uno2 Player3
     else if phr = "User" then Uno2 User
     else raise Malformed
   else raise Malformed
@@ -95,7 +95,7 @@ let tally_illegal gs =
     Illegal ("\nThe last card played was a +4, which means you must draw \
               cards if you do not have a +4 card.")
 
-let play gs gamer n_gamer (phr:card_phrase) clr =
+let play gs gamer n_gamer phr clr =
   let clr_str = color_to_string clr in
   match Gamestate.play gs gamer n_gamer phr clr_str with 
   | exception Gamestate.CardNotInHand card -> 
