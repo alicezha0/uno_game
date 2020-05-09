@@ -126,9 +126,7 @@ let uno2 gs gamer1 gamer2 =
   | exception Gamestate.Nouno gamer -> 
     Illegal ("\nYou did not call a valid offensive uno. The other player does \
               not have Uno. You have been forced to draw 4 cards.")
-  | exception Gamestate.InvalidGamer ->
-    Illegal ("\nYou did not call a valid offensive uno on a player that is \
-              in the game.")
+  | exception Gamestate.InvalidGamer -> Illegal ("notagamer")
   | _ -> Legal (Gamestate.uno_offensive gs gamer1 gamer2)
 
 let rules =

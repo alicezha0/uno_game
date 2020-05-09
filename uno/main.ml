@@ -19,7 +19,6 @@ let player_name gamer =
   else if gamer = Player2 then "Gries"
   else "White"
 
-
 (*--------------BELOW-------------printing---------------BELOW----------------*)
 
 (** [c_empty ()] prints when the command is empty. *)
@@ -57,7 +56,6 @@ let end_game () =
                   game! \nBest: Caroline, Nat, Alice :)\n")
 
 (*--------------ABOVE-------------printing---------------ABOVE----------------*)
-
 
 (*-----------BELOW----------draw, play, uno helpers-----------BELOW-----------*)
 
@@ -129,8 +127,13 @@ let uno2_valid gamer called_on =
     first_str ^ player_name called_on ^ next_str
   else player_name gamer ^ uno_on_user
 
-(*---------ABOVE---------draw, play, uno, uno2 helpers---------ABOVE----------*)
+(** [not_a_gamer ()] prints out a message of when the user calls uno offensive
+    on a player not in the game. *)
+let not_a_gamer () =
+  print_endline ("\nYou did not call a valid offensive uno on a player that is \
+                  in the game. Please try again.")
 
+(*---------ABOVE---------draw, play, uno, uno2 helpers---------ABOVE----------*)
 
 (*-----------BELOW----------recurse command helpers-----------BELOW-----------*)
 
@@ -193,7 +196,6 @@ let print_for_player gamer =
 
 (*-----------ABOVE----------recurse command helpers-----------ABOVE-----------*)
 
-
 (*--------------BELOW--------------parsing---------------BELOW----------------*)
 
 (** [parse_command str] is the command the user inputs. *)
@@ -215,7 +217,6 @@ let rec parse_color str =
     parse_color (read_line ())
 
 (*--------------ABOVE--------------parsing---------------ABOVE----------------*)
-
 
 (*------------BELOW-----------recurse command--------------BELOW--------------*)
 
@@ -316,11 +317,11 @@ and c_uno2 gs gamer called_on gamer_lst win =
   match uno2_result with 
   | Legal gamestate -> (print_endline (uno2_valid gamer called_on));
     recurse_command gamestate (List.hd turn_g).gamer turn_g win
-  | Illegal string -> print_endline string;
-    recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win
+  | Illegal string -> if string = "notagamer" then 
+      (not_a_gamer (); recurse_command gs gamer gamer_lst win)
+    else recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win
 
 (*------------ABOVE-------------recurse command-------------ABOVE-------------*)
-
 
 (*------------BELOW-----------initialize uno game-----------BELOW-------------*)
 
@@ -398,7 +399,6 @@ let main () =
   recurse_command begin_uno User (init_gamer_lst ai_difficulties) false
 
 (*------------ABOVE-----------initialize uno game-----------ABOVE-------------*)
-
 
 (* Execute the game engine. *)
 let () = main ()
