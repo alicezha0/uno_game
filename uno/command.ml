@@ -95,19 +95,19 @@ let tally_illegal gs =
     Illegal ("\nThe last card played was a +4, which means you must draw \
               cards if you do not have a +4 card.")
 
-let play gs gamer n_gamer phr clr =
+let play gs gamer next_gamer phr clr =
   let clr_str = color_to_string clr in
-  match Gamestate.play gs gamer n_gamer phr clr_str with 
+  match Gamestate.play gs gamer next_gamer phr clr_str with 
   | exception Gamestate.CardNotInHand card -> 
     Illegal ("\nYou tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card -> 
     Illegal ("\nYour card does not match the card last played: " ^ card)
   | exception Gamestate.TallyIllegal -> tally_illegal gs
-  | _ -> Legal (Gamestate.play gs gamer n_gamer phr clr_str)
+  | _ -> Legal (Gamestate.play gs gamer next_gamer phr clr_str)
 
-let uno gs gamer n_gamer (phr:card_phrase) clr =
+let uno gs gamer next_gamer phr clr =
   let clr_str = color_to_string clr in 
-  match Gamestate.play gs gamer n_gamer phr clr_str with
+  match Gamestate.play gs gamer next_gamer phr clr_str with
   | exception Gamestate.CardNotInHand card ->
     Illegal ("\nYou tried to play a card not in your hand: " ^ card)
   | exception Gamestate.MisMatch card ->
@@ -115,10 +115,10 @@ let uno gs gamer n_gamer (phr:card_phrase) clr =
   | exception Gamestate.TallyIllegal -> tally_illegal gs
   | _ -> begin
       match Gamestate.uno_defensive 
-              (Gamestate.play gs gamer n_gamer phr clr_str) gamer with 
+              (Gamestate.play gs gamer next_gamer phr clr_str) gamer with 
       | exception Gamestate.Nouno gamer -> Illegal "nouno"
       | _ -> Legal (Gamestate.uno_defensive 
-                      (Gamestate.play gs gamer n_gamer phr clr_str) gamer)
+                      (Gamestate.play gs gamer next_gamer phr clr_str) gamer)
     end
 
 let uno2 gs gamer1 gamer2 =

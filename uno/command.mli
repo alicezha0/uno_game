@@ -66,14 +66,14 @@ val parse_color : string -> color
     state in which the [gamer] has drawn [num] new card(s). *)
 val draw : Gamestate.t -> Gamestate.gamer -> int -> result
 
-(** [play gs gamer n_gamer phr clr] is a [result], described as follows.
+(** [play gs gamer next_gamer phr clr] is a [result], described as follows.
     Legal of the new Gamestate or Illegal with an error message for 
     the [gamer] who played the card [phr] during the current Gamestate [gs]. 
     [clr] is the [color] of the next card to be played. *)
 val play : Gamestate.t -> Gamestate.gamer -> Gamestate.gamer ->
   card_phrase -> color -> result
 
-(** [uno gs gamer n_gamer phr clr] is a [result], described as follows. 
+(** [uno gs gamer next_gamer phr clr] is a [result], described as follows. 
     Legal of the new Gamestate or Illegal with an error message for the [gamer] 
     who did not have a valid uno with card [phr]. [clr] is the [color] of the 
     next card to be played. *)

@@ -45,6 +45,17 @@ open Command
    ----------------------------------------------------------------------------
    Alice: 
 
+   The approach I took for testing Command was white-box testing. The functions 
+   described in Command.mli were mostly used to parse the inputs the user gives
+   and then based on those outputs, called the specific functions in Gamestate.
+   Command also catches any exceptions thrown by Gamestate and deals with those,
+   acting as a liaison between Gamestate and Main.
+
+   Knowing how the functions were written gave me insight into how to test them
+   to ensure that each "branch" of pattern matching and if statements were
+   covered. I used Gamestate functions to test the validity of Command functions
+   because many functions in Command are to call Gamestate functions.
+
    ---------------------------------------------------------------------------- 
    Caroline: 
 
@@ -331,28 +342,28 @@ let gamestate_tests =
 (*.........................testing command below..............................*)
 
 (* ------BELOW------for first sprint, using non-action cards------BELOW-------*)
-(*
-  let json_com = Yojson.Basic.from_file "test_deck_command.json"
 
-  let gs_c = from_json_unshuffled json_com 1
-  (* for draw *)
-  let gs_c1 = Gamestate.draw gs_c User 1
-  let gs_c2 = Gamestate.draw gs_c Player 1
-  (* for play *)
-  let gs_c3 = Gamestate.play gs_c1 User "Red 0" ""
-  let gs_c4 = Gamestate.play gs_c2 Player "Red 3" ""
-  let gs_c5 = Gamestate.draw gs_c1 User 1
-  (* for uno *)
-  let gs_c6 = Gamestate.draw gs_c2 Player 1
-  let gs_c7 = Gamestate.uno_defensive gs_c3 User
-  let gs_c8 = Gamestate.uno_defensive gs_c4 Player
-  (* for uno2 *)
-  let gs_c9 = Gamestate.uno_offensive gs_c1 User Player
-  let gs_c10 = Gamestate.uno_offensive gs_c2 Player User
-  let uno2_il = "\nYou did not call a valid offensive uno. The other player does \
+let json_com = Yojson.Basic.from_file "test_deck_command.json"
+
+let gs_c = from_json_unshuffled json_com 1 1
+(* for draw *)
+let gs_c1 = Gamestate.draw gs_c User 1
+let gs_c2 = Gamestate.draw gs_c Player1 1
+(* for play *)
+let gs_c3 = Gamestate.play gs_c1 User Player1 "Red 0" ""
+let gs_c4 = Gamestate.play gs_c2 Player1 User "Red 3" ""
+let gs_c5 = Gamestate.draw gs_c1 User 1
+(* for uno *)
+let gs_c6 = Gamestate.draw gs_c2 Player1 1
+let gs_c7 = Gamestate.uno_defensive gs_c3 User
+let gs_c8 = Gamestate.uno_defensive gs_c4 Player1
+(* for uno2 *)
+let gs_c9 = Gamestate.uno_offensive gs_c1 User Player1
+let gs_c10 = Gamestate.uno_offensive gs_c2 Player1 User
+let uno2_il = "\nYou did not call a valid offensive uno. The other player does \
                not have Uno. You have been forced to draw 4 cards."
 
-  let command_tests_sprint_1 =
+let command_tests_sprint_1 =
   [
     (* test out parse *)
     "pars_draw" >:: (fun _ -> assert_equal Draw (Command.parse " drAw "));
@@ -374,71 +385,80 @@ let gamestate_tests =
     "draw_user" >:: (fun _ -> assert_equal 
                         (Legal gs_c1) (Command.draw gs_c User 1));
     "draw_player" >:: (fun _ -> assert_equal 
-                          (Legal gs_c2) (Command.draw gs_c Player 1));
+                          (Legal gs_c2) (Command.draw gs_c Player1 1));
     (* ---------------------------------------------------------------------- *)
     (* test out play *)
     "play_user_legal" >:: (fun _ -> assert_equal (Legal gs_c3) 
-                              (Command.play gs_c1 User "Red 0" Any ));
+                              (Command.play gs_c1 User Player1 "Red 0" Any ));
     "play_player_legal" >:: (fun _ -> assert_equal
                                 (Legal gs_c4) 
-                                (Command.play gs_c2 Player "Red 3" Any));
+                                (Command.play gs_c2 Player1 User "Red 3" Any));
     "play_not_in_hand" >:: (fun _ -> assert_equal
                                (Illegal "\nYou tried to play a card not in \
                                          your hand: Red 4")
-                               (Command.play gs_c1 User "Red 4" Any));
+                               (Command.play gs_c1 User Player1 "Red 4" Any));
     "play_mismatch" >:: (fun _ -> assert_equal
                             (Illegal "\nYour card does not match the card last \
                                       played: Blue 0")
-                            (Command.play gs_c5 User "Blue 0" Any));
+                            (Command.play gs_c5 User Player1 "Blue 0" Any));
     (* ---------------------------------------------------------------------- *)
     (* test out uno *)
     "uno_not_in_hand" >:: (fun _ -> assert_equal
                               (Illegal "\nYou tried to play a card not in your \
                                         hand: Red 4")
-                              (Command.uno gs_c1 User "Red 4" Any));
+                              (Command.uno gs_c1 User Player1 "Red 4" Any));
     "uno_mismatch" >:: (fun _ -> assert_equal
                            (Illegal "\nYour card does not match the card last \
                                      played: Blue 0")
-                           (Command.uno gs_c5 User "Blue 0" Any));
+                           (Command.uno gs_c5 User Player1 "Blue 0" Any));
     "uno_user_illegal" >:: (fun _ -> assert_equal
                                (Illegal "nouno") 
-                               (Command.uno gs_c5 User "Red 3" Any));
+                               (Command.uno gs_c5 User Player1 "Red 3" Any));
     "uno_user_legal" >:: (fun _ -> assert_equal (Legal gs_c7) 
-                             (Command.uno gs_c1 User "Red 0" Any));
+                             (Command.uno gs_c1 User Player1 "Red 0" Any));
     "uno_player_illegal" >:: (fun _ -> assert_equal (Illegal "nouno") 
-                                 (Command.uno gs_c6 Player "Red 1" Any));
+                                 (Command.uno gs_c6 Player1 User "Red 1" Any));
     "uno_player_legal" >:: (fun _ -> assert_equal (Legal gs_c8) 
-                               (Command.uno gs_c2 Player "Red 3" Any));
+                               (Command.uno gs_c2 Player1 User "Red 3" Any));
     (* ---------------------------------------------------------------------- *)
     (* test out uno2 *)
     "uno2_user_illegal" >:: (fun _ -> assert_equal
                                 (Illegal uno2_il) 
-                                (Command.uno2 gs_c2 User Player));
+                                (Command.uno2 gs_c2 User Player1));
     "uno2_user_legal" >:: (fun _ -> assert_equal
-                              (Legal gs_c9) (Command.uno2 gs_c1 User Player));
+                              (Legal gs_c9) 
+                              (Command.uno2 gs_c1 User Player1));
     "uno2_player_illegal" >:: (fun _ -> assert_equal
                                   (Illegal uno2_il) 
-                                  (Command.uno2 gs_c1 Player User));
+                                  (Command.uno2 gs_c1 Player1 User));
     "uno2_player_legal" >:: (fun _ -> assert_equal
                                 (Legal gs_c10) 
-                                (Command.uno2 gs_c2 Player User));
+                                (Command.uno2 gs_c2 Player1 User));
 
   ]
-  (* ------ABOVE------for first sprint, using non-action cards------ABOVE-------*)
+(* ------ABOVE------for first sprint, using non-action cards------ABOVE-------*)
 
-  (* ------BELOW-------for second sprint, using action cards-------BELOW--------*)
+(* ------BELOW-------for second sprint, using action cards-------BELOW--------*)
 
-  let json_com2 = Yojson.Basic.from_file "test_deck_command_2.json"
+let json_com2 = Yojson.Basic.from_file "test_deck_command_2.json"
 
-  let gs_cc1 = from_json_unshuffled json_com2 1
-  let gs_cc2 = Gamestate.draw gs_cc1 User 1
-  let gs_cc3 = Gamestate.play gs_cc2 User "Wild +4" "red"
-  let gs_cc4 = Gamestate.uno_defensive gs_cc3 User
-  let gs_cc5 = Gamestate.draw gs_cc3 User 2
-  let gs_cc6 = Gamestate.play gs_cc5 User "Red +2" ""
+let gs_cc1 = from_json_unshuffled json_com2 1 1
+let gs_cc2 = Gamestate.draw gs_cc1 User 1
+let gs_cc3 = Gamestate.play gs_cc2 User Player1 "Wild +4" "red"
+let gs_cc4 = Gamestate.uno_defensive gs_cc3 User
+let gs_cc5 = Gamestate.draw gs_cc3 User 2
+let gs_cc6 = Gamestate.play gs_cc5 User Player1 "Red +2" ""
+let gs_cc7 = Gamestate.uno_defensive gs_cc6 Player1
 
-  let command_tests_sprint_2 =
+let command_tests_sprint_2 =
   [
+    (* test out parse *)
+    "pars_foster" >:: (fun _ -> assert_equal (Uno2 Player1) 
+                          (Command.parse "uno2 foster"));
+    "pars_gries" >:: (fun _ -> assert_equal (Uno2 Player2) 
+                         (Command.parse "uno2 gries"));
+    "pars_white" >:: (fun _ -> assert_equal (Uno2 Player3) 
+                         (Command.parse "uno2 white"));
     (* test out parse_color *)
     "parsc_red" >:: (fun _ -> assert_equal Red 
                         (Command.parse_color "Red"));
@@ -454,25 +474,39 @@ let gamestate_tests =
                          (fun () -> (Command.parse_color "  purplE")));
     (* test out play *)
     "play_+4" >:: (fun _ -> assert_equal (Legal gs_cc3) 
-                      (Command.play gs_cc2 User "Wild +4" Red));
+                      (Command.play gs_cc2 User Player1 "Wild +4" Red));
     "play_ill_+4" >:: (fun _ -> assert_equal 
                           (Illegal ("\nThe last card played was a +4, which \
                                      means you must draw cards if you do \
                                      not have a +4 card.")) 
-                          (Command.play gs_cc3 Player "Red 0" Any));
+                          (Command.play gs_cc3 Player1 User "Red 0" Any));
     "play_ill_+2" >:: (fun _ -> assert_equal 
                           (Illegal ("\nThe last card played was a +2, which \
                                      means you must draw cards if you do \
                                      not have a +2 or +4 card to play.")) 
-                          (Command.play gs_cc6 Player "Red 0" Any));
+                          (Command.play gs_cc6 Player1 User "Red 0" Any));
     (* test out uno *)
     "uno_+4" >:: (fun _ -> assert_equal (Legal gs_cc4) 
-                     (Command.uno gs_cc2 User "Wild +4" Red));
+                     (Command.uno gs_cc2 User Player1 "Wild +4" Red));
+    "uno_ill_+4" >:: (fun _ -> assert_equal 
+                         (Illegal ("\nThe last card played was a +4, which \
+                                    means you must draw cards if you do \
+                                    not have a +4 card.")) 
+                         (Command.play gs_cc4 Player1 User "Red 0" Any));
+    "uno_ill_+2" >:: (fun _ -> assert_equal 
+                         (Illegal ("\nThe last card played was a +2, which \
+                                    means you must draw cards if you do \
+                                    not have a +2 or +4 card to play.")) 
+                         (Command.play gs_cc7 Player1 User "Red 0" Any));
+    (* test out uno2 *)
+    "uno2_user_tally" >:: (fun _ -> assert_equal
+                              (Illegal "notagamer") 
+                              (Command.uno2 gs_c2 User Player2));
   ]
-  (* ------ABOVE-------for second sprint, using action cards-------ABOVE--------*)
+(* ------ABOVE-------for second sprint, using action cards-------ABOVE--------*)
 
-  (*.........................testing command above..............................*)
-*)
+(*.........................testing command above..............................*)
+
 
 
 (*.........................testing AIs below..................................*)
@@ -656,8 +690,8 @@ let ai_tests_sprint_2 =
 let suite =
   "test suite for uno_game"  >::: List.flatten [
     gamestate_tests;
-    (*command_tests_sprint_1;
-      command_tests_sprint_2;*)
+    command_tests_sprint_1;
+    command_tests_sprint_2;
     ai_tests_sprint_1;
     ai_tests_sprint_2;
   ]
