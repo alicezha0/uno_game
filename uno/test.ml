@@ -57,7 +57,7 @@ open Command
    prioritized action. The AI modules depend heavily on Gamestate and Command 
    functions, so those modules were tested and made certain to be correct before 
    these were tested so I could ensure their proper functionality.
-   
+
 *)
 
 
@@ -129,6 +129,23 @@ let gs_42 = Gamestate.play gs_41 Player1 User "Wild +4" "blue"
 
 let gs_411 = Gamestate.draw gs_41 Player1 2
 
+(*----------------------------------------------------------------------------*)
+(* SECOND SPRINT: Multiple players *)
+let json_test_9 = Yojson.Basic.from_file "test_deck_9.json"
+let gs_5 = from_json_unshuffled json_test_9 2 2 
+let gs_51 = Gamestate.play gs_5 User Player1 "Red 0" ""
+let gs_52 = Gamestate.uno_offensive gs_51 Player1 User 
+let gs_53 = Gamestate.play gs_52 Player1 Player2 "Wild +4" "green"
+let gs_532 = Gamestate.uno_defensive gs_53 Player1 
+let gs_54 = Gamestate.draw gs_532 Player2 1 
+let gs_55 = Gamestate.play gs_54 Player2 User "Green 8" ""
+let gs_56 = Gamestate.play gs_55 User Player1 "Blue 8" ""
+let gs_57 = Gamestate.draw gs_56 Player1 1 
+let gs_58 = Gamestate.play gs_57 Player2 User "Blue +2" ""
+let gs_59 = Gamestate.play gs_58 User Player1 "Wild +4" "red"
+
+
+
 
 (*Helper functions to test exceptions*)
 let exn_test_1 gs g ng card_name =
@@ -153,8 +170,9 @@ let exn_test_5 gs g ng card_name color_str =
 
 let gamestate_tests =
   [
-    (* testing from_json *)
     (*.......................................................................*)
+    (* testing from_json *)
+
     (* Is the correct no. of cards dealt to the gamers? *)
     (* Assuming that hand_size works correctly *)
     "from_json_1" >:: (fun _ -> assert_equal 1 (hand_size gs_1 User));
@@ -175,14 +193,12 @@ let gamestate_tests =
 
 
     (* testing number_search *)
-    (*.......................................................................*)
 
     "ns_test1" >:: (fun _-> assert_equal 1 (number_search gs_1 Player1 "Red 1"));
     "ns_test2" >:: (fun _-> assert_equal 3 (number_search gs_2 Player1 "Red 3"));
 
 
     (* testing color_search *)
-    (*.......................................................................*)
 
     "cs_test1">::(fun _ -> assert_equal "red" (color_search gs_1 User "Red 0"));
     "cs_test2">::(fun _ -> assert_equal "red" 
@@ -190,7 +206,6 @@ let gamestate_tests =
 
 
     (* testing draw *)
-    (*.......................................................................*)
 
     "draw_test_1" >:: (fun _ -> assert_equal 
                           ["Red 3";"Red 0"] (hand gs_11 User)); 
@@ -205,7 +220,6 @@ let gamestate_tests =
 
 
     (* testing play *)
-    (*.......................................................................*)
 
     "play_test_1" >:: (fun _ -> assert_equal ["Red 1"] (hand gs_21 User));
     "play_test_2" >:: (fun _ -> assert_equal "Red 0" (last_card_played gs_21));
@@ -220,7 +234,6 @@ let gamestate_tests =
                           (exn_test_1  gs_2 Player1 User "Red 00"));  
 
     (* testing uno_defensive*) 
-    (*.......................................................................*)
 
     "uno_d_test_1" >:: (fun _ -> assert_equal true (uno_state gs_15 User));
     "uno_d_test_2" >:: (fun _ -> assert_equal false (uno_state gs_15 Player1));
@@ -229,7 +242,6 @@ let gamestate_tests =
 
 
     (* testing uno_offensive *)   
-    (*.......................................................................*)
 
     "uno_o_test_1" >:: (fun _ -> assert_equal 5 (hand_size gs_17 Player1)); 
     "uno_o_test_2" >:: (fun _ -> assert_equal 5 (hand_size gs_18 User));
@@ -239,12 +251,16 @@ let gamestate_tests =
                            (exn_test_4 gs_2 User Player1));
 
     (* testing win_or_not *)
-    (*.......................................................................*)
+
 
     "win_test_1" >:: (fun _ -> assert_equal true (win_or_not gs_19 User)); 
     "win_test_2" >:: (fun _ -> assert_equal false (win_or_not gs_20 Player1));
 
+    (*.......................................................................*)
+
     (* testing after adding action cards into the deck *)
+
+
 
     (* testing that adding wild works: changes color*)
     "wild_test_1" >:: (fun _ -> assert_equal "red" (color_state gs_31));
@@ -277,7 +293,37 @@ let gamestate_tests =
     "+4_test_5" >:: (fun _ -> assert_equal User (current_tally_gamer gs_42));
     "+4_test_6" >:: (fun _ -> assert_equal 6 (hand_size gs_411 Player1));
 
+    (*.......................................................................*)
 
+    (*testing after allowing multiple AI's to play*)
+
+    (*testing from_json initializes properly*)
+    "multi_init_1" >:: (fun _ -> assert_equal 2 (hand_size gs_5 Player1));
+    "multi_init_2" >:: (fun _ -> assert_equal 2 (hand_size gs_5 Player2));
+    "multi_init_3" >:: (fun _ -> assert_equal ["Yellow 3"; "Blue 4"] 
+                           (hand gs_5 Player2));
+    "multi_init_4">:: (fun _ -> assert_equal "red" (color_state gs_5));
+
+    (*testing other functions*)
+    "multi_play_1" >:: (fun _ -> assert_equal ["Red 1"] (hand gs_51 User)); 
+    "multi_play_2" >:: (fun _ -> assert_equal "Red 0" (last_card_played gs_51));
+
+    "multi_uno_o_1" >:: (fun _ -> assert_equal 5 (hand_size gs_52 User));
+
+    "multi_+4_1" >:: (fun _ -> assert_equal ["Green 6"] (hand gs_53 Player1)); 
+    "multi_+4_2" >:: (fun _ -> assert_equal "green" (color_state gs_53)); 
+    "multi_+4_3" >:: (fun _ -> assert_equal Player2(current_tally_gamer gs_53));
+    "multi_+4_4" >:: (fun _ -> assert_equal 6 (hand_size gs_54 Player2));
+    "multi_+4_5" >:: (fun _ -> assert_equal 0 (current_tally_num gs_54));
+
+    "multi_uno_d_1" >:: (fun _ -> assert_equal true (uno_state gs_532 Player1));
+
+    "multi_play_3" >:: (fun _ -> assert_equal "blue" (color_state gs_56));
+    "multi_draw_1" >:: (fun _ -> assert_equal false (uno_state gs_57 Player1));
+    "multi_+2_1" >:: (fun _ -> assert_equal 2 (current_tally_num gs_58));
+    "multi_+2_2" >:: (fun _ -> assert_equal User (current_tally_gamer gs_58));
+    "multi_+4_6" >:: (fun _ -> assert_equal 6 (current_tally_num gs_59));
+    "multi_+4_7" >:: (fun _ -> assert_equal Player1(current_tally_gamer gs_59));
 
   ]
 
@@ -431,60 +477,60 @@ let gamestate_tests =
 
 (*.........................testing AIs below..................................*)
 
-  open Ai_med
+open Ai_med
 
-  (* Making gamestates to test player: *)
+(* Making gamestates to test player: *)
 
-  (* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played 
+(* gs_21 is where User has 1 card and Player has 2, Red 0 is last card played 
    (from above) *)
 
-  (* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
-  let gs_101 = Gamestate.draw gs_2 User 1
-  let gs_102 = Gamestate.play gs_101 User Player1 "Red 0" ""
+(* gs_102 is where both gamers have 2 cards and Red 0 is the last card played *)
+let gs_101 = Gamestate.draw gs_2 User 1
+let gs_102 = Gamestate.play gs_101 User Player1 "Red 0" ""
 
-  (* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last played *)
-  let gs_111 = Gamestate.draw gs_2 User 1 
-  let gs_112 = Gamestate.draw gs_111 Player1 1 
-  let gs_113 = Gamestate.play gs_112 User Player1 "Red 0" ""
+(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last played *)
+let gs_111 = Gamestate.draw gs_2 User 1 
+let gs_112 = Gamestate.draw gs_111 Player1 1 
+let gs_113 = Gamestate.play gs_112 User Player1 "Red 0" ""
 
-  (* In json_test_2, some of the cards are blue instead of red *)
-  let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
+(* In json_test_2, some of the cards are blue instead of red *)
+let json_test_2 = Yojson.Basic.from_file "test_deck_2.json"
 
-  (* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last 
+(* gs_203 is where User has 2 red cards, Player has 3 blue, Red 0 is the last 
    card played *)
-  let gs_200 = from_json_unshuffled json_test_2 2 1
-  let gs_201 = Gamestate.draw gs_200 User 1 
-  let gs_202 = Gamestate.draw gs_201 Player1 1 
-  let gs_203 = Gamestate.play gs_202 User Player1 "Red 0" ""
+let gs_200 = from_json_unshuffled json_test_2 2 1
+let gs_201 = Gamestate.draw gs_200 User 1 
+let gs_202 = Gamestate.draw gs_201 Player1 1 
+let gs_203 = Gamestate.play gs_202 User Player1 "Red 0" ""
 
-  (* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the 
+(* gs_204 is where User has 2 red cards, Player has 3 blue+1 red, Red 0 is the 
    last card played *)
-  let gs_204 = Gamestate.draw gs_203 Player1 1 
+let gs_204 = Gamestate.draw gs_203 Player1 1 
 
-  (* gs_205 is where User has 2 red cards, Player has 2 blue, Red 0 is the last 
+(* gs_205 is where User has 2 red cards, Player has 2 blue, Red 0 is the last 
    card played *)
-  let gs_205 = Gamestate.play gs_201 User Player1 "Red 0" ""
+let gs_205 = Gamestate.play gs_201 User Player1 "Red 0" ""
 
-  (* gs_304 is where User has 2 red cards, Player has 2 blue, Blue 0 is the last 
+(* gs_304 is where User has 2 red cards, Player has 2 blue, Blue 0 is the last 
    card played *)
-  let json_test_3 = Yojson.Basic.from_file "test_deck_3.json"
-  let gs_300 = from_json_unshuffled json_test_3 2 1
-  let gs_301 = Gamestate.draw gs_300 User 1 
-  let gs_302 = Gamestate.draw gs_301 User 1 
-  let gs_303 = Gamestate.play gs_302 User Player1 "Red 0" ""
-  let gs_304 = Gamestate.play gs_303 User Player1 "Blue 0" ""
+let json_test_3 = Yojson.Basic.from_file "test_deck_3.json"
+let gs_300 = from_json_unshuffled json_test_3 2 1
+let gs_301 = Gamestate.draw gs_300 User 1 
+let gs_302 = Gamestate.draw gs_301 User 1 
+let gs_303 = Gamestate.play gs_302 User Player1 "Red 0" ""
+let gs_304 = Gamestate.play gs_303 User Player1 "Blue 0" ""
 
 
-  (** [make_ai_tests_sprint_1 name t expected_output] constructs an OUnit
+(** [make_ai_tests_sprint_1 name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
     with [ai_tests_sprint_1]. *)
-  let make_ai_tests_sprint_1
+let make_ai_tests_sprint_1
     (name : string) 
     (t)
     (expected_output) : test =
   name >:: (fun _ -> assert_equal (Ai_med.player_turn t Player1) expected_output )
 
-  let ai_tests_sprint_1 =
+let ai_tests_sprint_1 =
   [
     (* testing player_turn *)
     make_ai_tests_sprint_1 "uno2" gs_21 (Uno2 User);
@@ -497,88 +543,88 @@ let gamestate_tests =
   ]
 
 
-  open Ai_hard
+open Ai_hard
 
-  (* Making gamestates to test player2: *)
+(* Making gamestates to test player2: *)
 
-  (* gs_2 is where User has 2 cards, Player has 2 (0 action), Red 4 is the last 
+(* gs_2 is where User has 2 cards, Player has 2 (0 action), Red 4 is the last 
    card played (from above) *)
 
-  (* In json_test_4, some action cards are included *)
-  let json_test_4 = Yojson.Basic.from_file "test_deck_4.json"
+(* In json_test_4, some action cards are included *)
+let json_test_4 = Yojson.Basic.from_file "test_deck_4.json"
 
-  (* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last 
+(* gs_401 is where User has 2 cards, Player has 3 (1 action), Red +2 is the last 
    card played *)
-  let gs_400 = from_json_unshuffled json_test_4 3 1
-  let gs_401 = Gamestate.play gs_400 User Player1 "Red +2" ""
+let gs_400 = from_json_unshuffled json_test_4 3 1
+let gs_401 = Gamestate.play gs_400 User Player1 "Red +2" ""
 
-  (* gs_404 is where User has 4 cards, Player has 4 (1 action), Wild +4 is the 
+(* gs_404 is where User has 4 cards, Player has 4 (1 action), Wild +4 is the 
    last card played *)
-  let gs_402 = Gamestate.draw gs_400 User 1 
-  let gs_403 = Gamestate.draw gs_402 Player1 1 
-  let gs_404 = Gamestate.play gs_403 User Player1 "Wild +4" "Red"
+let gs_402 = Gamestate.draw gs_400 User 1 
+let gs_403 = Gamestate.draw gs_402 Player1 1 
+let gs_404 = Gamestate.play gs_403 User Player1 "Wild +4" "Red"
 
-  (* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last 
+(* gs_405 is where User has 3 cards, Player has 4 (2 action), Red 2 is the last 
    card played *)
-  let gs_405 = Gamestate.draw gs_400 Player1 1 
+let gs_405 = Gamestate.draw gs_400 Player1 1 
 
-  (* gs_406 is where User has 4 cards, Player has 4 (2 action), Red 2 is the last 
+(* gs_406 is where User has 4 cards, Player has 4 (2 action), Red 2 is the last 
    card played *)
-  let gs_406 = Gamestate.draw gs_405 User 1 
+let gs_406 = Gamestate.draw gs_405 User 1 
 
-  (* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last 
+(* gs_408 is where User has 4 cards, Player has 2 (2 action), Red 4 is the last 
    card played *)
-  let gs_407 = Gamestate.play gs_406 Player1 User "Red 3" ""
-  let gs_408 = Gamestate.play gs_407 Player1 User "Red 4" ""
+let gs_407 = Gamestate.play gs_406 Player1 User "Red 3" ""
+let gs_408 = Gamestate.play gs_407 Player1 User "Red 4" ""
 
 
-  (* In json_test_5, some action cards plus different colors are included *)
-  let json_test_5 = Yojson.Basic.from_file "test_deck_5.json"
+(* In json_test_5, some action cards plus different colors are included *)
+let json_test_5 = Yojson.Basic.from_file "test_deck_5.json"
 
-  (* gs_501 is where User has 2 cards, Player has 6 (2 action, 2 blue), Red 1 is 
+(* gs_501 is where User has 2 cards, Player has 6 (2 action, 2 blue), Red 1 is 
    the last card played *)
-  let gs_500 = from_json_unshuffled json_test_5 2 1
-  let gs_501 = Gamestate.draw gs_500 Player1 4
+let gs_500 = from_json_unshuffled json_test_5 2 1
+let gs_501 = Gamestate.draw gs_500 Player1 4
 
-  (* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is 
+(* gs_502 is where User has 1 cards, Player has 7 (1 action, 3 green), Red 1 is 
    the last card played *)
-  let gs_502 = Gamestate.draw gs_501 Player1 2
+let gs_502 = Gamestate.draw gs_501 Player1 2
 
-  (* gs_503 is where User has 1 cards, Player has 10 (1 action, 4 yellow), Red 1 
+(* gs_503 is where User has 1 cards, Player has 10 (1 action, 4 yellow), Red 1 
    is the last card played *)
-  let gs_503 = Gamestate.draw gs_502 Player1 3
+let gs_503 = Gamestate.draw gs_502 Player1 3
 
-  (* gs_800 and above are gamestates to test multiple AIs using test deck 8 *)
-  let json_test_8 = Yojson.Basic.from_file "test_deck_8.json"
-  let gs_800 = from_json_unshuffled json_test_8 2 2
-  let gs_801 = Gamestate.play gs_800 Player2 User "Blue 3" ""
-  let gs_802 = Gamestate.draw gs_801 Player2 2
-  let gs_803 = Gamestate.play gs_802 User Player1 "Red 3" ""
-  let gs_804 = Gamestate.play gs_803 Player1 Player2 "Green 3" ""
-  let gs_805 = Gamestate.draw gs_804 User 2
-  let gs_806 = Gamestate.draw gs_805 Player2 1
-  let gs_807 = Gamestate.play gs_806 Player2 Player2 "Green 1" ""
+(* gs_800 and above are gamestates to test multiple AIs using test deck 8 *)
+let json_test_8 = Yojson.Basic.from_file "test_deck_8.json"
+let gs_800 = from_json_unshuffled json_test_8 2 2
+let gs_801 = Gamestate.play gs_800 Player2 User "Blue 3" ""
+let gs_802 = Gamestate.draw gs_801 Player2 2
+let gs_803 = Gamestate.play gs_802 User Player1 "Red 3" ""
+let gs_804 = Gamestate.play gs_803 Player1 Player2 "Green 3" ""
+let gs_805 = Gamestate.draw gs_804 User 2
+let gs_806 = Gamestate.draw gs_805 Player2 1
+let gs_807 = Gamestate.play gs_806 Player2 Player2 "Green 1" ""
 
 
-  (** [make_ai_tests_sprint_2 name t expected_output] constructs an OUnit
+(** [make_ai_tests_sprint_2 name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
     with [ai_tests_sprint_2]. *)
-  let make_ai_tests_sprint_2
+let make_ai_tests_sprint_2
     (name : string) 
     (t)
     (expected_output) : test =
   name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player1) expected_output)
 
-    (** [make_ais_tests_sprint_2 name t expected_output] constructs an OUnit
+(** [make_ais_tests_sprint_2 name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
     with [ais_tests_sprint_2]. *)
-  let make_ais_tests_sprint_2
+let make_ais_tests_sprint_2
     (name : string) 
     (t)
     (expected_output) : test =
   name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player2) expected_output)
 
-  let ai_tests_sprint_2 =
+let ai_tests_sprint_2 =
   [
     make_ai_tests_sprint_2 "play +2 against +2" gs_401 (Play "Red +2");
     make_ai_tests_sprint_2 "play +4 against +4" gs_404 (Play "Wild +4");
@@ -612,8 +658,8 @@ let suite =
     gamestate_tests;
     (*command_tests_sprint_1;
       command_tests_sprint_2;*)
-      ai_tests_sprint_1;
-      ai_tests_sprint_2;
+    ai_tests_sprint_1;
+    ai_tests_sprint_2;
   ]
 
 let _ = run_test_tt_main suite
