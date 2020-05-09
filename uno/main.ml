@@ -4,9 +4,18 @@ open Ai_med
 open Ai_hard 
 open Ai_easy 
 
+(** The type [ai_diff] represents the level of difficulties the user has chosen
+    for the AI.*)
 type ai_diff = Easy | Medium | Hard
 
+(** The type [record] represents a record list of the gamers and their 
+    corresponding difficulties. *)
 type record = {gamer : Gamestate.gamer; diff : ai_diff}
+
+let player_name gamer =
+  if gamer = Player1 then "Foster"
+  else if gamer = Player2 then "Gries"
+  else "White"
 
 let c_empty =
   "\nYour command was empty. If you are having trouble with the game, please \
@@ -30,23 +39,18 @@ let c_malformed_color =
 
 let end_game =
   "\nSorry to see you go.... Hope you liked the game! \
-   Best: Caroline, Nat, Alice :)"
+   Best: Caroline, Nat, Alice :)\n"
 
 let rec print_hand_players gs (gamer_lst:record list) acc =
   match gamer_lst with 
   | [] -> acc
-  | h::t -> begin 
-      let hand_size = string_of_int (Gamestate.hand_size gs h.gamer) in 
-      match h.gamer with 
-      | Player1 -> print_hand_players gs t 
-                     (acc ^ "\nSpongebob has " ^ hand_size ^ " cards. ")
-      | Player2 -> print_hand_players gs t 
-                     (acc ^ "\nPatrick has " ^ hand_size ^ " cards. ")
-      | Player3 -> print_hand_players gs t 
-                     (acc ^ "\nMr. Krabs has " ^ hand_size ^ " cards. ")
-      | User -> print_hand_players gs t 
-                  (acc ^ "\nYou have " ^ hand_size ^ " cards. ")
-    end
+  | h::t -> 
+    let hand_size = string_of_int (Gamestate.hand_size gs h.gamer) in 
+    if h.gamer = User 
+    then print_hand_players gs t 
+        (acc ^ "\nYou have " ^ hand_size ^ " card(s). ")
+    else print_hand_players gs t 
+        (acc ^ "\n" ^ player_name h.gamer ^ " has " ^ hand_size ^ " card(s). ")
 
 let print_for_user gs gamer gamer_lst =
   (print_endline ("\nThe card on top of the discard pile is: " ^ 
@@ -60,28 +64,18 @@ let print_for_user gs gamer gamer_lst =
    print_endline ("\nIt is your turn to play!");
    print_endline "\nEnter Your Command: \n";)
 
-let print_for_player gs gamer =
-  let g = if gamer = Player1 then "Spongebob Squarepants" 
-    else if gamer = Player2 then "Patrick Star"
-    else "Mr. Krabs" in
-  (print_endline ("\n" ^ g ^ " is playing. Please be patient....."))
+let print_for_player gamer =
+  (print_endline ("\n" ^ player_name gamer ^ 
+                  " is playing. Please be patient....."))
 
 let winning gs gamer =
+  let sec_str = " has won the game. \nYou should play again to redeem \
+                 your honor.\n" in 
   if Gamestate.win_or_not gs gamer then
     if gamer = User then 
-      ((print_endline ("\nYou have won the game! Congratulations! 
-      \nThanks for playing!
-      \nBest: Alice, Caroline, Nat")); 
-       true)
-    else if gamer = Player1 then
-      ((print_endline ("\nSpongebob Squarepants has won the game. Sucks to be you. 
-      \nYou should play again to redeem your honor.\n")); true)
-    else if gamer = Player2 then 
-      ((print_endline ("\nPatrick Star has won the game. Sucks to be you. 
-    \nYou should play again to redeem your honor.\n")); true)
-    else
-      ((print_endline ("\nMr. Krabs has won the game. Sucks to be you. 
-    \nYou should play again to redeem your honor.\n")); true)
+      ((print_endline ("\nYou have won the game! Congratulations and thanks \
+                        for playing! \nBest: Alice, Caroline, Nat")); true)
+    else ((print_endline (player_name gamer ^ sec_str)); true)
   else false
 
 let uno2_valid_print gamer call_on_gamer =
@@ -89,29 +83,14 @@ let uno2_valid_print gamer call_on_gamer =
   if gamer = User then 
     let uno_initial_str = "\nYou called uno on " in 
     let uno_next_str = ". He has been forced to draw 4 cards." in 
-    if call_on_gamer = Player1 then
-      uno_initial_str ^ "Spongebob Squarepants" ^ uno_next_str
-    else if call_on_gamer = Player2 then 
-      uno_initial_str ^ "Patrick Star" ^ uno_next_str
-    else
-      uno_initial_str ^ "Mr. Krabs" ^ uno_next_str
-  else if gamer = Player1 then
-    "\nSpongebob Squarepants" ^ uno_on_you 
-  else if gamer = Player2 then 
-    "\nPatrick Star" ^ uno_on_you 
-  else 
-    "\nMr. Krabs" ^ uno_on_you
+    uno_initial_str ^ player_name call_on_gamer ^ uno_next_str
+  else player_name gamer ^ uno_on_you
 
 let uno_valid_print gamer = 
   let ai_str = " has called uno! Looks like you're gonna lose...unless...?" in
   if gamer = User then "\nYou have called Uno successfully! One card away from \
                         winning!"
-  else if gamer = Player1 then
-    "Spongebob Squarepants" ^ ai_str
-  else if gamer = Player2 then 
-    "Patrick Star" ^ ai_str 
-  else
-    "Mr. Krabs" ^ ai_str
+  else player_name gamer ^ ai_str
 
 let print_tally gs gamer =
   let tally_num = string_of_int (Gamestate.current_tally_num gs) in 
@@ -121,12 +100,8 @@ let print_tally gs gamer =
     then print_endline ("\nThe tally is now " ^ tally_num 
                         ^ " against you. If you don't have a +2 or +4 card, \
                            you should Draw.")
-    else if curr_tally_g = Player1 then
-      print_endline ("\nThe tally is now " ^ tally_num ^ " against Spongebob.")
-    else if curr_tally_g = Player2 then 
-      print_endline ("\nThe tally is now " ^ tally_num ^ " against Patrick.")
-    else
-      print_endline ("\nThe tally is now " ^ tally_num ^ " against Krabs.")
+    else print_endline ("\nThe tally is now " ^ tally_num 
+                        ^ " against " ^ player_name gamer ^ ".")
 
 let turn (gamer:gamer) (gamer_lst: record list) (phr:string) : record list =
   let once_turn = (List.tl gamer_lst) @ ((List.hd gamer_lst)::[]) in
@@ -169,18 +144,19 @@ let player_plays (gs:Gamestate.t) (gamer_lst:record list) : Command.command =
   else if difficulty = Medium then Ai_med.player_turn gs the_gamer
   else Ai_hard.player_turn gs the_gamer
 
+let player_drew gamer =
+  if gamer = User then () else
+    print_endline (player_name gamer ^ " drew card(s).")
+
 let rec recurse_command gs gamer (gamer_lst:record list) win =
-  let _ = 
-    if win then exit 0 
-    else
+  let _ = if win then exit 0 else
     if gamer = User then print_for_user gs gamer gamer_lst
-    else print_for_player gs gamer in
+    else print_for_player gamer in
   let command_from_gamer = 
     if gamer <> User then player_plays gs gamer_lst
     else (parse_check (read_line ())) in
   match command_from_gamer with 
-  | Command.Draw -> 
-    let turn_g = turn gamer gamer_lst "" in 
+  | Command.Draw -> let turn_g = turn gamer gamer_lst "" in 
     recurse_command (c_draw gs gamer 1) (List.hd turn_g).gamer turn_g win
   | Command.Play phrase -> c_play gs gamer gamer_lst phrase win
   | Command.Uno phrase -> c_uno gs gamer gamer_lst phrase win
@@ -195,15 +171,21 @@ let rec recurse_command gs gamer (gamer_lst:record list) win =
 (** [c_draw gs gamer num] is a new Gamestate in which the [gamer] has drawn or
     been forced to draw [num] cards up. *)
 and c_draw gs gamer num = 
+  player_drew gamer;
   let draw_result = Command.draw gs gamer num in 
   match draw_result with
   | Legal gamestate -> gamestate
   | _ -> print_endline "not possible"; gs
 
-(** [c_play gs gamer phr] is mutually recursive with [recurse_command gs gamer]
-    and takes care of situation in which a card [phr] is being played by
-    [gamer]. If the move is Illegal, the error statement is printed and the
-    [gamer] has another chance to play.*)
+
+
+
+
+
+(** [c_play gs gamer gamer_lst phr win] takes care of situation in which a 
+    card [phr] is being played by [gamer]. If the move is Illegal, the error 
+    statement is printed and the [gamer] has another chance to play. Otherwise, 
+    [recurse_command] is called. *)
 and c_play gs gamer gamer_lst phr win =
   let pick = 
     if gamer <> User then c_color_ai gs gamer_lst phr else
@@ -211,17 +193,18 @@ and c_play gs gamer gamer_lst phr win =
   let next_gamer = (List.hd (List.tl gamer_lst)).gamer in
   let play_result = Command.play gs gamer next_gamer phr pick in 
   match play_result with 
-  | Legal gamestate -> print_tally gamestate gamer;
+  | Legal gamestate -> 
     let turn_g = turn gamer gamer_lst phr in
+    (print_tally gamestate (List.hd turn_g).gamer);
     recurse_command gamestate (List.hd turn_g).gamer 
       turn_g (winning gamestate gamer)
   | Illegal string -> print_endline string; 
     recurse_command gs gamer gamer_lst win
 
-(** [c_uno gs gamer phr] is mutually recursive with [recurse_command gs gamer]
-    and takes care of situation in which uno (defensive) is being played. 
-    If the move is Illegal no uno situation, [gamer] is forced to draw 4 cards 
-    and then it will be the other gamer's move.*)
+(** [c_uno gs gamer gamer_lst phr win] takes care of the situation in which 
+    uno (defensive) has been called by [gamer]. If the move is Illegal, then 
+    [gamer] is forced to draw 4 cards. Otherwise, [recurse_command] is called.
+    Used by: [recurse_command] *)
 and c_uno gs gamer gamer_lst phr win =
   let pick = 
     if gamer <> User then c_color_ai gs gamer_lst phr else
@@ -229,9 +212,9 @@ and c_uno gs gamer gamer_lst phr win =
   let next_gamer = (List.hd (List.tl gamer_lst)).gamer in
   let uno_result = Command.uno gs gamer next_gamer phr pick in 
   match uno_result with
-  | Legal gamestate -> print_tally gamestate gamer; 
-    print_endline (uno_valid_print gamer);
+  | Legal gamestate -> print_endline (uno_valid_print gamer);
     let turn_g = turn gamer gamer_lst phr in
+    (print_tally gamestate (List.hd turn_g).gamer);
     recurse_command gamestate (List.hd turn_g).gamer turn_g win
   | Illegal string -> 
     if string = "nouno" then 
@@ -241,7 +224,12 @@ and c_uno gs gamer gamer_lst phr win =
        recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win)
     else (print_endline string; recurse_command gs gamer gamer_lst win)
 
+(** [c_color_ai gs gamer_lst phr] is the color that the next gamer has to play
+    based on the card [phr] played by the AI. 
+    Used by: [c_play], [c_uno] *)
 and c_color_ai gs gamer_lst phr =
+  print_endline (player_name (List.hd gamer_lst).gamer 
+                 ^ " played a " ^ phr ^ ".");
   if phr = "Wild" || phr = "Wild +4" then 
     let curr_player_diff = (List.hd gamer_lst).diff in
     let curr_player = (List.hd gamer_lst).gamer in 
@@ -251,10 +239,11 @@ and c_color_ai gs gamer_lst phr =
     | Hard -> Ai_hard.choose_color gs curr_player
   else Any
 
-(** [c_uno2 gs gamer] is mutually recursive with [recurse_command gs gamer]
-    and takes care of the situation in which [gamer] calls uno (offensive) on
-    the other gamer. If the move is Illegal, then [gamer] is forced to draw 4 
-    cards and the turn goes to the other gamer. *)
+(** [c_uno2 gs gamer called_on gamer_lst win] takes care of the situation 
+    in which [gamer] calls uno (offensive) on another gamer [called_on]. 
+    If the move is Illegal, then [gamer] is forced to draw 4 cards. Then the
+    turn changes and [recurse command] is called again. 
+    Used by: [recurse command] *)
 and c_uno2 gs gamer called_on gamer_lst win =
   let uno2_result = Command.uno2 gs gamer called_on in 
   let turn_g = turn gamer gamer_lst "" in
@@ -264,70 +253,82 @@ and c_uno2 gs gamer called_on gamer_lst win =
   | Illegal string -> print_endline string;
     recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win
 
-(** 
-   Requires: int_lst is a list of integers which are either 1, 2 or 3. No other 
-   integer values should be in this list. 
-   Returns: a list of players. 
-*)
-let rec ass_play_to_ai int_lst play_lst =
-  match int_lst with 
-  | [] -> play_lst 
-  | h::t -> 
-    if h = 1 then (ass_play_to_ai t (Easy::play_lst))
-    else if h = 2 then (ass_play_to_ai t (Medium::play_lst))
-    else ass_play_to_ai t (Hard::play_lst)
+(*------------ABOVE-------------recurse command-------------ABOVE-------------*)
 
-let rec check_malformed_init (str_lst: string list) = 
-  match str_lst with
-  | [] -> true
-  | h::t -> if (h = "1" || h = "2" || h = "3") then check_malformed_init t 
-    else false 
+(*------------BELOW-----------initialize uno game-----------BELOW-------------*)
 
-let rec prompt_init_players () =
-  print_endline ("\nFirst, before we begin, choose the number of AIs (up to 3) \
-                  you would like to play against and the number that \
-                  corresponds to its difficulty level (1 = easy, 2 = medium \
-                  3 = hard). For example, if you want to play against 2 AIs \
-                  of hard difficulty, input '3 3' or if you want to play \
-                  against 1 AI of medium difficulty, input '2'. Please enter \
-                  your choice: \n");
-  let diff = read_line() in 
-  let no_empty_spaces = String.trim diff in 
-  if no_empty_spaces = "" then prompt_init_players ()
-  else if no_empty_spaces = "quit" || no_empty_spaces = "Quit" then exit 0
-  else let str_lst = String.split_on_char ' ' no_empty_spaces in 
-    if (List.length str_lst > 0 && 
-        List.length str_lst < 4 
-        && check_malformed_init str_lst) 
-    then let int_lst = List.map (int_of_string) str_lst in 
-      ass_play_to_ai int_lst []
-    else prompt_init_players ()
-
+(** [init_gamer_lst pl_lst] is an initialized record list of the gamers and 
+    their respective difficulties, which is input by the user.
+    Requires: [pl_lst] is an [ai_diff] list of length between 1 and 3
+    Used by: [main ()] *)
 let rec init_gamer_lst pl_lst = 
   let len = List.length pl_lst in 
-  let user_rec = {gamer = User; diff = Easy} in 
-  let fir_player_rec = {gamer = Player1; diff = List.hd (pl_lst)} in
-  if len = 1 then user_rec::fir_player_rec::[]
+  let user = {gamer = User; diff = Easy} in 
+  let one_ai = {gamer = Player1; diff = List.hd (pl_lst)} in
+  if len = 1 then user::one_ai::[]
   else if len = 2 then 
-    let sec_player_rec = {gamer = Player2; diff = List.hd (List.tl pl_lst)} in 
-    user_rec::fir_player_rec::sec_player_rec::[]
+    let two_ai = {gamer = Player2; diff = List.hd (List.tl pl_lst)} in 
+    user::one_ai::two_ai::[]
   else
-    let sec_player_rec = {gamer = Player2; diff = List.hd (List.tl pl_lst)} in 
-    let thir_player_rec = {gamer = Player3; diff = List.hd (List.rev pl_lst)} in 
-    user_rec::fir_player_rec::sec_player_rec::thir_player_rec::[]
+    let two_ai = {gamer = Player2; diff = List.hd (List.tl pl_lst)} in 
+    let three_ai = {gamer = Player3; diff = List.hd (List.rev pl_lst)} in 
+    user::one_ai::two_ai::three_ai::[]
 
-(** [main ()] prompts for the game to play, then starts it. *)
+(** [assign_diff_to_ai nums ai_lst] is the [ai_diff] list corresponding to the
+    user input numbers. 1 corresponds to Easy. 2 corresponds to Medium. 3
+    corresponds to Hard. 
+    Used by: *)
+let rec assign_diff_to_ai nums ai_lst =
+  match nums with 
+  | [] -> ai_lst 
+  | h::t -> 
+    if h = 1 then (assign_diff_to_ai t (Easy::ai_lst))
+    else if h = 2 then (assign_diff_to_ai t (Medium::ai_lst))
+    else assign_diff_to_ai t (Hard::ai_lst)
+
+(** [check_malform_ais str_lst] is true if [str_lst] only contains numbers of 
+    values 1, 2, or 3.
+    Requires: [str_lst] is a string list of length between 1 and 3 
+    Used by: [prompt_init_ais ()] *)
+let rec check_malformed_ais str_lst = 
+  match str_lst with
+  | [] -> true
+  | h::t -> if (h = "1" || h = "2" || h = "3") then check_malformed_ais t 
+    else false 
+
+(** [prompt_init_ais ()] prompts the user for the number and difficulties
+    of the AIs to play against, accounts for any mistakes from the user, and 
+    then gives a list of length 1 to 3 of AI difficulties [ai_diff]. 
+    Used by: [main ()] *)
+let rec prompt_init_ais () =
+  print_endline ("\nInput the number of AI(s) you would like to play against \
+                  (up to 3) and their corresponding difficulties (1 = easy, \
+                  2 = medium, 3 = hard). \nExamples: '3 3' = 2 AIs with hard \
+                  difficulty, '2' = 1 AI with medium difficulty, '1 2' = 2 AIs \
+                  with one easy and one medium. \nPlease enter your choice:\n");
+  let difficulties = String.trim (read_line()) in 
+  if difficulties = "" then prompt_init_ais ()
+  else if difficulties = "quit" || difficulties = "Quit" 
+  then (print_endline end_game; exit 0)
+  else let str_lst = String.split_on_char ' ' difficulties in
+    let str_lst_len = List.length str_lst in 
+    if (str_lst_len > 0 && str_lst_len < 4 && check_malformed_ais str_lst) 
+    then assign_diff_to_ai (List.map (int_of_string) str_lst) []
+    else prompt_init_ais ()
+
+(** [main ()] is the initial point of contact for the game to start. *)
 let main () =
-  print_endline 
-    "\nWelcome to Uno! This game was coded by: Caroline Chu, Nishat Peuly, and \
-     Alice Zhao. Please take some time to review the rules of this game with \
-     the command 'Rules' or learn the commands of this game with the command \
-     'Commands' Have Fun and Good Luck!\n";
-  let init_players = prompt_init_players () in
-  let num_g = List.length init_players in 
-  let begin_uno = Gamestate.from_json 
-      (Yojson.Basic.from_file "init_small.json") 7 num_g in 
-  recurse_command begin_uno User (init_gamer_lst init_players) false
+  print_endline ("\nWelcome to Uno! This game was coded by: Caroline Chu, \
+                  Nishat Peuly, and Alice Zhao.");
+  let ai_difficulties = prompt_init_ais () in 
+  print_endline ("\nInput 'Rules' to review the rules. Input 'Commands' to \
+                  learn the commands. Input 'Quit' to quit the game at any \
+                  time. Have fun, and best of luck! \nThe game is starting \
+                  now.......");
+  let json_file = Yojson.Basic.from_file "init_small.json" in
+  let num_ais = List.length ai_difficulties in
+  let begin_uno = Gamestate.from_json json_file 7 num_ais in 
+  recurse_command begin_uno User (init_gamer_lst ai_difficulties) false
 
 (* Execute the game engine. *)
 let () = main ()
