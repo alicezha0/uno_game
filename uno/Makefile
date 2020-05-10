@@ -5,7 +5,7 @@ MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
-PKGS=yojson,oUnit
+PKGS=yojson,oUnit,Thread
 
 default: build
 	utop
@@ -18,13 +18,6 @@ test:
 
 play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)
-
-check:
-	bash checkenv.sh && bash checktypes.sh
-	
-finalcheck: check
-	bash checkzip.sh
-	bash finalcheck.sh
 
 zip:
 	zip uno.zip *.ml* *.json _tags Makefile

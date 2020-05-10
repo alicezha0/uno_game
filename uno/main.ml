@@ -3,6 +3,7 @@ open Command
 open Ai_med
 open Ai_hard 
 open Ai_easy 
+open ANSITerminal
 
 (** The type [ai_diff] represents the level of difficulties the user has chosen
     for the AI.*)
@@ -23,37 +24,39 @@ let player_name gamer =
 
 (** [c_empty ()] prints when the command is empty. *)
 let c_empty () =
-  print_endline ("\nYour command was empty. If you are having trouble with \
-                  the game, please refer to the rules with 'Rules' or the \
-                  commands with 'Commands'. Otherwise, please enter a valid \
-                  command: \n")
+  print_string[red] ("\nYour command was empty. If you are having trouble with \
+                      the game, please refer to the rules with 'Rules' or the \
+                      commands with 'Commands'.");
+  print_string [cyan] ("\nPlease enter a valid command: \n")
 
 (** [c_malformed ()] prints when the command is malformed. *)
 let c_malformed () =
-  print_endline ("\nYour command was malformed. If you are having trouble \
-                  with the game, please refer to the rules with 'Rules' \
-                  or the commands with 'Commands'. Otherwise, please enter \
-                  a valid command: \n")
+  print_string [red] ("\nYour command was malformed. If you are having trouble \
+                       with the game, please refer to the rules with 'Rules' \
+                       or the commands with 'Commands'.");
+  print_string [cyan] ("\nPlease enter a valid command: \n")
 
 (** [c_empty_color ()] prints when the color is empty. *)
 let c_empty_color () =
-  print_endline ("\nYour color was empty. If you are having trouble with the \
-                  game, please refer to the rules with 'Rules' or the commands \
-                  with 'Commands'. Otherwise, please enter a valid color \
-                  (Red, Yellow, Green, or Blue): \n")
+  print_string [red] ("\nYour color was empty. If you are having trouble with \
+                       the game, please refer to the rules with 'Rules' or the \
+                       commands with 'Commands'.");
+  print_string [cyan] ("\nPlease enter a valid color \
+                        (Red, Yellow, Green, or Blue): \n")
 
 (** [c_malformed_color ()] prints when the color is malformed. *)
 let c_malformed_color () =
-  print_endline ("\nYour color was malformed. If you are having trouble with \
-                  the game, please refer to the rules with 'Rules' or the \
-                  commands with 'Commands'. Otherwise, please enter a valid \
-                  color (Red, Yellow, Green, or Blue): \n")
+  print_string [red] ("\nYour color was malformed. If you are having trouble \
+                       with the game, please refer to the rules with 'Rules' \
+                       or the commands with 'Commands'.");
+  print_string [cyan] ("\nPlease enter a valid \
+                        color (Red, Yellow, Green, or Blue): \n")
 
 (** [end_game ()] prints the ending message if the user quits before the game
     ends. *)
 let end_game () =
-  print_endline ("\nSorry to see you go.... Hope you liked the \
-                  game! \nBest: Caroline, Nat, Alice :)\n")
+  print_string [magenta] ("\nSorry to see you go.... Hope you liked the \
+                           game! \nBest: Caroline, Nat, Alice :)\n")
 
 (*--------------ABOVE-------------printing---------------ABOVE----------------*)
 
@@ -63,8 +66,8 @@ let end_game () =
     Used by: [c_draw] *)
 let player_drew gamer =
   if gamer = User then () else
-    print_endline (player_name gamer ^ " drew card(s).")
-
+    print_endline (player_name gamer ^ " drew card(s)."); 
+  print_string [on_blue] " \n"
 (** [winning gs gamer] is the boolean of whether the game has been won by 
     either the user or the AIs. If true, then ending messages are printed as
     well. 
@@ -74,17 +77,19 @@ let winning gs gamer =
                  your honor.\n" in 
   if Gamestate.win_or_not gs gamer then
     if gamer = User then 
-      ((print_endline ("\nYou have won the game! Congratulations and thanks \
-                        for playing! \nBest: Alice, Caroline, Nat")); true)
-    else ((print_endline (player_name gamer ^ sec_str)); true)
+      ((print_string [magenta] ("\nYou have won the game! Congratulations and \
+                                 thanks for playing! 
+                                 \nBest: Alice, Caroline, Nat")); true)
+    else ((print_string [magenta] (player_name gamer ^ sec_str)); true)
   else false
 
 (** [pick_color ()] is the color the user chooses after playing a wild card. 
     Used by: [c_play], [c_uno] *)
 let pick_color () =
   (print_endline "\nYou played a wild card, which means you get to choose the \
-                  \nnext color to be played. Please enter the next color \
-                  \n(Red, Yellow, Green, Blue):\n");
+                  \nnext color to be played.");              
+  print_string [cyan] (" Please enter the next color (Red, Yellow, Green, \
+                        Blue):\n");
   parse_color (read_line ())
 
 (** [tally gs gamer] prints the tally against a player. Tally represents the
@@ -109,7 +114,8 @@ let valid_uno gamer =
     print_endline ("\nYou have called Uno successfully! One card away from \
                     winning!")
   else print_endline (player_name gamer ^ " has called uno! Looks like \
-                                           you're gonna lose...unless...?")
+                                           you're gonna lose...unless...?");
+  print_string [on_blue] " \n"
 
 (** [invalid_uno ()] prints when the an invalid defensive uno was called. *)
 let invalid_uno () =
@@ -171,28 +177,55 @@ let rec gamer_hand_size gs gamer_lst acc =
     let hand_size = string_of_int (Gamestate.hand_size gs h.gamer) in 
     if h.gamer = User 
     then gamer_hand_size gs t 
-        (acc ^ "\nYou have " ^ hand_size ^ " card(s). ")
+        (acc ^ "\n\nYou have " ^ hand_size ^ " card(s). ")
     else gamer_hand_size gs t 
         (acc ^ "\n" ^ player_name h.gamer ^ " has " ^ hand_size ^ " card(s). ")
+
+(** [print_color_card str] prints out [str] based on which color it represents. 
+    Requires: the first three letters of [str] represent color.
+    Used by: [print_color_list] *)
+let print_color_card str = 
+  let lowercase_str = String.lowercase_ascii str in 
+  let first_three = String.sub lowercase_str 0 3 in 
+  if first_three = "red" then print_string [red] str
+  else if first_three = "blu" then print_string [blue] str
+  else if first_three = "gre" then print_string [green] str
+  else if first_three = "yel" then print_string [yellow] str
+  else print_string [default] str 
+
+(** [print_color_list card_list last_card] prints out [card_list] according to
+    the colors of the cards in it.
+    Used by: [print_for_user] *)
+let rec print_color_list card_list last_card = 
+  match card_list with 
+  |[] -> ()
+  |h::t -> if h = last_card 
+    then (print_color_card h; print_color_list t last_card)
+    else (print_color_card h; print_string [default] ", "; 
+          print_color_list t last_card)
+
 
 (** [print_for_user gs gamer gamer_lst] prints necessary information for the 
     user such as the card on top of the discard pile, the color the user should
     match, and the user's hand. *)
 let print_for_user gs gamer gamer_lst =
-  (print_endline ("\nThe card on top of the discard pile is: " ^ 
-                  Gamestate.last_card_played gs);
-   print_endline ("The color you should match is: " ^ 
-                  (Gamestate.color_state gs));
-   print_endline ("Your current hand has: " ^ 
-                  String.concat ", " (Gamestate.hand gs User));
-   let hand_to_str = gamer_hand_size gs gamer_lst "" in 
-   print_endline (hand_to_str);
-   print_endline ("\nIt is your turn to play!");
-   print_endline "\nEnter Your Command: \n";)
+  (print_string [default] ("\n\nThe card on top of the discard pile is: ");
+   Gamestate.last_card_played gs |> print_color_card);
+  print_string [default] ("\nThe color you should match is: "); 
+  (Gamestate.color_state gs) |> String.capitalize_ascii|> print_color_card; 
+  print_string [default]("\nYour current hand has: ");
+  let list = Gamestate.hand gs User in 
+  let last_card = List.hd (List.rev list) in 
+  print_color_list list last_card;
+  let hand_to_str = gamer_hand_size gs gamer_lst "" in 
+  print_endline (hand_to_str);
+  print_endline ("\nIt is your turn to play!");
+  print_string [cyan] ("\nEnter Your Command: \n")
 
 (** [print_for_player gamer] prints when it is the AI's turn to play. *)
 let print_for_player gamer =
-  (print_endline ("\n" ^ player_name gamer ^ " is playing. Wait a second....."))
+  (print_endline ("\n\n" ^player_name gamer ^ " is playing. Wait a second..."));
+  (Unix.sleep(1))
 
 (*-----------ABOVE----------recurse command helpers-----------ABOVE-----------*)
 
@@ -295,8 +328,12 @@ and c_uno gs gamer gamer_lst phr win =
     based on the card [phr] played by the AI. 
     Used by: [c_play], [c_uno] *)
 and c_color_ai gs gamer_lst phr =
-  print_endline (player_name (List.hd gamer_lst).gamer 
-                 ^ " played a " ^ phr ^ ".");
+  print_string [default] (player_name (List.hd gamer_lst).gamer 
+                          ^ " played a "); 
+  print_color_card phr; 
+  print_string [default] ".\n" ;
+  Unix.sleep(1);
+  print_string [on_blue] "\n ";
   if phr = "Wild" || phr = "Wild +4" then 
     let curr_player_diff = (List.hd gamer_lst).diff in
     let curr_player = (List.hd gamer_lst).gamer in 
@@ -369,11 +406,13 @@ let rec check_malformed_ais str_lst =
     then gives a list of length 1 to 3 of AI difficulties [ai_diff]. 
     Used by: [main ()] *)
 let rec prompt_init_ais () =
+  print_string [magenta] ("\nTo start us off... ");
   print_endline ("\nInput the number of AI(s) you would like to play against \
                   (up to 3) and their corresponding difficulties (1 = easy, \
                   2 = medium, 3 = hard). \nExamples: '3 3' = 2 AIs with hard \
                   difficulty, '2' = 1 AI with medium difficulty, '1 2' = 2 AIs \
-                  with one easy and one medium. \nPlease enter your choice:\n");
+                  with one easy and one medium.");
+  print_string [cyan] ("\nPlease enter your choice:\n");
   let difficulties = String.trim (read_line()) in 
   if difficulties = "" then prompt_init_ais ()
   else if difficulties = "quit" || difficulties = "Quit" 
@@ -384,19 +423,36 @@ let rec prompt_init_ais () =
     then assign_diff_to_ai (List.map (int_of_string) str_lst) []
     else prompt_init_ais ()
 
+(**[print_opponent rec_lst] prints the names of the AIs the user is going to 
+   play the game with. *)
+let print_opponent rec_lst = 
+  let rec print_names rec_lst names_str = 
+    match rec_lst with 
+    |[] -> names_str
+    |h::t -> if names_str <> "" then 
+        print_names t (names_str ^ ", " ^ (player_name h.gamer)) 
+      else print_names t (names_str ^ (player_name h.gamer))
+  in 
+  let to_be_printed = ("\nYou will be playing this game against our AI(s): \
+                       " ^ (print_names (List.tl rec_lst) "") ^ "\n") in 
+  (ANSITerminal.print_string [red] to_be_printed)
+
 (** [main ()] is the initial point of contact for the game to start. *)
 let main () =
-  print_endline ("\nWelcome to Uno! This game was coded by: Caroline Chu, \
-                  Nishat Peuly, and Alice Zhao.");
+  print_string [magenta;Bold] ("\nWelcome to Uno!");  
+  print_string [magenta] ("\n\nCoded by: Caroline Chu, \
+                           Nishat Peuly, and Alice Zhao.\n\n");
   let ai_difficulties = prompt_init_ais () in 
+  let record_lst = init_gamer_lst ai_difficulties in 
+  print_opponent record_lst;
   print_endline ("\nInput 'Rules' to review the rules. \nInput 'Commands' to \
                   learn the commands. \nInput 'Quit' to quit the game at any \
                   time. \nHave fun, and best of luck! The game is starting \
-                  now.......");
-  let json_file = Yojson.Basic.from_file "init_small.json" in
+                  now......."); Unix.sleep(1);
+  let json_file = Yojson.Basic.from_file "init2.json" in
   let num_ais = List.length ai_difficulties in
   let begin_uno = Gamestate.from_json json_file 7 num_ais in 
-  recurse_command begin_uno User (init_gamer_lst ai_difficulties) false
+  recurse_command begin_uno User (record_lst) false
 
 (*------------ABOVE-----------initialize uno game-----------ABOVE-------------*)
 

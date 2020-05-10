@@ -2,14 +2,6 @@ open OUnit2
 open Gamestate
 open Command
 
-(* -4: The test plan is missing.
-   -1: The test plan does not explain which parts of the system were automatically
-   tested by OUnit vs. manually tested.
-   -1: The test plan does not explain what modules were tested by OUnit and how 
-   test cases were developed (black box, glass box, randomized, etc.).
-   -1: The test plan does not provide an argument for why the testing approach 
-   demonstrates the correctness of the system.*)
-
 (*TEST PLAN: 
   Because we implemented different modules for this game: 
   (Nishat -> gamestate)
@@ -205,8 +197,8 @@ let gamestate_tests =
 
     (* testing number_search *)
 
-    "ns_test1" >:: (fun _-> assert_equal 1 (number_search gs_1 Player1 "Red 1"));
-    "ns_test2" >:: (fun _-> assert_equal 3 (number_search gs_2 Player1 "Red 3"));
+    "ns_test1" >:: (fun _-> assert_equal 1(number_search gs_1 Player1 "Red 1"));
+    "ns_test2" >:: (fun _-> assert_equal 3(number_search gs_2 Player1 "Red 3"));
 
 
     (* testing color_search *)
@@ -281,7 +273,7 @@ let gamestate_tests =
     "wild_test_31" >:: (fun _ -> assert_equal true 
                            (exn_test_2 gs_31 Player1 User "Blue 0" ""));
     "wild_test_4" >:: (fun _ -> assert_equal "blue" (color_state gs_32)); 
-    "wild_test_5" >:: (fun _ -> assert_equal 13 (last_card_played_number gs_32)); 
+    "wild_test_5" >:: (fun _ -> assert_equal 13(last_card_played_number gs_32)); 
     "wild_test_51" >::(fun _ -> assert_equal true 
                           (exn_test_2 gs_32 User Player1 "Red 0" ""));
 
@@ -522,7 +514,7 @@ open Ai_med
 let gs_101 = Gamestate.draw gs_2 User 1
 let gs_102 = Gamestate.play gs_101 User Player1 "Red 0" ""
 
-(* gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last played *)
+(*gs_113 is where User has 2 cards, Player has 3, and Red 0 is the last played*)
 let gs_111 = Gamestate.draw gs_2 User 1 
 let gs_112 = Gamestate.draw gs_111 Player1 1 
 let gs_113 = Gamestate.play gs_112 User Player1 "Red 0" ""
@@ -562,7 +554,8 @@ let make_ai_tests_sprint_1
     (name : string) 
     (t)
     (expected_output) : test =
-  name >:: (fun _ -> assert_equal (Ai_med.player_turn t Player1) expected_output )
+  name >:: (fun _ -> assert_equal (Ai_med.player_turn t Player1) 
+               expected_output )
 
 let ai_tests_sprint_1 =
   [
@@ -647,7 +640,8 @@ let make_ai_tests_sprint_2
     (name : string) 
     (t)
     (expected_output) : test =
-  name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player1) expected_output)
+  name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player1)
+               expected_output)
 
 (** [make_ais_tests_sprint_2 name t expected_output] constructs an OUnit
     test named [name] that asserts the quality of [expected_output]
@@ -656,7 +650,8 @@ let make_ais_tests_sprint_2
     (name : string) 
     (t)
     (expected_output) : test =
-  name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player2) expected_output)
+  name >:: (fun _ -> assert_equal (Ai_hard.player_turn t Player2) 
+               expected_output)
 
 let ai_tests_sprint_2 =
   [
@@ -680,7 +675,8 @@ let ai_tests_sprint_2 =
     make_ais_tests_sprint_2 "player2 unos" gs_800 (Uno "Blue 3");
     make_ais_tests_sprint_2 "player2 draws" gs_801 (Draw);
     make_ais_tests_sprint_2 "player2 uno2s user" gs_804 (Uno2 User);
-    make_ais_tests_sprint_2 "player2 plays after player1" gs_805 (Play "Green 1");
+    make_ais_tests_sprint_2 "player2 plays after player1" gs_805 
+      (Play "Green 1");
     make_ais_tests_sprint_2 "player2 plays wild" gs_807 (Play "Wild");
   ]
 
