@@ -37,7 +37,8 @@ let rec color_search t1 hand color gamer =
     card exists *)
 let find_playable_card t hand card_name gamer =
   let same_color_card = color_search t hand (Gamestate.color_state t) gamer in
-  let same_num_card = number_search t hand (Gamestate.last_card_played_number t) gamer in
+  let same_num_card = number_search t hand 
+      (Gamestate.last_card_played_number t) gamer in
   match same_num_card with
   | "" -> 
     (if (Gamestate.last_card_played_number t != 12 
@@ -45,8 +46,8 @@ let find_playable_card t hand card_name gamer =
              (Gamestate.last_card_played_number t = 14 
               && Gamestate.current_tally_num t = 0))) then 
        begin match (same_color_card) with
-        | "" -> ""
-        | _ -> same_color_card end
+         | "" -> ""
+         | _ -> same_color_card end
      else "")
   | _ -> same_num_card
 
