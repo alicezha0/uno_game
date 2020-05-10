@@ -67,7 +67,7 @@ let end_game () =
 let player_drew gamer =
   if gamer = User then () else
     print_endline (player_name gamer ^ " drew card(s)."); 
-  print_string [on_blue] " \n"
+  print_string [on_blue] "\n "
 (** [winning gs gamer] is the boolean of whether the game has been won by 
     either the user or the AIs. If true, then ending messages are printed as
     well. 
@@ -80,7 +80,7 @@ let winning gs gamer =
       ((print_string [magenta] ("\nYou have won the game! Congratulations and \
                                  thanks for playing! 
                                  \nBest: Alice, Caroline, Nat")); true)
-    else ((print_string [magenta] (player_name gamer ^ sec_str)); true)
+    else ((print_string [magenta] ("\n" ^ player_name gamer ^ sec_str)); true)
   else false
 
 (** [pick_color ()] is the color the user chooses after playing a wild card. 
@@ -115,7 +115,7 @@ let valid_uno gamer =
                     winning!")
   else print_endline (player_name gamer ^ " has called uno! Looks like \
                                            you're gonna lose...unless...?");
-  print_string [on_blue] " \n"
+  print_string [on_blue] "\n "
 
 (** [invalid_uno ()] prints when the an invalid defensive uno was called. *)
 let invalid_uno () =
