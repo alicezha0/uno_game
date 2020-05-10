@@ -88,7 +88,7 @@ let winning gs gamer =
 let pick_color () =
   (print_endline "\nYou played a wild card, which means you get to choose the \
                   \nnext color to be played.");              
-  print_string [cyan] (" Please enter the next color (Red, Yellow, Green, \
+  print_string [cyan] ("Please enter the next color (Red, Yellow, Green, \
                         Blue):\n");
   parse_color (read_line ())
 
@@ -279,7 +279,9 @@ let rec recurse_command gs gamer gamer_lst win =
     been forced to draw [num] cards. *)
 and c_draw gs gamer num = 
   player_drew gamer;
-  let draw_result = Command.draw gs gamer num in 
+  let current_tally = Gamestate.current_tally_num gs in
+  let draw_num = if current_tally = 0 then 1 else current_tally in 
+  let draw_result = Command.draw gs gamer draw_num in 
   match draw_result with
   | Legal gamestate -> gamestate
   | _ -> print_endline "not possible"; gs
