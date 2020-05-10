@@ -5,7 +5,7 @@ MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
-PKGS=yojson,oUnit,Thread
+PKGS=yojson,oUnit
 
 default: build
 	utop
@@ -20,7 +20,7 @@ play:
 	$(OCAMLBUILD) $(MAIN) && ./$(MAIN)
 
 zip:
-	zip uno.zip *.ml* *.json _tags Makefile
+	zip uno.zip *.ml* *.json *.txt _tags Makefile
 	
 docs: docs-public docs-private
 	

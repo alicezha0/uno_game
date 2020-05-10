@@ -1,7 +1,6 @@
 #require "oUnit";;
 #require "yojson";;
 #require "ANSITerminal";;
-#require "Thread";;
 #directory "_build";;
 #load "gamestate.cmo";;
 #load "command.cmo";;
