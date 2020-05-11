@@ -68,6 +68,7 @@ let player_drew gamer =
   if gamer = User then () else
     print_endline (player_name gamer ^ " drew card(s)."); 
   print_string [on_blue] "\n "
+
 (** [winning gs gamer] is the boolean of whether the game has been won by 
     either the user or the AIs. If true, then ending messages are printed as
     well. 
@@ -79,7 +80,7 @@ let winning gs gamer =
     if gamer = User then 
       ((print_string [magenta] ("\nYou have won the game! Congratulations and \
                                  thanks for playing! 
-                                 \nBest: Alice, Caroline, Nat")); true)
+                                 \nBest: Alice, Caroline, Nat\n")); true)
     else ((print_string [magenta] ("\n" ^ player_name gamer ^ sec_str)); true)
   else false
 
@@ -115,7 +116,7 @@ let valid_uno gamer =
                     winning!")
   else print_endline (player_name gamer ^ " has called uno! Looks like \
                                            you're gonna lose...unless...?");
-  print_string [on_blue] "\n "
+  print_string [on_blue] " \n "
 
 (** [invalid_uno ()] prints when the an invalid defensive uno was called. *)
 let invalid_uno () =
@@ -280,7 +281,7 @@ let rec recurse_command gs gamer gamer_lst win =
 and c_draw gs gamer num = 
   player_drew gamer;
   let current_tally = Gamestate.current_tally_num gs in
-  let draw_num = if current_tally = 0 then 1 else current_tally in 
+  let draw_num = if current_tally = 0 then num else current_tally in 
   let draw_result = Command.draw gs gamer draw_num in 
   match draw_result with
   | Legal gamestate -> gamestate
@@ -358,7 +359,8 @@ and c_uno2 gs gamer called_on gamer_lst win =
     recurse_command gamestate (List.hd turn_g).gamer turn_g win
   | Illegal string -> if string = "notagamer" then 
       (not_a_gamer (); recurse_command gs gamer gamer_lst win)
-    else recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win
+    else print_endline string; 
+    recurse_command (c_draw gs gamer 4) (List.hd turn_g).gamer turn_g win
 
 (*------------ABOVE-------------recurse command-------------ABOVE-------------*)
 
